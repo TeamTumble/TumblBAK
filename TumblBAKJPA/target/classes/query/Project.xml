@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tumbl.client.project.dao.ProjectDAO">
+
+	<sql id="boardCommon">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+		p_enddate,
+		p_price,
+		P_SUPPORTER
+		FROM tumble_project
+		<where>
+			<if test="search=='p_title'"> 
+    		<![CDATA[ p_title LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+		</where>
+	</sql>
+
+	<!-- 게시물 기본 조회 -->
+	<select id="projectList" resultType="project" parameterType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+		p_enddate,
+		p_price,
+		P_SUPPORTER
+		FROM ( SELECT
+		list.*, ROWNUM AS RNUM FROM (
+		<include refid="boardCommon"></include>
+		<choose>
+			<when test="order_by=='p_no'"> ORDER BY p_no           </when>
+			<when test="order_by=='p_startdate'"> ORDER BY p_startdate            </when>
+		</choose>
+		<choose>
+			<when test="order_sc=='ASC'"> ASC          </when>
+			<when test="order_sc=='DESC'"> DESC          </when>
+		</choose>
+		) list )
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<!-- 미술 프로젝트 페이지를 위한 조회 -->
+	<select id="projectList_Art" resultType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection
+		FROM tumble_project where p_type = 'art'
+		<!-- ( SELECT list.*, ROWNUM AS RNUM FROM ( <include refid="boardCommon"></include> 
+			<choose> <when test="order_by=='p_no'"> ORDER BY p_no </when> <when test="order_by=='p_startdate'"> 
+			ORDER BY p_startdate </when> </choose> <choose> <when test="order_sc=='ASC'"> 
+			ASC </when> <when test="order_sc=='DESC'"> DESC </when> </choose> ) list 
+			) <where> <if test="start_row != null and start_row != ''"> <if test="end_row 
+			!= null and end_row != ''"> RNUM BETWEEN #{start_row} AND #{end_row} </if> 
+			</if> <if test="p_type !=null and p_type != ''"> <![CDATA[ AND p_type = 'art' 
+			]]> </if> </where> -->
+	</select>
+	<!-- 공예 프로젝트 페이지를 위한 조회 -->
+	<select id="projectList_Crafts" resultType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection
+		FROM
+		tumble_project where p_type = 'crafts'
+	</select>
+
+	<!-- 출판 프로젝트 페이지를 위한 조회 -->
+	<select id="projectList_Book" resultType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection
+		FROM
+		tumble_project where p_type = 'book'
+	</select>
+
+	<!-- 문화 프로젝트 페이지를 위한 조회 -->
+	<select id="projectList_Culture" resultType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection
+		FROM
+		tumble_project where p_type = 'culture'
+	</select>
+
+	<!-- 상세 페이지를 위한 게시물 조회 -->
+	<select id="projectDetail" parameterType="int" resultType="project">
+		SELECT
+		p_no, email, p_title, p_image, p_type, p_summary,
+		pm_image,
+		pm_name, pm_area, pm_intro,
+		p_price, p_fundingdate, p_enddate,
+		p_paydate,p_enddate_input, p_paydate_input,
+		p_giftname,p_giftprice,
+		p_giftquantity, p_giftexplanation, p_giftdate,
+		p_refund,
+		p_story,p_storyimage,
+		pm_email, pm_phone, pm_bank,
+		pm_acountname,
+		pm_acount,
+		pm_birthday,p_collection,P_SUPPORTER,
+		p_startdate
+		FROM
+		tumble_project
+		WHERE p_no = #{p_no}
+	</select>
+	
+	<sql id="productCommon">
+	SELECT * FROM tumble_project
+	</sql>
+	
+	<!-- 핫한 프로젝트 조회 -->
+	<select id="projectList_Hot" resultType="project">
+	SELECT
+      p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+        p_supporter
+      FROM
+      (SELECT list.*,
+      ROWNUM AS RNUM
+      FROM(
+      
+      <include refid="productCommon"></include>
+      order by p_supporter desc
+      )
+      list
+      <where>
+         <![CDATA[ ROWNUM <= 3 ]]>
+      </where>
+      )
+        
+	</select>
+	
+	<select id="projectList_New" resultType="project">
+	SELECT
+      p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+        p_supporter
+      FROM
+      (SELECT list.*,
+      ROWNUM AS RNUM
+      FROM(
+      
+      <include refid="productCommon"></include>
+      order by p_no desc
+      )
+      list
+      <where>
+         <![CDATA[ ROWNUM <= 3 ]]>
+      </where>
+      )
+
+	</select>
+	
+		<select id="projectList_NewA" resultType="project">
+		SELECT
+      p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+        p_supporter
+      FROM
+      (SELECT list.*,
+      ROWNUM AS RNUM
+      FROM(
+      <include refid="boardCommon"></include>
+      
+      order by p_no desc
+      )
+      list)
+	</select>
+	
+	<select id="projectList_HotA" resultType="project">
+		SELECT
+      p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+        p_supporter
+      FROM
+      (SELECT list.*,
+      ROWNUM AS RNUM
+      FROM(
+      
+      <include refid="boardCommon"></include>
+      order by p_supporter desc
+      )
+      list)
+	</select>
+	 	<!-- 핫한 프로젝트 조회 -->
+	<!--<select id="projectList_Hot" resultType="project" parameterType="project">
+		SELECT p_no, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+		p_supporter
+		FROM ( SELECT
+		list.*, ROWNUM AS RNUM FROM (
+		<include refid="boardCommon"></include>
+		<choose>
+			<when test="order_by=='p_supporter'"> ORDER BY p_supporter           </when>
+			<when test="order_by=='p_startdate'"> ORDER BY p_startdate            </when>
+		</choose>
+		<choose>
+			<when test="order_sc=='ASC'"> ASC          </when>
+			<when test="order_sc=='DESC'"> DESC          </when>
+		</choose>
+		) list )
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+	</select> -->
+
+	<!-- 게시물 등록 -->
+	<!-- 등록 원본 -->
+	<insert id="projectInsert" parameterType="project">
+		<selectKey keyProperty="p_no" resultType="int" order="BEFORE">
+			select
+			tumble_project_seq.nextval from dual
+		</selectKey>
+		INSERT INTO tumble_project
+		(p_no, email, p_title,
+		<if test="p_image != null and p_image != ''">p_image,</if>
+		p_type, p_summary,
+		<if test="pm_image != null and pm_image != ''">pm_image,</if>
+		pm_name, pm_area, pm_intro, p_price,
+		p_fundingdate,p_enddate,p_paydate,p_enddate_input, p_paydate_input,
+		p_giftname,p_giftprice,
+		p_giftquantity, p_giftexplanation,p_giftdate,
+		p_refund,
+		p_story,
+		<if test="p_storyimage != null and p_storyimage != ''">p_storyimage,</if>
+		pm_email, pm_phone, pm_bank, pm_acountname, pm_acount,
+		pm_birthday,p_collection,p_supporter)
+		VALUES
+		(#{p_no}, #{email},
+		#{p_title},
+		<if test="p_image != null and p_image != ''">#{p_image},</if>
+		#{p_type}, #{p_summary},
+		<if test="pm_image != null and pm_image != ''">#{pm_image},</if>
+		#{pm_name}, #{pm_area}, #{pm_intro} ,#{p_price},
+		#{p_fundingdate},#{p_enddate},#{p_paydate},#{p_enddate_input},
+		#{p_paydate_input},
+		#{p_giftname},
+		#{p_giftprice}, #{p_giftquantity},
+		#{p_giftexplanation},#{p_giftdate},#{p_refund},
+		#{p_story},
+		<if test="p_storyimage != null and p_storyimage != ''"> #{p_storyimage},</if>
+		#{pm_email}, #{pm_phone}, #{pm_bank}, #{pm_acountname}, #{pm_acount},
+		#{pm_birthday}, #{p_collection},#{p_supporter})
+	</insert>
+
+
+	<!-- 게시물 수정 -->
+	<update id="projectUpdate" parameterType="project">
+		UPDATE tumble_project
+		SET
+		p_title = #{p_title}
+		<if test="p_image != ''">,p_image=#{p_image}</if>
+		,
+		p_type = #{p_type},
+		p_summary = #{p_summary}
+		<if test="pm_image != ''">,pm_image = #{pm_image}</if>
+		,
+		pm_name = #{pm_name},
+		pm_area = #{pm_area},
+		pm_intro = #{pm_intro},
+		p_price = #{p_price},
+		p_fundingdate = #{p_fundingdate},
+		p_enddate =
+		#{p_enddate},
+		p_paydate = #{p_paydate},
+		p_giftname = #{p_giftname},
+		p_giftprice = #{p_giftprice},
+		p_giftquantity = #{p_giftquantity},
+		p_giftexplanation = #{p_giftexplanation},
+		p_giftdate = #{p_giftdate},
+		p_refund = #{p_refund},
+		p_story = #{p_story}
+		<if test="p_storyimage != ''">,p_storyimage = #{p_storyimage}</if>
+		,
+		pm_email = #{pm_email},
+		pm_phone = #{pm_phone},
+		pm_bank = #{pm_bank},
+		pm_acountname = #{pm_acountname},
+		pm_acount = #{pm_acount},
+		pm_birthday
+		= #{pm_birthday}
+		WHERE p_no = #{p_no}
+	</update>
+	<!-- 검토용 -->
+	<!-- <insert id="projectInsert" parameterType="project"> <selectKey keyProperty="p_no" 
+		resultType="int" order="BEFORE"> select tumble_project_seq.nextval from dual 
+		</selectKey> INSERT INTO tumble_project (p_no, p_title, <if test="p_image 
+		!= null and p_image != ''">p_image,</if> p_type, p_summary,<if test="pm_image 
+		!= null and pm_image != ''">pm_image,</if> pm_name, pm_area, pm_intro ,p_price, 
+		p_fundingdate,p_enddate,p_paydate) VALUES (#{p_no}, #{p_title}, <if test="p_image 
+		!= null and p_image != ''">#{p_image},</if> #{p_type}, #{p_summary},<if test="pm_image 
+		!= null and pm_image != ''">#{pm_image},</if> #{pm_name}, #{pm_area}, #{pm_intro}, 
+		#{p_price}, #{p_fundingdate},#{p_enddate},#{p_paydate}) </insert> -->
+
+
+</mapper>

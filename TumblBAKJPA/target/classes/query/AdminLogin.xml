@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tumbl.admin.login.dao.AdminLoginDao">
+
+	<select id="AdminloginSelect" parameterType="adminLogin" resultType="adminLogin">
+		SELECT ad_id, ad_pw, ad_name
+		FROM
+		ADMIN_LOGIN
+		<where>
+			ad_id = #{ad_id} and ad_pw = #{ad_pw}
+		</where>
+	</select>
+	
+
+</mapper>

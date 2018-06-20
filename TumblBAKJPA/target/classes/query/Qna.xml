@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tumbl.admin.qna.dao.QnaDao">
+
+
+	<!-- 게시물 기본 조회 -->
+	<!-- <select id="boardList" resultType="board"> SELECT b_num, b_name, b_title, 
+		to_char(b_date,'YYYY-MM-DD') as b_date FROM spring_board ORDER BY b_num desc 
+		</select> -->
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> -->
+
+
+
+	<sql id="qnaCommon">
+		SELECT q_num, email, q_title, q_date, b_file FROM qna
+		<where>
+			<if test="search=='q_title'"> 
+    		<![CDATA[ q_title LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='q_content'">
+				<![CDATA[ q_content LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='email'"> 
+			 	<![CDATA[ q_name LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search == 'q_date'">
+				<![CDATA[ to_char(q_date,'YYYY-MM-DD') between #{start_date} and #{end_date}]]>
+			</if>
+		</where>
+	</sql>
+
+	<!-- 게시물 전체 조회 -->
+	<select id="qnaList" parameterType="qna" resultType="qna">
+		<!-- db랑 이름 같은지 검사해보자 크롬창에 칼럼 안뜬당 -->
+		SELECT q_NUM,idx, email, q_TITLE, q_CONTENT,
+		TO_CHAR(q_DATE,'YYYY-MM-DD
+		HH24:MI:SS') AS q_DATE FROM ( SELECT
+		list.*, ROWNUM AS RNUM FROM (
+		<include refid="qnaCommon"></include>
+		<choose>
+			<when test="order_by=='q_num'"> ORDER BY q_NUM           </when>
+			<when test="order_by=='q_date'"> ORDER BY q_DATE            </when>
+		</choose>
+		<!-- <choose> <when test="order_sc=='ASC'"> ASC </when> <when test="order_sc=='DESC'"> 
+			DESC </when> </choose> -->
+		) list )
+		<where>
+			<if test="email != null and email != ''">
+				email = #{email}
+			</if>
+			<!-- <if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+
+			</if> -->
+			
+		</where>
+
+
+	</select>
+	<select id="qnaListCnt" parameterType="qna" resultType="int">
+		SELECT NVL(count(1), 0) FROM
+		( SELECT list.*, ROWNUM AS RNUM
+		FROM (
+		<include refid="qnaCommon"></include>
+		ORDER BY q_num desc
+		) list
+		)
+	</select>
+
+	<!-- 상세 페이지를 위한 게시물 조회 -->
+	<select id="qnaDetail" parameterType="int" resultType="qna">
+		SELECT
+		q_num, email, q_title, q_content, b_file,
+		TO_CHAR(q_date,'YYYY-MM-DD
+		HH24:MI:SS') AS q_date
+		FROM qna
+		WHERE q_num = #{q_num}
+	</select>
+
+	<!-- 게시물 등록 -->
+	<insert id="qnaInsert" parameterType="qna">
+		<selectKey keyProperty="q_num" resultType="int" order="BEFORE">
+			select qna_seq.nextval from dual
+		</selectKey>
+		INSERT INTO qna (q_num, idx, email, q_title, q_content
+		<if test="b_file != null and b_file != ''">,b_file</if>
+		)
+		VALUES(#{q_num},#{idx},#{email},#{q_title},#{q_content}
+		<if test="b_file != null and b_file != ''">,#{b_file}</if>
+		)
+	</insert>
+
+	<!-- 해당 번호의 비밀번호 확인 -->
+	<!-- <select id="pwdConfirm" parameterType="qna" resultType="int"> SELECT 
+		NVL(( SELECT 1 FROM spring_board WHERE b_num = #{b_num} AND b_pwd = #{b_pwd} 
+		), 0) as state FROM dual </select> -->
+
+	<!-- 게시물 수정 -->
+	<update id="qnaUpdate" parameterType="qna">
+		UPDATE qna
+		SET q_title = #{q_title}
+		,q_content = #{q_content}
+		,q_date = sysdate
+		<if test="b_file != ''">
+			,b_file = #{b_file}
+		</if>
+		WHERE
+		q_num = #{q_num}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="qnaDelete" parameterType="qna">
+		DELETE FROM
+		qna
+		WHERE
+		q_num
+		= #{q_num}
+	</delete>
+
+</mapper>

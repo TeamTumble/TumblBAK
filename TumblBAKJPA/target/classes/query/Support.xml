@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tumbl.client.support.dao.SupportDAO">
+
+	<!-- 등록 원본 -->
+	<insert id="supportInsert" parameterType="support">
+		<selectKey keyProperty="s_no" resultType="int" order="BEFORE"> select
+			tumble_support_seq.nextval from dual
+		</selectKey>
+		INSERT INTO tumble_support (s_no, p_no, email, s_giftname,
+		s_giftquantity,
+		s_giftprice, s_addprice, s_price, s_name, s_zipcode,
+		s_address,s_email,s_paymentcheck,s_supporter,
+		s_phone) VALUES
+		(#{s_no},#{p_no},#{email},#{s_giftname},
+		#{s_giftquantity},#{s_giftprice},
+		#{s_addprice}, #{s_price},
+		#{s_name},#{s_zipcode}, #{s_address},
+		#{s_email},#{s_paymentcheck},#{s_supporter},
+		#{s_phone})
+	</insert>
+	
+	
+	<!-- 후원 등록과 동시에 프로젝트 후원금액과 후원인 수 업데이트 -->
+	<update id="supportInsertPlus" parameterType="support">
+		UPDATE
+		TUMBLE_PROJECT
+		SET P_COLLECTION = (P_COLLECTION + (SELECT S_PRICE FROM
+		TUMBLE_SUPPORT WHERE email = #{email} and p_no = #{p_no})),
+		 P_SUPPORTER = (P_SUPPORTER + (SELECT S_SUPPORTER FROM TUMBLE_SUPPORT
+		WHERE email = #{email} and p_no = #{p_no}))  where p_no = #{p_no}
+	</update>
+
+
+
+	<select id="supportDetail" parameterType="int" resultType="support">
+		SELECT
+		p_no, email, p_giftNo, p_giftname, p_giftprice
+		FROM
+		tumble_project
+		WHERE
+		p_no = #{p_no}
+	</select>
+	
+	<select id="supportSuccess" parameterType="int" resultType="support">
+		SELECT
+		s_no, email, S_GIFTNAME, S_GIFTQUANTITY, s_giftprice
+		FROM
+		tumble_support
+		WHERE
+		s_no = #{s_no}
+	</select>
+	
+	<select id="supportSelect" parameterType="String" resultType="support">
+		SELECT
+		email, S_GIFTNAME, S_GIFTQUANTITY, s_giftprice
+		FROM
+		tumble_support
+		WHERE
+		email = #{email}
+	</select>
+	
+
+
+</mapper>
