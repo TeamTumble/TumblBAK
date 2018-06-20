@@ -194,8 +194,8 @@
 				<div>
 					<input type="hidden" name="email" id="email"
 						value="${member.email}" /> <input type="hidden"
-						name="p_collection" id="p_collection" value="0"> <input
-						type="hidden" name="p_supporter" id="p_supporter" value="0">
+						name="pcollection" id="pcollection" value="0"> <input
+						type="hidden" name="psupporter" id="psupporter" value="0">
 				</div>
 
 				<div class="panel-group" id="accordion" role="tablist"

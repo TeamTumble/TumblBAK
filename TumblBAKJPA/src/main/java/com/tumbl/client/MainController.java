@@ -6,6 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tumbl.client.project.service.ProjectService;
 import com.tumbl.client.project.vo.ProjectVO;
-/*import com.tumbl.client.project.service.ProjectService;*/
-import com.tumbl.client.project.vo.ProjectVO1;
 
 @Controller
 public class MainController {
@@ -26,11 +29,17 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(@ModelAttribute ProjectVO pvo, Model model, HttpSession session) {
-		List<ProjectVO> projectList_Hot = projectService.projectList_Hot(pvo);
-		model.addAttribute("projectList_Hot", projectList_Hot);
-
-		List<ProjectVO> projectList_New = projectService.projectList_New(pvo);
-		model.addAttribute("projectList_New", projectList_New);
+		
+		
+		PageRequest newProject = new PageRequest(0, 3, new Sort(Direction.DESC, "pno"));
+		Page<ProjectVO> projectList_New = projectService.projectList_New(newProject);
+		List<ProjectVO> newpro = projectList_New.getContent();
+		model.addAttribute("projectList_New", newpro);
+		
+		PageRequest hotproject = new PageRequest(0, 3, new Sort(Direction.DESC, "psupporter"));
+		Page<ProjectVO> projectList_Hot = projectService.projectList_Hot(hotproject);
+		List<ProjectVO> hotPro = projectList_Hot.getContent();
+		model.addAttribute("projectList_Hot", hotPro);
 
 		return "index";
 	}

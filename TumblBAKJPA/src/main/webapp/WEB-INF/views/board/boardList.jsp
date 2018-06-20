@@ -199,7 +199,7 @@
 									<td>${board.q_date}</td>
 									<td class="name">${board.email}</td>
 									<td><input type="hidden" id="email" name="email"
-										value="${login.email}"></td>
+										value="${board.email}"></td>
 								</tr>
 							</c:forEach>
 						</c:when>

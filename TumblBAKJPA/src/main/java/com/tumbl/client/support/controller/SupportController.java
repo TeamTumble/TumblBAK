@@ -63,7 +63,7 @@ public class SupportController {
 		ProjectVO update = new ProjectVO();
 		String url = "";
 
-		result = supportService.supportInsert(svo);
+		supportService.supportInsert(svo);
 
 		supportService.supportInsertPlus(svo);
 

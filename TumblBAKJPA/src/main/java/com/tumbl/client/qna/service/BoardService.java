@@ -64,21 +64,24 @@ public class BoardService {
 	public QnaVO boardDetail(QnaVO bvo) {
 		QnaVO detail = null;
 		detail = boardRepository.findOne(bvo.getQnum());
+		System.out.println("디테일 서비스  ========== " + detail);
 		return detail;
 
 	}
 
 	// 글수정 구현//
 
-	public void boardUpdate(QnaVO bvo) {
-
-		try {
+	public QnaVO boardUpdate(QnaVO bvo) {
+		/*QnaVO detail = null;
+		detail = boardRepository.findOne(bvo.getQnum());
+		System.out.println("서비스 업데이트 ======= " +bvo);
+		System.out.println("서비스 업데이트 디테일  ======= " +detail);
+		bvo.setEmail(detail.getEmail());
+		bvo.setQ_date(detail.getQ_date());*/
+		
 			boardRepository.save(bvo);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
+		
+			return bvo;
 	}
 
 	// 글삭제 구현//

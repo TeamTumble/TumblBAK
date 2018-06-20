@@ -150,7 +150,7 @@
 										src="/uploadStorage/project/${project.p_image}" width="350px"
 										height="250px"></td>
 									<td id="ttt" align="center">${project.p_title}</td>
-									<td id="ccc" align="right">모음금액 :${project.p_collection}원</td>
+									<td id="ccc" align="right">모음금액 :${project.pcollection}원</td>
 								</tr>
 
 							</c:forEach>

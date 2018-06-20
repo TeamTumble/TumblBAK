@@ -45,7 +45,9 @@
 					id="b_file" value="${updateData.b_file}" /> <input type="hidden"
 					name="page" id="page" value="${param.page}" /> <input
 					type="hidden" name="pageSize" id="pageSize"
-					value="${param.pageSize}" />
+					value="${param.pageSize}" /><input type="hidden" name="q_date"
+					id="q_date" value="${updateData.q_date}" /><input type="hidden"
+					name="email" id="email" value="${updateData.email}" />
 				<table>
 					<colgroup>
 						<col width="17%" />

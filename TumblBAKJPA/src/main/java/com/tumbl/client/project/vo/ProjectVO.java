@@ -64,8 +64,8 @@ public class ProjectVO extends CommonVO{
 	private String p_case;// 프로젝트 상태(승인대기,승인,미승인)
 	private String p_remarks;// 비고(승인 거절 사유)
 	
-	private int p_supporter; // 후원자 집계
-	private int p_collection; // 후원금액 집계
+	private int psupporter; // 후원자 집계
+	private int pcollection; // 후원금액 집계
 	private String p_thumbnail;
 
 	
@@ -88,7 +88,7 @@ public class ProjectVO extends CommonVO{
 			int p_giftquantity, String p_giftexplanation, String p_giftdate, String p_refund, String p_delivery,
 			String p_story, String p_storyimage, String pm_email, String pm_phone, String pm_bank, String pm_acountname,
 			String pm_acount, String pm_birthday, int p_okcheck, String p_remarks, MultipartFile p_file,
-			MultipartFile pm_file, MultipartFile ps_file, int p_supporter, int p_collection, String p_thumbnail) {
+			MultipartFile pm_file, MultipartFile ps_file, int psupporter, int pcollection, String p_thumbnail) {
 		super();
 		this.pno = pno;
 		this.email = email;
@@ -126,8 +126,8 @@ public class ProjectVO extends CommonVO{
 		this.p_file = p_file;
 		this.pm_file = pm_file;
 		this.ps_file = ps_file;
-		this.p_supporter = p_supporter;
-		this.p_collection = p_collection;
+		this.psupporter = psupporter;
+		this.pcollection = pcollection;
 		this.p_thumbnail = p_thumbnail;
 	}
 
@@ -445,20 +445,20 @@ public class ProjectVO extends CommonVO{
 		this.ps_file = ps_file;
 	}
 
-	public int getP_supporter() {
-		return p_supporter;
+	public int getPsupporter() {
+		return psupporter;
 	}
 
-	public void setP_supporter(int p_supporter) {
-		this.p_supporter = p_supporter;
+	public void setPsupporter(int psupporter) {
+		this.psupporter = psupporter;
 	}
 
-	public int getP_collection() {
-		return p_collection;
+	public int getPcollection() {
+		return pcollection;
 	}
 
-	public void setP_collection(int p_collection) {
-		this.p_collection = p_collection;
+	public void setPcollection(int pcollection) {
+		this.pcollection = pcollection;
 	}
 
 	public String getP_thumbnail() {

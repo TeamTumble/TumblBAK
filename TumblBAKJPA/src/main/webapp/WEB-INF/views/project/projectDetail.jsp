@@ -2871,7 +2871,7 @@ px
 
 	$(function() {
 		/* 목표 금액 퍼센트 표시 용*/
-		var x = ${detail.p_collection};
+		var x = ${detail.pcollection};
 		var y = ${detail.p_price};
 		result = x / y * 100;
 		$("#precent").val(result);
@@ -3039,7 +3039,7 @@ px
 												class="ProjectIntroduction__StatusValue-c7b94s-16 bvKOwU"
 												data-reactid="54">
 												<!-- react-text: 55 -->
-												${detail.p_collection}
+												${detail.pcollection}
 												<!-- /react-text -->
 												<span class="ProjectIntroduction__Small-c7b94s-18 ihuRTA"
 													data-reactid="56">원</span><span
@@ -3074,7 +3074,7 @@ px
 												class="ProjectIntroduction__StatusValue-c7b94s-16 bvKOwU"
 												data-reactid="67">
 												<!-- react-text: 68 -->
-												${detail.p_supporter}
+												${detail.psupporter}
 												<!-- /react-text -->
 												<span class="ProjectIntroduction__Small-c7b94s-18 ihuRTA"
 													data-reactid="69">명</span>

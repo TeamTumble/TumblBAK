@@ -4410,10 +4410,10 @@ px
 																	class="_2Pv5906z-UsZ07dcVfvk9A _3ZgG-OSv0XE3y-h3oPaDsl">
 																	<span><span><i
 																			class="_2CeNIUhLMEIh6Reaatfs8t _1DLNFgQRrQNEosKFB0zOK5 _3fJsfvAPykJzj2xoMnxzWW _1QY7TzdLHKX3-BKPDNNYKF"></i><span
-																			class="_3wTgZRGNymIHPh6hCKcqLB"><span><b>${project.p_supporter}</b>
+																			class="_3wTgZRGNymIHPh6hCKcqLB"><span><b>${project.psupporter}</b>
 																					<!-- react-text: 684 -->명<!-- /react-text --> <!-- react-text: 685 -->&nbsp;남음<!-- /react-text --></span></span></span></span><span
 																		class="WU1ox0-AeDX_zneKjnNMO _3G8CRXtomRhisiZsw7Spx- oAeG34mYkuDyUTybhBMrQ _35IrtYr9szyFp35dfIs1we"><span
-																		class="_3RLeDxIcBcdtnfFY_zqA6D"><b>${project.p_collection}</b>
+																		class="_3RLeDxIcBcdtnfFY_zqA6D"><b>${project.pcollection}</b>
 																			<!-- react-text: 689 -->원<!-- /react-text --></span> <!-- react-text: 690 -->&nbsp;<!-- /react-text -->
 																		<span class="_2-V4gwoMV-SndpRluk8MJZ"> <!-- react-text: 692 -->
 																	</span></span>

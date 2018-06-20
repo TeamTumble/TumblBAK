@@ -109,6 +109,7 @@
 				type="hidden" name="page" value="${data.page}"> <input
 				type="hidden" name="pageSize" value="${data.pageSize}">
 				
+				
 		</form>
 		<%-- ========= 비밀번호 확인 버튼 및 버튼 추가 시작 ====== --%>
 		<table id="qnaPwdBut">
@@ -148,7 +149,7 @@
 			</table>
 		</div>
 		<%-- =============== 상세 정보 보여주기 종료 ============ --%>
-		 <jsp:include page="reply.jsp"></jsp:include> 
+		 <%-- <jsp:include page="reply.jsp"></jsp:include> --%> 
 	</div>
 </body>
 </html>

@@ -62,10 +62,10 @@
 								varStatus="status">
 								<tr class="tac " id="tac" data-num="${project.pno}">
 									
-									<td><img src="/uploadStorage/project/${project.p_image}"
+									<td><img src="/uploadStorage/projectvo/${project.p_image}"
 										width="350px" height="250px"></td>
 									<td class="goDetail tal" id="ttt" align="center">${project.p_title}</td>
-									<td id="ccc" align="right">모음금액 :${project.p_collection}원</td>
+									<td id="ccc" align="right">모음금액 :${project.pcollection}원</td>
 								</tr>
 
 								

@@ -189,8 +189,9 @@ public class BoardController {
 		}
 		System.out.println(bvo.getEmail());
 		boardService.boardUpdate(bvo);
-
-		url = "/board/boardDetail.do?q_num=" + bvo.getQnum();
+		System.out.println(bvo.getQnum());
+		url = "/board/boardDetail.do?qnum="+bvo.getQnum();
+		
 
 		return "redirect:" + url;
 	}
