@@ -150,6 +150,7 @@
 								<option value="5">5줄</option>
 								<option value="7">7줄</option>
 								<option value="10">10줄</option>
+								<option value="30">30줄</option>
 						</select>
 						</td>
 					</tr>

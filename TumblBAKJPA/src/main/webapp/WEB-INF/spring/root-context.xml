@@ -20,38 +20,61 @@
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
-	
-	<jpa:repositories base-package="com.tumbl.*.*.repository" />
-	
+		<mvc:argument-resolvers>
+			<bean
+				class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<jpa:repositories
+		base-package="com.tumbl.*.*.repository" />
+
 	<context:component-scan
 		base-package="com.tumbl.*.*.service, com.tumbl.*.*.repository" />
 
 	<context:component-scan
 		base-package="com.tumbl.*.*.controller" />
 
-
-	<bean id="dataSource"
-		class="org.apache.tomcat.jdbc.pool.DataSource">		
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/jpaexam" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg>
+			<bean class="com.zaxxer.hikari.HikariConfig">
+				<constructor-arg>
+					<props>
+						<prop key="dataSource.url">jdbc:mysql://localhost/jpaexam</prop>
+						<prop key="dataSource.user">root</prop>
+						<prop key="dataSource.password">root</prop>
+					</props>
+				</constructor-arg>
+				<property name="dataSourceClassName"
+					value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+				<property name="minimumIdle" value="5" />
+				<property name="maximumPoolSize" value="10" />
+				<property name="connectionTestQuery" value="SELECT 1" />
+				<property name="connectionTimeout" value="300000" />
+			</bean>
+		</constructor-arg>
 	</bean>
-	
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-    
-    
+	<!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
+		name="url" value="jdbc:mysql://localhost:3306/jpaexam" /> <property name="username" 
+		value="root" /> <property name="password" value="root" /> </bean> -->
 
-    <!-- JPA 예외를 스프링 예외로 변환 -->
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"> <property 
+		name="dataSourceClassName" value="com.mysql.jdbc.Driver" /> <property name="dataSourceProperties"> 
+		<props> <prop key="url" >jdbc:mysql//localhost:3306/jpaexam</prop> <prop 
+		key="user">root</prop> <prop key="password">root</prop> </props> </property> 
+		</bean> -->
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+
+	<!-- JPA 예외를 스프링 예외로 변환 -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 
 	<bean id="entityManagerFactory"
