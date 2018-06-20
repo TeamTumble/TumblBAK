@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tumbl.client.member.dao.MemberDao">
+	<select id="securitySelect" parameterType="String" resultType="security">
+		select email, salt from security
+		where email=#{email}
+	</select>
+	<insert id="securityInsert" parameterType="security">
+		insert into
+		security(email, salt)
+		values(#{email}, #{salt})
+	</insert>
+	<delete id="securityDelete" parameterType="String">
+		delete from security
+		where email = #{email}
+	</delete>
+	<select id="memberSelect" parameterType="String" resultType="member">
+		select idx, email, m_pw, m_name, m_phone, m_status
+		from
+		member
+		where
+		email = #{email}
+	</select>
+	<insert id="memberInsert" parameterType="member">
+		<selectKey keyProperty="idx" resultType="int" order="BEFORE">
+			select
+			member_seq.nextval from dual
+		</selectKey>
+		insert into member(idx, email, m_pw, m_name, m_phone )
+		values(#{idx},
+		#{email}, #{m_pw}, #{m_name}, #{m_phone} )
+	</insert>
+	<update id="memberUpdate" parameterType="member">
+		update member set
+		<if test="m_pw != null and m_pw != ''">
+			m_pw=#{m_pw},
+		</if>
+		m_phone=#{m_phone}
+		where email=#{email}
+	</update>
+	<delete id="memberDelete" parameterType="String">
+		delete from
+		member where
+		email = #{email}
+	</delete>
+
+	<select id="mailSelect" parameterType="String" resultType="member">
+		select email
+		from
+		member
+		where email = #{email}
+	</select>
+
+	<select id="projectMember" parameterType="String" resultType="project">
+		select p_no, email, pm_name,
+		p_title,
+		p_startdate,
+		p_image,
+		P_GIFTPRICE,
+		p_type,
+		p_collection,
+		TO_CHAR(p_startdate,'YYYY-MM-DD HH24:MI:SS') AS
+		p_startdate
+		from
+		tumble_project
+		where
+		email = #{email}
+	</select>
+	
+	<select id="supportMember" parameterType="String" resultType="support">
+		select  email, S_GIFTNAME, S_GIFTPRICE, 
+		TO_CHAR(S_DATE,'YYYY-MM-DD HH24:MI:SS') AS
+		S_DATE
+		from
+		tumble_support
+		where
+		email = #{email}
+	</select>
+</mapper>

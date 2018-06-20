@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* 게시판 전체 적용 내용 */
+caption {
+	display: none;
+}
+
+img {
+	border: 0px;
+}
+
+input[type="text"], input[type="password"], select {
+	font-size: 80%;
+	padding: 3px;
+}
+
+input[type="text"], input[type="password"] {
+	width: 250px;
+}
+
+input[type="button"] {
+	padding: 3px;
+	font-size: 80%;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+ul {
+	list-style: none;
+}
+
+/************ 게시판 리스트 화면 **********/
+/* 검색 부분 */
+#supportSearch table {
+	width: 96%;
+	margin-top: 10px;
+}
+
+#supportSearch #search {
+	height: 26px;
+}
+
+#supportSearch #btd1 {
+	width: 50%;
+	text-align: left;
+}
+
+#supportSearch #btd2 {
+	width: 50%;
+	text-align: right;
+}
+
+#insertFormBtn
+
+/* 리스트 부분 */
+#supportList {
+	margin-top: 10px; /* height:110px; */
+}
+
+#supportList table {
+	width: 96%;
+	padding: 0px;
+	border: 1px solid #000066;
+	border-bottom: 0px;
+}
+
+#supportList tr {
+	padding: 0px;
+}
+
+#supportList th, #supportList td {
+	padding: 8px;
+	border-bottom: 1px solid #000066;
+}
+
+#supportList th {
+	border-right: 1px solid #000066;
+	background-color: #e7e7e7;
+}
+
+#supportList .borcle {
+	border-right: 0px;
+}
+
+#supportList .rCount {
+	font-size: 10px;
+	color: red;
+}
+
+/* 페이징 출력 div 부분 */
+#supportContainer #supportPage {
+	width: 96%;
+	margin-top: 10px;
+}
+
+/* 페이징 버튼 부분 */
+.paginate {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	vertical-align: top; /* font-size:14px; */
+}
+
+.paginate span .textAn {
+	vertical-align: bottom;
+}
+
+.paginate a.on {
+	color: #FF3300;
+}
+
+/********** 게시판 상세 화면 **********/
+#supportPwdBut {
+	width: 96%;
+	margin-top: 10px;
+}
+
+#supportPwdBut #btd1 {
+	width: 70%;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+#supportPwdBut #btd2 {
+	width: 30%;
+	text-align: right;
+	vertical-align: bottom;
+}
+
+#supportPwdBut input {
+	margin-bottom: 0px;
+	margin-left: 5px;
+}
+
+#msg {
+	padding-left: 4px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+#pwdChk #l_pwd {
+	vertical-align: bottom;
+}
+
+#pwdChk #s_pwd {
+	border: 1px dotted #000066;
+}

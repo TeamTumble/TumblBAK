@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="TumblBAKJPA">
+		<class>com.tumbl.client.project.vo.ProjectVO</class>
+		<class>com.tumbl.client.login.vo.Login</class>
+		<class>com.tumbl.client.login.vo.LoginHistory</class>
+		<class>com.tumbl.client.member.vo.Member</class>
+		<class>com.tumbl.client.member.vo.MemberSecurity</class>
+		<class>com.tumbl.client.support.vo.SupportVO</class>
+		<class>com.tumbl.client.qna.vo.QnaVO</class>
+		<class>com.tumbl.admin.login.vo.AdminLoginVO</class>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tumbl.admin.support.dao.AdminSupportDao">
+
+
+	<!-- 게시물 기본 조회 -->
+	<!-- <select id="supportList" resultType="support"> SELECT s_no, s_giftname, 
+		to_char(s_date,'YYYY-MM-DD') as s_date FROM spring_support ORDER BY s_no 
+		desc </select> -->
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> -->
+
+
+	<!-- 검색 -->
+	<sql id="supportCommon">
+		SELECT s_no, p_title ,S_GIFTNAME, S_GIFTPRICE,s_name, s_date
+		FROM tumble_support
+		<where>
+			<if test="search=='s_giftname'"> 
+    		<![CDATA[ s_giftname LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='email'">    
+			 <![CDATA[ email LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='s_name'">    
+			 <![CDATA[ s_name LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+
+		</where>
+	</sql>
+
+	<!-- 게시물 전체 조회 -->
+	<select id="supportList" parameterType="support" resultType="support">
+		/* support - supportList */ SELECT s_no, p_title ,S_GIFTNAME, S_GIFTPRICE,s_name,
+		TO_CHAR(S_DATE,'YYYY-MM-DD HH24:MI:SS') AS
+		S_DATE
+		FROM ( SELECT
+		list.*
+		FROM (
+		<include refid="supportCommon"></include>
+		<!-- <choose> <when test="order_by=='s_no'"> ORDER BY s_no </when> <when 
+			test="order_by=='s_date'"> ORDER BY s_date </when> </choose> <choose> <when 
+			test="order_sc=='ASC'"> ASC </when> <when test="order_sc=='DESC'"> DESC </when> 
+			</choose> -->
+		) list )
+		<where>
+			<if test="start_row != null and start_row != ''">
+
+			</if>
+		</where>
+	</select>
+	<select id="supportListCnt" parameterType="support" resultType="int">
+		SELECT NVL(count(1), 0) FROM
+		( SELECT list.*
+		FROM (
+		<include refid="supportCommon"></include>
+		ORDER BY s_no desc
+		) list
+		)
+	</select>
+
+	<!-- 상세 페이지를 위한 게시물 조회 -->
+	<select id="supportDetail" parameterType="int" resultType="support">
+		SELECT
+		<!-- 후원번호,프로젝트명,이메일,후원자명,후원날자,선물명,선물갯수,선물가격,후원취소사유 -->
+		<!-- s_no, p_title ,email ,s_name, s_date, s_giftname,s_giftquantity,s_giftprice,s_cancelreason -->
+		s_no, p_title ,email ,s_name, s_date, s_giftname
+		FROM tumble_support
+		WHERE s_no = #{s_no}
+	</select>
+
+	<!-- 게시물 등록 -->
+	<insert id="supportInsert" parameterType="support">
+		<selectKey keyProperty="s_no" resultType="int" order="BEFORE">
+			select
+			tumble_support_seq.nextval from dual
+		</selectKey>
+		INSERT INTO tumble_support (s_no, p_title ,email ,s_name, s_date,
+		s_giftname,s_giftquantity,s_giftprice,s_cancelreason)
+		VALUES(#{s_no},#{p_title},#{email},#{s_name},#{s_date},#{s_giftname},#{s_giftquantity},#{s_giftprice},#{s_cancelreason})
+	</insert>
+
+	<!-- 게시물 수정 -->
+	<update id="supportUpdate" parameterType="support">
+		UPDATE tumble_support
+		SET s_giftname = #{s_giftname} ,s_giftquantity =
+		#{s_giftquantity},s_giftprice = #{s_giftprice}
+		,s_date = sysdate
+		WHERE
+		s_no = #{s_no}
+		<!-- SET:[열] = '변경할값' WHERE [조건] // no가 같은 칼럼에만 set값을 업데이트 한다 -->
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="supportDelete" parameterType="support">
+		DELETE FROM
+		tumble_support
+		WHERE
+		s_no = #{s_no}
+	</delete>
+
+</mapper>

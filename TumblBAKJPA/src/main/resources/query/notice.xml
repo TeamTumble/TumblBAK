@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tumbl.client.notice.dao.NoticeDao">
+
+
+	<!-- 게시물 기본 조회 -->
+	<!-- <select id="noticeList" resultType="notice"> SELECT n_no, n_title, 
+		to_char(n_date,'YYYY-MM-DD') as n_date FROM spring_notice ORDER BY n_no desc 
+		</select> -->
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> -->
+
+
+	<!-- 검색  -->
+	<sql id="noticeCommon">
+		SELECT n_no, n_title, n_date FROM tumble_notice
+		<where>
+			<if test="search=='n_title'"> 
+    		<![CDATA[ n_title LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='n_content'">     
+			<![CDATA[ n_content LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+
+		</where>
+	</sql>
+
+	<!-- 게시물 전체 조회 -->
+	<select id="noticeList" parameterType="notice" resultType="notice">
+		/* notice - noticeList */ SELECT n_no, n_title,
+		TO_CHAR(n_date,'YYYY-MM-DD HH24:MI:SS') AS n_date FROM ( SELECT
+		list.*
+		FROM (
+		<include refid="noticeCommon"></include>
+		<!-- <choose> <when test="order_by=='n_no'"> ORDER BY n_no </when> <when 
+			test="order_by=='n_date'"> ORDER BY n_date </when> </choose> <choose> <when 
+			test="order_sc=='ASC'"> ASC </when> <when test="order_sc=='DESC'"> DESC </when> 
+			</choose> -->
+		) list )
+		<where>
+			<if test="start_row != null and start_row != ''">
+
+			</if>
+		</where>
+	</select>
+	<select id="noticeListCnt" parameterType="notice" resultType="int">
+		SELECT NVL(count(1), 0) FROM
+		( SELECT list.*
+		FROM (
+		<include refid="noticeCommon"></include>
+		ORDER BY n_no desc
+		) list
+		)
+	</select>
+
+	<!-- 상세 페이지를 위한 게시물 조회 -->
+	<select id="noticeDetail" parameterType="int" resultType="notice">
+		SELECT
+		n_no, n_title, n_content,
+		TO_CHAR(n_date,'YYYY-MM-DD
+		HH24:MI:SS') AS
+		n_date
+		FROM tumble_notice
+		WHERE n_no = #{n_no}
+	</select>
+
+	<!-- 게시물 등록 -->
+	<insert id="noticeInsert" parameterType="notice">
+		<selectKey keyProperty="n_no" resultType="int" order="BEFORE">
+			select
+			tumble_notice_seq.nextval from dual
+		</selectKey>
+		INSERT INTO tumble_notice (n_no, n_title, n_content)
+		VALUES(#{n_no},#{n_title},#{n_content})
+	</insert>
+
+	<!-- 게시물 수정 -->
+	<update id="noticeUpdate" parameterType="notice">
+		UPDATE tumble_notice
+		SET n_title = #{n_title} ,n_content = #{n_content}
+		,n_date = sysdate
+		WHERE n_no = #{n_no}
+		<!-- SET:[열] = '변경할값' WHERE [조건] // no가 같은 칼럼에만 set값을 업데이트 한다 -->
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="noticeDelete" parameterType="notice">
+		DELETE FROM
+		tumble_notice
+		WHERE
+		n_no = #{n_no}
+	</delete>
+
+</mapper>

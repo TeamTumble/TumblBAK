@@ -1,0 +1,171 @@
+@charset "UTF-8";
+/* 게시판 전체 적용 내용 */
+caption {
+	display: none;
+}
+
+img {
+	border: 0px;
+}
+
+input[type="text"], input[type="password"], select {
+	font-size: 80%;
+	padding: 3px;
+}
+
+input[type="text"], input[type="password"] {
+	width: 250px;
+}
+
+input[type="button"] {
+	padding: 3px;
+	font-size: 80%;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+ul {
+	list-style: none;
+}
+
+/************ 게시판 리스트 화면 **********/
+/* 검색 부분 */
+#noticeSearch table {
+	width: 96%;
+	margin-top: 10px;
+}
+
+#noticeSearch #search {
+	border: 1px solid gray;
+	border-radius: 8px;
+	height: 26px;
+}
+
+#noticeSearch #btd1 {
+	width: 50%;
+	text-align: left;
+}
+
+#noticeSearch #btd2 {
+	width: 50%;
+	text-align: right;
+}
+
+/* 리스트 부분 */
+#noticeList {
+	margin-top: 10px; /* height:110px; */
+}
+
+#noticeList table {
+	width: 96%;
+	padding: 0px;
+	border: 1px solid #000066;
+	border-bottom: 0px;
+}
+
+#noticeList tr {
+	padding: 0px;
+}
+
+#noticeList th, #noticeList td {
+	padding: 8px;
+	border-bottom: 1px solid #000066;
+}
+
+#noticeList th {
+	border-right: 1px solid #000066;
+	background-color: #e7e7e7;
+}
+
+#noticeList .borcle {
+	border-right: 0px;
+}
+
+#noticeList .rCount {
+	font-size: 10px;
+	color: red;
+}
+
+/* 페이징 출력 div 부분 */
+#noticeContainer #noticePage {
+	width: 96%;
+	margin-top: 10px;
+}
+
+/* 페이징 버튼 부분 */
+.paginate {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	vertical-align: top; /* font-size:14px; */
+}
+
+.paginate span .textAn {
+	vertical-align: bottom;
+}
+
+.paginate a.on {
+	color: #FF3300;
+}
+
+/********** 게시판 상세 화면 **********/
+#noticePwdBut {
+	width: 96%;
+	margin-top: 10px;
+}
+
+#noticePwdBut #btd1 {
+	width: 70%;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+#noticePwdBut #btd2 {
+	width: 30%;
+	text-align: right;
+	vertical-align: bottom;
+}
+
+#noticePwdBut input {
+	margin-bottom: 0px;
+	margin-left: 5px;
+}
+
+#msg {
+	padding-left: 4px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+#pwdChk #l_pwd {
+	vertical-align: bottom;
+}
+
+#pwdChk #n_pwd {
+	border: 1px dotted #000066;
+} /*********** 게시판 입력 및 수정 화면 **********/
+#n_title, #file {
+	width: 480px
+}
+
+#n_content {
+	width: 87%;
+	height: 200px;
+}
+
+#file {
+	display: inline;
+}
+
+#imgView {
+	position: absolute;
+}
+
+.imgViewData {
+	position: relative;
+	top: -2px;
+	left: 0px;
+	z-index: 100
+}

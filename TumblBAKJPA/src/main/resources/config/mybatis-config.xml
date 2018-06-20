@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.tumbl.client.qna.vo.QnaVO" alias="qna" />
+		<typeAlias type="com.tumbl.client.login.vo.LoginVO" alias="login" />
+		<typeAlias type="com.tumbl.client.member.vo.MemberVO" alias="member" />
+		<typeAlias type="com.tumbl.client.project.vo.ProjectVO" alias="project" />
+		<typeAlias type="com.tumbl.client.support.vo.SupportVO" alias="support" />
+		<typeAlias type="com.tumbl.client.member.vo.MemberSecurity" alias="security" />
+		<typeAlias type="com.tumbl.client.reply.vo.ReplyVO" alias="reply"/> 
+			
+			<!-- admin -->
+		<typeAlias type="com.tumbl.admin.notice.vo.NoticeVO" alias="notice" /><!-- 공지사항 -->
+		<typeAlias type="com.tumbl.admin.login.vo.AdminLoginVO" alias="adminLogin" />
+	</typeAliases>
+</configuration>

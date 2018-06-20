@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tumbl.admin.project.dao.AdminProjectDao">
+
+
+	<!-- 게시물 기본 조회 -->
+	<!-- <select id="projectList" resultType="project"> SELECT p_no, p_title, 
+		to_char(p_date,'YYYY-MM-DD') as p_startdate FROM tumbl_project ORDER BY p_no desc 
+		</select> -->
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> -->
+
+
+	<!-- 검색  -->
+	<sql id="projectCommon">
+		SELECT p_no, p_title, pm_name,p_case FROM tumble_project
+		<where>
+		<if test="search=='all'"> 
+    		<![CDATA[ p_title LIKE '%'|| #{keyword} ||'%' or pm_name LIKE '%'|| #{keyword} ||'%' or p_case LIKE '%'|| #{keyword} ||'%']]>
+			</if>
+			<if test="search=='p_title'"> 
+    		<![CDATA[ p_title LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='pm_name'">     
+			<![CDATA[ pm_name LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			<if test="search=='p_case'"> 
+    		<![CDATA[ p_case LIKE '%'|| #{keyword} ||'%' ]]>
+			</if>
+			
+		</where>
+	</sql>
+
+	<!-- 게시물 전체 조회 -->
+	<select id="projectList" parameterType="project" resultType="project">
+		/* project - projectList */ SELECT p_no, p_title, pm_name ,p_case
+		FROM ( SELECT
+		list.*
+		FROM (
+		<include refid="projectCommon"></include>
+		<!-- <choose> <when test="order_by=='p_no'"> ORDER BY p_no </when> <when 
+			test="order_by=='p_date'"> ORDER BY p_date </when> </choose> <choose> <when 
+			test="order_sc=='ASC'"> ASC </when> <when test="order_sc=='DESC'"> DESC </when> 
+			</choose> -->
+		) list )
+		<where>
+			<if test="start_row != null and start_row != ''">
+
+			</if>
+		</where>
+	</select>
+	<select id="projectListCnt" parameterType="project" resultType="int">
+		SELECT NVL(count(1), 0) FROM
+		( SELECT list.*
+		FROM (
+		<include refid="projectCommon"></include>
+		ORDER BY p_no desc
+		) list
+		)
+	</select>
+
+	<!-- 상세 페이지를 위한 게시물 조회 -->
+	<select id="projectDetail" parameterType="int" resultType="project">
+		SELECT p_no, p_title, pm_name, pm_email,p_case ,p_startdate
+		FROM tumble_project
+		WHERE p_no = #{p_no}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="projectUpdate" parameterType="project">
+		UPDATE tumble_project
+		SET p_case = #{p_case},p_remarks = #{p_remarks}
+		WHERE p_no = #{p_no}
+		<!-- SET:[열] = '변경할값' WHERE [조건] // no가 같은 칼럼에만 set값을 업데이트 한다 -->
+	</update>
+</mapper>

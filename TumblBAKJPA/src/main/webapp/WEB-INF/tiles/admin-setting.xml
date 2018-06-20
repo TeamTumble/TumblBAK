@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- 기본페이지 -->
+	<definition name="basic"
+		template="/WEB-INF/views/template/admin/adminMain.jsp">
+		<put-attribute name="title" value="관리자 페이지" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/admin/header.jsp" />
+		<put-attribute name="sub"
+			value="/WEB-INF/views/template/admin/sub.jsp" />
+		<put-attribute name="left"
+			value="/WEB-INF/views/template/admin/left.jsp" />
+		<put-attribute name="main" value="" />
+	</definition>
+	
+	<definition name="aa" template="/WEB-INF/views/template/admin/contentLayout.jsp">
+		<put-attribute name="title" value="000 사이트" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/admin/header.jsp" />
+			<put-attribute name="sub"
+			value="/WEB-INF/views/template/admin/sub.jsp" />
+		<put-attribute name="left"
+			value="/WEB-INF/views/template/admin/left.jsp" />
+		<put-attribute name="main" value="" />
+		
+	</definition>
+	<definition name="admin/login/*" extends="aa">
+		<put-attribute name="sub"
+			value="" />
+		<put-attribute name="main"
+			value="/WEB-INF/views/admin/login/{1}.jsp" />
+	</definition>
+	<!-- 회원 관리 -->
+	<definition name="admin/member/*" extends="aa">
+		<put-attribute name="sub"
+			value="/WEB-INF/views/admin/member/memberSub.jsp" />
+		<put-attribute name="main"
+			value="/WEB-INF/views/admin/member/{1}.jsp" />
+	</definition>
+	<!-- 문의 관리 -->
+	<definition name="admin/qna/*" extends="aa">
+		<put-attribute name="sub" value="" />
+		<put-attribute name="main" value="/WEB-INF/views/admin/qna/{1}.jsp" />
+	</definition>
+	<!-- 프로젝트 관리 -->
+	<definition name="admin/project/*" extends="aa">
+		<put-attribute name="sub" value="" />
+		<put-attribute name="main" value="/WEB-INF/views/admin/project/{1}.jsp" />
+	</definition>
+	<!-- 후원관리 -->
+	<definition name="admin/support/*" extends="aa">
+		<put-attribute name="sub" value="" />
+		<put-attribute name="main"
+			value="/WEB-INF/views/admin/support/{1}.jsp" />
+	</definition>
+
+	<!-- 공지사항 -->
+	<definition name="admin/notice/*" extends="aa">
+		<put-attribute name="sub" value="" />
+		<put-attribute name="main" value="/WEB-INF/views/admin/notice/{1}.jsp" />
+	</definition>
+</tiles-definitions> 
