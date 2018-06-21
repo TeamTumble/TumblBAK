@@ -1,35 +1,43 @@
 package com.tumbl.admin.notice.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import com.tumbl.admin.common.vo.CommonVO;
 
+@Entity
 public class NoticeVO extends CommonVO {
-	private int n_no = 0; // 글번호
+	
+	@Id
+	@GeneratedValue
+	private int nno = 0; // 글번호
 	private int idx = 0;
 	private String email = ""; // 작성자
-	private String n_title = ""; // 제목
-	private String n_content = ""; // 내용
-	private String n_date = ""; // 작성일
+	private String ntitle = ""; // 제목
+	private String ncontent = ""; // 내용
+	private String ndate = ""; // 작성일
 
 	public NoticeVO() {
 		super();
 	}
 
-	public NoticeVO(int n_no, int idx, String email, String n_title, String n_content, String n_date) {
+	public NoticeVO(int nno, int idx, String email, String ntitle, String ncontent, String ndate) {
 		super();
-		this.n_no = n_no;
+		this.nno = nno;
 		this.idx = idx;
 		this.email = email;
-		this.n_title = n_title;
-		this.n_content = n_content;
-		this.n_date = n_date;
+		this.ntitle = ntitle;
+		this.ncontent = ncontent;
+		this.ndate = ndate;
 	}
 
-	public int getN_no() {
-		return n_no;
+	public int getNno() {
+		return nno;
 	}
 
-	public void setN_no(int n_no) {
-		this.n_no = n_no;
+	public void setNno(int nno) {
+		this.nno = nno;
 	}
 
 	public int getIdx() {
@@ -48,39 +56,35 @@ public class NoticeVO extends CommonVO {
 		this.email = email;
 	}
 
-	public String getN_title() {
-		return n_title;
+	public String getNtitle() {
+		return ntitle;
 	}
 
-	public void setN_title(String n_title) {
-		this.n_title = n_title;
+	public void setNtitle(String ntitle) {
+		this.ntitle = ntitle;
 	}
 
-	public String getN_content() {
-		return n_content;
+	public String getNcontent() {
+		return ncontent;
 	}
 
-	public void setN_content(String n_content) {
-		this.n_content = n_content;
+	public void setNcontent(String ncontent) {
+		this.ncontent = ncontent;
 	}
 
-	public String getN_date() {
-		return n_date;
+	public String getNdate() {
+		return ndate;
 	}
 
-	public void setN_date(String n_date) {
-		this.n_date = n_date;
+	public void setNdate(String ndate) {
+		this.ndate = ndate;
 	}
 
 	@Override
 	public String toString() {
-		return "NoticeVO [n_no=" + n_no + ", idx=" + idx + ", email=" + email + ", n_title=" + n_title + ", n_content="
-				+ n_content + ", n_date=" + n_date + ", getPage()=" + getPage() + ", getPageSize()=" + getPageSize()
-				+ ", getStart_row()=" + getStart_row() + ", getEnd_row()=" + getEnd_row() + ", getSearch()="
-				+ getSearch() + ", getKeyword()=" + getKeyword() + ", getOrder_by()=" + getOrder_by()
-				+ ", getOrder_sc()=" + getOrder_sc() + ", getResult_cd()=" + getResult_cd() + ", getResult_msg()="
-				+ getResult_msg() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "NoticeVO [nno=" + nno + ", idx=" + idx + ", email=" + email + ", ntitle=" + ntitle + ", ncontent="
+				+ ncontent + ", ndate=" + ndate + "]";
 	}
 
+	
 }

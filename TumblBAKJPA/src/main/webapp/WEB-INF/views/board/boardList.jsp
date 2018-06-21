@@ -25,12 +25,12 @@
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 'q_title') {
+			if ($("#search").val() != 'q_content') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
 				if ($("#search").val() == 'q_title')
 					value = "#list tr td.goDetail";
 				else if ($("#search").val() == 'email')
-					value = "#list tr td.email";
+					value = "#list tr td.name";
 				$(value + ":contains('" + word + "')").each(
 						function() {
 							var regex = new RegExp(word, 'gi');
@@ -198,7 +198,7 @@
 									<td>${board.qnum}</td>
 									<td class="goDetail tal">${board.q_title}</td>
 									<td>${board.q_date}</td>
-									<td class="email">${board.email}</td>
+									<td class="name">${board.email}</td>
 									<td><input type="hidden" id="email" name="email"
 										value="${board.email}"></td>
 								</tr>

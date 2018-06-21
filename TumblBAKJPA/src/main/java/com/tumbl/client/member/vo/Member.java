@@ -16,7 +16,6 @@ public class Member extends CommonVO {
 	@Id
 	@GeneratedValue
 	private int idx;
-	@Column(name="email" , unique=true)
 	private String email;
 	private String mpw;
 	private String m_name;

@@ -18,9 +18,9 @@
 	$(function() {
 		/* 저장버튼 클릭시 처리 이벤트 */
 		$("#noticeInsertBtn").click(function() {
-			if (!chkSubmit($('#n_title'), "제목을"))
+			if (!chkSubmit($('#ntitle'), "제목을"))
 				return;
-			else if (!chkSubmit($('#n_content'), "내용을"))
+			else if (!chkSubmit($('#ncontent'), "내용을"))
 				return;
 			else {
 
@@ -57,11 +57,11 @@
 					</tr>
 					<tr>
 						<td class="ac">글제목</td>
-						<td><input type="text" name="n_title" id="n_title"></td>
+						<td><input type="text" name="ntitle" id="ntitle"></td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>
-						<td><textarea name="n_content" id="n_content"></textarea></td>
+						<td><textarea name="ncontent" id="ncontent"></textarea></td>
 					</tr>
 
 				</table>

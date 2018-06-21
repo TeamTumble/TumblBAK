@@ -55,12 +55,11 @@ public class BoardController {
 
 		Login login = (Login) session.getAttribute("login");
 
-		/*qvo.setEmail(login.getEmail());*/
+		qvo.setEmail(login.getEmail());
+	
 		// 글번호 재설정
-		
-		System.out.println(qvo);
-
 		long total = boardService.countBoard(qvo);
+		System.out.println(qvo.getPage() + "       " + qvo.getPageSize());
 		long count = total - (Util.nvl(qvo.getPage()) - 1) * Util.nvl(qvo.getPageSize());
 		PageRequest pageRequest = new PageRequest(Util.nvl(qvo.getPage()) - 1, Util.nvl(qvo.getPageSize()),
 				new Sort(Direction.DESC, "qnum"));
@@ -68,6 +67,7 @@ public class BoardController {
 		List<QnaVO> cQvo = page.getContent();
 
 		model.addAttribute("boardList", cQvo);
+		model.addAttribute("test", page.getNumberOfElements());
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);
 		model.addAttribute("data", qvo);

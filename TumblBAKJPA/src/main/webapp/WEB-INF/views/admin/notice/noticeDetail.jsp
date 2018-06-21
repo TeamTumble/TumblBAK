@@ -24,9 +24,9 @@
 		$("#updateFormBtn").click(function() {
 			/* $("#pwdChk").show();
 			$("#msg").text("작성시 입력한 비밀번호를 입력해 주세요.").css("color", "#000099"); */
-			var n_no = $(this).parents("tr").attr("data-num");
-			$("#n_no").val(n_no);
-			console.log("글번호 : " + n_no);
+			var nno = $(this).parents("tr").attr("data-num");
+			$("#nno").val(n_no);
+			console.log("글번호 : " + nno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#f_data").attr({
 				"method" : "get",
@@ -60,8 +60,8 @@
 			<h3>공지사항 상세페이지</h3>
 		</div>
 		<form name="f_data" id="f_data" >
-			<input type="hidden" name="n_no" value="${detail.n_no}" />
-			<input type="hidden" name="n_no" id="n_no"> <input type="hidden" name="page" value="${data.page}"> 
+			<input type="hidden" name="nno" value="${detail.nno}" />
+			<input type="hidden" name="nno" id="nno"> <input type="hidden" name="page" value="${data.page}"> 
 			<input type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
 		<%-- ========= 버튼 추가 시작 ====== --%>
@@ -88,15 +88,15 @@
 						<td class="ac">작성자</td>
 						<td>관리자</td>
 						<td class="ac">작성일</td>
-						<td>${detail.n_date}</td>
+						<td>${detail.ndate}</td>
 					</tr>
 					<tr>
 						<td class="ac">제목</td>
-						<td colspan="3">${detail.n_title}</td>
+						<td colspan="3">${detail.ntitle}</td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>
-						<td colspan="3">${detail.n_content}</td>
+						<td colspan="3">${detail.ncontent}</td>
 					</tr>
 				</tbody>
 			</table>

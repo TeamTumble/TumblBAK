@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.tumbl.admin.notice.vo.NoticeVO;
 import com.tumbl.client.qna.repository.BoardRepository;
 import com.tumbl.client.qna.vo.QnaVO;
 
@@ -21,7 +22,6 @@ public class BoardService {
 	BoardRepository boardRepository;
 
 	// 글목록 구현
-
 	public List<QnaVO> boardList(QnaVO bvo) {
 		List<QnaVO> myList = null;
 
@@ -30,10 +30,15 @@ public class BoardService {
 	}
 
 	
+	public int boardCnt(int qnum) {
+		return boardRepository.countByQnum(qnum);
+	}
 
+	
 	public long countBoard(QnaVO bvo) {
-		
-		
+		List<QnaVO> myList = null;
+
+		myList = boardRepository.findAll();
 		long gg = boardRepository.count();
 
 		return gg;
@@ -45,7 +50,6 @@ public class BoardService {
 	}
 
 	// 글입력 구현
-
 	public QnaVO boardInsert(QnaVO bvo) {
 
 		try {
@@ -55,8 +59,9 @@ public class BoardService {
 
 		}
 		return bvo;
-
 	}
+
+ 
 
 	// 글상세 구현
 

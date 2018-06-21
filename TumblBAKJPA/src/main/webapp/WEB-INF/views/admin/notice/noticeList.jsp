@@ -23,9 +23,9 @@
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 'n_content') {
+			if ($("#search").val() != 'ncontent') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'n_title')
+				if ($("#search").val() == 'ntitle')
 					value = "#list tr td.goDetail";
 
 				$(value + ":contains('" + word + "')").each(
@@ -83,9 +83,9 @@
 		});
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
-			var n_no = $(this).parents("tr").attr("data-num");
-			$("#n_no").val(n_no);
-			console.log("글번호 : " + n_no);
+			var nno = $(this).parents("tr").attr("data-num");
+			$("#nno").val(nno);
+			console.log("글번호 : " + nno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#detailForm").attr({
 				"method" : "get",
@@ -116,7 +116,7 @@
 
 		<%-- ======= 상세 페이지 이동을 위한 FORM ============ --%>
 		<form name="detailForm" id="detailForm">
-			<input type="hidden" name="n_no" id="n_no"> <input
+			<input type="hidden" name="nno" id="nno"> <input
 				type="hidden" name="page" value="${data.page}"> <input
 				type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
@@ -139,8 +139,8 @@
 							<td id="btd1"><label>검색조건</label> <select id="search"
 								name="search">
 									<option value="all">전체</option>
-									<option value="n_title">제목</option>
-									<option value="n_content">내용</option>
+									<option value="ntitle">제목</option>
+									<option value="ncontent">내용</option>
 							</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
 								<input type="button" value="검색" id="searchData" /></td>
 							<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">
@@ -177,18 +177,18 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th data-value="n_no" class="order">글번호 <c:choose>
-							<c:when test="${data.order_by=='n_no' and data.order_sc=='ASC'}">▲</c:when>
-							<c:when test="${data.order_by=='n_no' and data.order_sc=='DESC'}">▼</c:when>
+					<th data-value="nno" class="order">글번호 <c:choose>
+							<c:when test="${data.order_by=='nno' and data.order_sc=='ASC'}">▲</c:when>
+							<c:when test="${data.order_by=='nno' and data.order_sc=='DESC'}">▼</c:when>
 							<c:otherwise>▲</c:otherwise>
 						</c:choose>
 					</th>
 					<th>글제목</th>
-					<th data-value="n_date" class="order">작성일 <c:choose>
+					<th data-value="ndate" class="order">작성일 <c:choose>
 							<c:when
-								test="${data.order_by=='n_date' and data.order_sc=='ASC'}">▲</c:when>
+								test="${data.order_by=='ndate' and data.order_sc=='ASC'}">▲</c:when>
 							<c:when
-								test="${data.order_by=='n_date' and data.order_sc=='DESC'}">▼</c:when>
+								test="${data.order_by=='ndate' and data.order_sc=='DESC'}">▼</c:when>
 							<c:otherwise>▲</c:otherwise>
 						</c:choose>
 					</th>
@@ -200,10 +200,10 @@
 				<c:choose>
 					<c:when test="${not empty noticeList}">
 						<c:forEach var="notice" items="${noticeList}" varStatus="status">
-							<tr class="tac" data-num="${notice.n_no}">
+							<tr class="tac" data-num="${notice.nno}">
 								<td>${count - status.index}</td>
-								<td class="goDetail tal">${notice.n_title}</td>
-								<td>${notice.n_date}</td>
+								<td class="goDetail">${notice.ntitle}</td>
+								<td>${notice.ndate}</td>
 								<td class="name">관리자</td>
 							</tr>
 						</c:forEach>

@@ -60,8 +60,8 @@
 			<h3>공지사항 상세페이지</h3>
 		</div>
 		<form name="f_data" id="f_data" >
-			<input type="hidden" name="n_no" value="${detail.n_no}" />
-			<input type="hidden" name="n_no" id="n_no"> <input type="hidden" name="page" value="${data.page}"> 
+			<input type="hidden" name="nno" value="${detail.nno}" />
+			<input type="hidden" name="nno" id="nno"> <input type="hidden" name="page" value="${data.page}"> 
 			<input type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
 		<%-- ========= 버튼 추가 시작 ====== --%>
@@ -86,15 +86,15 @@
 						<td class="ac">작성자</td>
 						<td>관리자</td>
 						<td class="ac">작성일</td>
-						<td>${detail.n_date}</td>
+						<td>${detail.ndate}</td>
 					</tr>
 					<tr>
 						<td class="ac">제목</td>
-						<td colspan="3">${detail.n_title}</td>
+						<td colspan="3">${detail.ntitle}</td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>
-						<td colspan="3">${detail.n_content}</td>
+						<td colspan="3">${detail.ncontent}</td>
 					</tr>
 				</tbody>
 			</table>
