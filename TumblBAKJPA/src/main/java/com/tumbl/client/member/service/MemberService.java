@@ -28,22 +28,30 @@ public class MemberService {
 
 	@Resource
 	MemberSecurityRepository memberSercurityRepository;
-	
+
 	@Resource
 	ProjectRepository projectRepository;
-	
+
 	@Resource
 	SupportRepository supportRepository;
+	
+	
+	public int userIdConfirm(String email) {
+		int result;
+		if (memberRepository.findByemail(email) != null) {
+			result = 1;
+		} else {
+			result = 2;
+		}
+		return result;
+	}
 
 	/**
 	 * 회원 가입
 	 */
 
 	public void join(Member mvo) {
-		
-		
 
-	
 		// 비밀번호 암호화
 		MemberSecurity sec = new MemberSecurity();
 		sec.setEmail(mvo.getEmail());
@@ -55,7 +63,6 @@ public class MemberService {
 
 	}
 
-	
 	/**
 	 * 전체 회원 조회
 	 */
@@ -69,7 +76,7 @@ public class MemberService {
 		return memberRepository.findByemail(email);
 
 	}
-	
+
 	public void memberUpdate(Member mvo) {
 		try {
 			if (!mvo.getMpw().isEmpty()) {
@@ -79,36 +86,35 @@ public class MemberService {
 			memberRepository.save(mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
-		
+
 		}
-		
+
 	}
-	
+
 	public List<ProjectVO> projectMember(ProjectVO pvo) {
 		List<ProjectVO> myList = null;
 		myList = projectRepository.findByEmail(pvo.getEmail());
 		return myList;
 	}
 
-	
 	public List<SupportVO> supportMember(SupportVO svo) {
 		List<SupportVO> myList = null;
 		myList = supportRepository.findByEmail(svo.getEmail());
 		return myList;
 	}
-	
+
 	public Member findByEmailAndMpw(String email, String mpw) {
 		return memberRepository.findByEmailAndMpw(email, mpw);
 	}
-	
+
 	public void memberDelete(String email) {
 		Member mvo = new Member();
 		MemberSecurity mso = new MemberSecurity();
 		mvo = memberRepository.findByemail(email);
 		mso = memberSercurityRepository.findByEmail(email);
-		
-		 memberRepository.delete(mvo);
-		 memberSercurityRepository.delete(mso);
+
+		memberRepository.delete(mvo);
+		memberSercurityRepository.delete(mso);
 	}
 
 }

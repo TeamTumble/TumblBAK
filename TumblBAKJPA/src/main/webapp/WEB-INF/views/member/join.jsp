@@ -26,40 +26,7 @@
 			$(this).parents(".form-group").find(".error").html(message[idx]);
 		});
 
-		/* $("#mail").click(function() {
-
-			$.ajax({
-				url : "mail.do",
-				type : "post",
-				data : "email=" + $("#email").val(),
-				error : function() {
-					alert('사이트 접속에 문제로 정상 작동하지 못하였습니다.잠시 후 다시 시도해 주세요.');
-				},
-				success : function(resultData) {
-
-				}
-			});
-		});
-
-		$("#inputCodeCheck").click(function() {
-
-			$.ajax({
-				url : "check.do",
-				type : "post",
-				data : "inputCode=" + $("#inputCode").val(),
-				error : function() {
-					alert('사이트 접속에 문제로 정상 작동하지 못하였습니다.잠시 후 다시 시도해 주세요.');
-				},
-				success : function(resultData) {
-					if (resultData == "1") {
-						alert("인증에 성공하였습니다")
-					} else if (resultData == "2") {
-						alert("인증에 실패하였습니다")
-
-					}
-				}
-			});
-		}); */
+		
 
 		$("#mail")
 				.click(

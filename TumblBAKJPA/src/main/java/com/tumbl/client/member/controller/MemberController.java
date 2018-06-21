@@ -73,40 +73,10 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/userIdConfirm.do", method = RequestMethod.POST)
 	public String userIdConfirm(@RequestParam String email) {
-		System.out.println("여기까지 온다 아이디");
-		memberService.findOne(email);
-		return email;
+		int result = memberService.userIdConfirm(email);
+		return result + "";
 	}
 
-	/*
-	 * //인증메일 보내는 메소드
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/mail.do", method = RequestMethod.POST, produces =
-	 * "application/json" ) private boolean sendMail(HttpSession
-	 * session, @RequestParam String email) { //인증번호 랜덤코드 int randomCode = new
-	 * Random().nextInt(10000) + 1000; String joinCode = String.valueOf(randomCode);
-	 * session.setAttribute("joinCode", joinCode);
-	 * 
-	 * String subject = "회원가입 승인 번호 입니다."; StringBuilder sb = new StringBuilder();
-	 * sb.append("회원가입 승인번호는 ").append(joinCode).append(" 입니다.");
-	 * System.out.println(joinCode); return mailService.send(subject, sb.toString(),
-	 * "poiuripjava@gmail.com", email); }
-	 */
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/check.do", method = RequestMethod.POST, produces =
-	 * "application/json" ) public int check(HttpSession session, @RequestParam
-	 * String inputCode ) { int result; String code =
-	 * (String)session.getAttribute("joinCode");
-	 * 
-	 * 
-	 * if(code.equals(inputCode)) { result = 1; } else { result = 2; } return
-	 * result; }
-	 */
 
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 	public ModelAndView memberModify(HttpSession session) {
