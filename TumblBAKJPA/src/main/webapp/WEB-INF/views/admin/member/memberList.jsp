@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld"%>
@@ -133,6 +134,16 @@
 			</c:choose>
 		</tbody>
 	</table>
-	
+
+	<!-- 	============ 페이지 네비게이션 시작 ============
+ -->
+	<div id="boardPage">
+		<tag:paging page="${param.page}" total="${total}"
+			list_size="${data.pageSize}" />
+	</div>
+
+	<!-- =========== 페이지 네비게이션 종료 ============= -->
+
+
 </body>
 </html>
