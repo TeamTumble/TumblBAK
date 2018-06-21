@@ -2,21 +2,19 @@ package com.tumbl.client.project.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.tumbl.client.project.repository.ProjectRepository;
 import com.tumbl.client.project.vo.ProjectVO;
-import com.tumbl.client.project.vo.ProjectVO1;
 
 @Service
 
 public class ProjectService {
-	@Autowired
+	@Resource
 	ProjectRepository projectRepository;
 
 	public void join(ProjectVO pvo) {

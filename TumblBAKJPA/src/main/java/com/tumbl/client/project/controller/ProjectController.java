@@ -3,6 +3,7 @@ package com.tumbl.client.project.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,10 +29,10 @@ import com.tumbl.common.file.FileUploadUtil;
 public class ProjectController {
 	Logger logger = Logger.getLogger(ProjectController.class);
 
-	@Autowired
+	@Resource
 	private ProjectService projectService;
 
-	@Autowired
+	@Resource
 	private MemberService memberService;
 
 	/**********************

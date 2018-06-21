@@ -2,7 +2,8 @@ package com.tumbl.client.member.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.tumbl.client.member.repository.MemberRepository;
@@ -22,16 +23,16 @@ import com.tumbl.common.util.Util;
 @Service
 public class MemberService {
 
-	@Autowired
+	@Resource
 	MemberRepository memberRepository;
 
-	@Autowired
+	@Resource
 	MemberSecurityRepository memberSercurityRepository;
 	
-	@Autowired
+	@Resource
 	ProjectRepository projectRepository;
 	
-	@Autowired
+	@Resource
 	SupportRepository supportRepository;
 
 	/**

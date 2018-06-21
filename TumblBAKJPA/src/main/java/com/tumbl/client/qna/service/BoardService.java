@@ -2,6 +2,8 @@ package com.tumbl.client.qna.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +17,7 @@ import com.tumbl.client.qna.vo.QnaVO;
 public class BoardService {
 	Logger logger = Logger.getLogger(BoardService.class);
 
-	@Autowired
+	@Resource
 	BoardRepository boardRepository;
 
 	// 글목록 구현

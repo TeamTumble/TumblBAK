@@ -1,5 +1,6 @@
 package com.tumbl.client.support.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +23,7 @@ import com.tumbl.client.support.vo.SupportVO;
 public class SupportController {
 	Logger logger = Logger.getLogger(SupportController.class);
 
-	@Autowired
+	@Resource
 	private SupportService supportService;
 
 	/**************************************************************

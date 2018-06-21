@@ -1,5 +1,7 @@
 package com.tumbl.client.support.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,9 @@ import com.tumbl.client.support.vo.SupportVO;
 @Service
 public class SupportService {
 
-	@Autowired
+	@Resource
 	SupportRepository supportRepository;
-	@Autowired
+	@Resource
 	ProjectRepository projectRepsoitory;
 
 	public SupportVO supportInsert(SupportVO svo) {

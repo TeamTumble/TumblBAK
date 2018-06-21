@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -36,10 +37,10 @@ import com.tumbl.common.util.Util;
 public class BoardController {
 	Logger logger = Logger.getLogger(BoardController.class);
 
-	@Autowired
+	@Resource
 	private BoardService boardService;
 
-	@Autowired
+	@Resource
 	private MemberService memberService;
 
 	/***************************************************************

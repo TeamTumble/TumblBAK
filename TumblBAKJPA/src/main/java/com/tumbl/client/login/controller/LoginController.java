@@ -1,5 +1,6 @@
 package com.tumbl.client.login.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,10 +21,10 @@ import com.tumbl.client.member.service.MemberService;
 public class LoginController {
 	Logger logger = Logger.getLogger(LoginController.class);
 
-	@Autowired
+	@Resource
 	private LoginService loginService;
 
-	@Autowired
+	@Resource
 	private MemberService memberService;
 
 	/**********************************

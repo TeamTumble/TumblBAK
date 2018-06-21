@@ -1,5 +1,7 @@
 package com.tumbl.client.login.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +20,13 @@ import com.tumbl.common.util.OpenCrypt;
 @Service
 public class LoginService {
 
-	@Autowired
+	@Resource
 	LoginRepository loginRepository;
-	@Autowired
+	@Resource
 	MemberRepository memberRepository;
-	@Autowired
+	@Resource
 	MemberSecurityRepository memberSecurityRepository;
-	@Autowired
+	@Resource
 	LoginHistoryRepository loginHistoryRepository;
 
 	public Login userIdSelect(String email) {
