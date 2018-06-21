@@ -3,6 +3,7 @@ package com.tumbl.client.member.vo;
 import javax.persistence.*;
 
 import com.sun.jmx.snmp.Timestamp;
+import com.tumbl.client.common.vo.CommonVO;
 
 /**
  * Entity implementation class for Entity: Member
@@ -10,7 +11,7 @@ import com.sun.jmx.snmp.Timestamp;
  */
 @Entity
 @Table(name="member")
-public class Member  {
+public class Member extends CommonVO {
 
 	@Id
 	@GeneratedValue
