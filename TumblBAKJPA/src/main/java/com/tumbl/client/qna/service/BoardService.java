@@ -29,14 +29,11 @@ public class BoardService {
 		return myList;
 	}
 
-	public int boardCnt(int qnum) {
-		return boardRepository.countByQnum(qnum);
-	}
+	
 
 	public long countBoard(QnaVO bvo) {
-		List<QnaVO> myList = null;
-
-		myList = boardRepository.findAll();
+		
+		
 		long gg = boardRepository.count();
 
 		return gg;
