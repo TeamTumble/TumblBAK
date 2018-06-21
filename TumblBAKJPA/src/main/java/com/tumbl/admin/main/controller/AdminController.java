@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
-		return "admin/login/login";
+		return "index";
 	}
 }

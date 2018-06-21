@@ -34,7 +34,7 @@ public class AdminMemberController {
 	 * 회원 리스트 구현하기
 	 **************************************************************/
 	@RequestMapping(value = "/member/memberList.do", method = RequestMethod.GET)
-	public String memberList(@ModelAttribute Member bvo, Model model, HttpServletRequest request, HttpSession session) {
+	public String memberList(@ModelAttribute Member bvo, Model model, HttpSession session) {
 		logger.info("memberList 호출 성공");
 
 		
@@ -63,15 +63,13 @@ public class AdminMemberController {
 		Page<Member> page = adminMemberService.findAll(pageRequest);
 		List<Member> cQvo = page.getContent();
 
-		model.addAttribute("boardList", cQvo);
+		model.addAttribute("memberList", cQvo);
 		model.addAttribute("test", page.getNumberOfElements());
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);
 		model.addAttribute("data", bvo);
 
-		List<Member> memberList = adminMemberService.memberList(bvo);
-
-		model.addAttribute("memberList", memberList);
+		
 
 		return "admin/member/memberList";
 	}

@@ -16,6 +16,29 @@
 	href="/resources/include/css/member.css" />
 <script type="text/javascript">
 	$(function() {
+		/* 검색 후 검색 대상과 검색 단어 출력 */
+		var word = "<c:out value='${data.keyword}' />";
+		var value = "";
+		if (word != "") {
+			$("#keyword").val("<c:out value='${data.keyword}' />");
+			$("#search").val("<c:out value='${data.search}' />");
+			if ($("#search").val() != 'q_content') {
+				//:contains()는 특정 텍스트를 포함한 요소반환
+				if ($("#search").val() == 'q_title')
+					value = "#list tr td.goDetail";
+				else if ($("#search").val() == 'email')
+					value = "#list tr td.name";
+				$(value + ":contains('" + word + "')").each(
+						function() {
+							var regex = new RegExp(word, 'gi');
+							$(this).html(
+									$(this).text().replace(
+											regex,
+											"<span class='required'>" + word
+													+ "</span>"));
+						});
+			}
+		}
 		//검색
 		$("#btnSearch").click(function() {
 			$("#searchForm").attr({
@@ -85,7 +108,7 @@
 		</p>
 	</div>
 	<!-- 검색창 -->
-	<div>
+	<!-- <div>
 		<form class="navbar-form navbar-left" id="searchForm">
 			<label>검색조건</label> <select id="search" name="search">
 				<option value="all">전체</option>
@@ -95,6 +118,40 @@
 				<option value="m_joindate">가입일</option>
 			</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
 			<button id="btnSearch">검색</button>
+		</form>
+	</div> -->
+	<div id="boardSearch">
+		<form id="f_search" name="f_search">
+			<input type="hidden" id="page" name="page" value="${data.page}">
+			<%-- <input type="hidden" id="order_by" name="order_by"
+					value="${data.order_by}" /> <input type="hidden" id="order_sc"
+					name="order_sc" value="${data.order_sc}" /> --%>
+			<table summary="검색">
+				<colgroup>
+					<col width="70%"></col>
+					<col width="30%"></col>
+				</colgroup>
+				<tr>
+					<td id="btd1"><label>검색조건</label> <select id="search"
+						name="search">
+							<option value="all">전체</option>
+							<option value="q_title">제목</option>
+							<option value="q_content">내용</option>
+							<option value="email">작성자</option>
+					</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
+						<input type="button" value="검색" id="searchData" /></td>
+					<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">
+							<option value="1">1줄</option>
+							<option value="2">2줄</option>
+							<option value="3">3줄</option>
+							<option value="5">5줄</option>
+							<option value="7">7줄</option>
+							<option value="10">10줄</option>
+							<option value="30">30줄</option>
+					</select>
+					</td>
+				</tr>
+			</table>
 		</form>
 	</div>
 	<!-- 테이블 -->
