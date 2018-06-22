@@ -24,6 +24,7 @@
 	font-weight: bold;
 	margin-bottom: 10px;
 }
+
 #replyContainer > #comment_write input[type='text'], 
 #replyContainer > #comment_write input[type='password'],
 #replyContainer > #comment_write textarea {

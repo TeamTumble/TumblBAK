@@ -43,7 +43,7 @@
 
 		});
 		/* 삭제 버튼 클릭 시 처리 이벤트 */
-		$("#boardDeleteBtn").click(function() {
+		$("#qnaDeleteBtn").click(function() {
 			var qnum = $(this).parents("tr").attr("data-num");
 			$("#qnum").val(qnum);
 			console.log("글번호 : " + qnum);
@@ -55,48 +55,13 @@
 			$("#f_data").submit();
 		});
 
-		/* 비밀번호 확인 버튼 클릭 시 처리 이벤트 */
-		/* $("#pwdBtn").click(function() {
-			boardPwdConfirm();
-		}); */
+		
 		/* 목록 버튼 클릭 시 처리 이벤트 */
-		$("#boardListBtn").click(function() {
+		$("#qnaListBtn").click(function() {
 			location.href = "/board/boardList.do";
 		});
 	});
-	/* 비밀번호 확인 버튼 클릭시 실질적인 처리 함수 */
-	/* function boardPwdConfirm() {
-		if (!chkSubmit($('#b_pwd'), "비밀번호를"))
-			return;
-		else {
-			$.ajax({
-				url : "/board/pwdConfirm.do", //전송 url
-				type : "post", // 전송 시 method 방식
-				data : $("#f_pwd").serialize(), //폼전체 데이터전송
-				dataType : "text",
-				error : function() { //실행시 오류 발생시
-					alert('시스템 오류 입니다.  관리자에게 문의 하세요');
-				}, //정상적으로 실행이 되었을 경우
-				success : function(resultData) {
-					var goUrl = "";
-					if (resultData == "실패") {
-						$("#msg").text("작성시 입력한 비밀번호가  일치하지 않습니다.").css(
-								"color", "red");
-						$("#b_pwd").select();
-					} else if (resultData == "성공") {
-						$("#msg").text("");
-						if (butChk == 1) {
-							goUrl = "/board/updateForm.do";
-						} else if (butChk == 2) {
-							goUrl = "/board/boardDelete.do";
-						}
-						$("#f_data").attr("action", goUrl);
-						$("#f_data").submit();
-					}
-				}
-			});
-		}
-	} */
+
 </script>
 </head>
 <body>
@@ -104,20 +69,21 @@
 		<div class="contentTit">
 			<h3>공지사항 글쓰기</h3>
 		</div>
-		<form name="f_data" id="f_data" >
-			<input type="hidden" name="qnum" value="${detail.qnum}" /><input type="hidden" name="qnum" id="qnum"> <input
-				type="hidden" name="page" value="${data.page}"> <input
-				type="hidden" name="pageSize" value="${data.pageSize}">
-				
-				
+		<form name="f_data" id="f_data">
+			<input type="hidden" name="qnum" value="${detail.qnum}" /><input
+				type="hidden" name="qnum" id="qnum"> <input type="hidden"
+				name="page" value="${data.page}"> <input type="hidden"
+				name="pageSize" value="${data.pageSize}">
+
+
 		</form>
 		<%-- ========= 비밀번호 확인 버튼 및 버튼 추가 시작 ====== --%>
 		<table id="qnaPwdBut">
 			<tr>
-				<td id="btd2">
-					<input type="button" value="수정" id="updateFormBtn"> 
-					<input type="button" value="삭제" id="qnaDeleteBtn"> 
-					<input type="button" value="목록" id="qnaListBtn"></td>
+				<td id="btd2"><input type="button" value="수정"
+					id="updateFormBtn"> <input type="button" value="삭제"
+					id="qnaDeleteBtn"> <input type="button" value="목록"
+					id="qnaListBtn"></td>
 			</tr>
 		</table>
 		<%-- =========== 비밀번호 확인 버튼 및 버튼 추가 종료 ====== --%>
@@ -149,7 +115,7 @@
 			</table>
 		</div>
 		<%-- =============== 상세 정보 보여주기 종료 ============ --%>
-		 <%-- <jsp:include page="reply.jsp"></jsp:include> --%> 
+		<jsp:include page="reply.jsp"></jsp:include>
 	</div>
 </body>
 </html>

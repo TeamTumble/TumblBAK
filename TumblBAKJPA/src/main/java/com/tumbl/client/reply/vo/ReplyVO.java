@@ -1,8 +1,15 @@
 package com.tumbl.client.reply.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class ReplyVO {
-	private int r_num = 0; // ´ñ±Û¹øÈ£
-	private int q_num = 0; // °Ô½ÃÆÇ ±Û¹øÈ£
+	@Id
+	@GeneratedValue
+	private int rnum = 0; // ´ñ±Û¹øÈ£
+	private int qnum = 0; // °Ô½ÃÆÇ ±Û¹øÈ£
 	private String r_name = ""; // ´ñ±Û ÀÛ¼ºÀÚ
 	private String r_content = ""; // ´ñ±Û ³»¿ë
 	private String r_date = ""; // ´ñ±Û ÀÛ¼ºÀÏ
@@ -12,30 +19,30 @@ public class ReplyVO {
 		super();
 	}
 
-	public ReplyVO(int r_num, int q_num, String r_name, String r_content, String r_date, String r_pwd) {
+	public ReplyVO(int rnum, int qnum, String r_name, String r_content, String r_date, String r_pwd) {
 		super();
-		this.r_num = r_num;
-		this.q_num = q_num;
+		this.rnum = rnum;
+		this.qnum = qnum;
 		this.r_name = r_name;
 		this.r_content = r_content;
 		this.r_date = r_date;
 		this.r_pwd = r_pwd;
 	}
 
-	public int getR_num() {
-		return r_num;
+	public int getRnum() {
+		return rnum;
 	}
 
-	public void setR_num(int r_num) {
-		this.r_num = r_num;
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
-	public int getq_num() {
-		return q_num;
+	public int getqnum() {
+		return qnum;
 	}
 
-	public void setq_num(int q_num) {
-		this.q_num = q_num;
+	public void setqnum(int qnum) {
+		this.qnum = qnum;
 	}
 
 	public String getR_name() {
@@ -72,7 +79,7 @@ public class ReplyVO {
 
 	@Override
 	public String toString() {
-		return "ReplyVO [r_num=" + r_num + ", q_num=" + q_num + ", r_name=" + r_name + ", r_content=" + r_content
+		return "ReplyVO [r_num=" + rnum + ", qnum=" + qnum + ", r_name=" + r_name + ", r_content=" + r_content
 				+ ", r_date=" + r_date + ", r_pwd=" + r_pwd + "]";
 	}
 }

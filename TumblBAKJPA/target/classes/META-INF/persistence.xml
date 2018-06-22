@@ -10,5 +10,6 @@
 		<class>com.tumbl.client.qna.vo.QnaVO</class>
 		<class>com.tumbl.client.support.vo.SupportVO</class>
 		<class>com.tumbl.admin.notice.vo.NoticeVO</class>
+		<class>com.tumbl.client.reply.vo.ReplyVO</class>
 	</persistence-unit>
 </persistence>

@@ -19,7 +19,6 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
-	var replyNum, message = "작성시 입력한 비밀번호를 입력해 주세요", pwdConfirm = 0, btnKind = "";
 	$(function() {
 		/* 기본 덧글 목록 불러오기 */
 		var qnum = "<c:out value='${detail.qnum}' />";
@@ -72,20 +71,20 @@
 							$(".reset_btn").click();
 							var currLi = $(this).parents("li");
 
-								var conText = currLi.children().eq(1).html();
-								// console.log("conText: " + conText);
+							var conText = currLi.children().eq(1).html();
+							// console.log("conText: " + conText);
 
-								currLi.find("input[type='button']").hide();
+							currLi.find("input[type='button']").hide();
 
-								var conArea = currLi.children().eq(1);
-								conArea.html("");
+							var conArea = currLi.children().eq(1);
+							conArea.html("");
 
-								var data = "<textarea name='content' id='content'>"
-										+ conText + "</textarea>";
-								data += "<input type='button' class='update_btn' value='수정완료'>";
-								data += "<input type='button' class ='reset_btn' value='수정취소'>";
+							var data = "<textarea name='content' id='content'>"
+									+ conText + "</textarea>";
+							data += "<input type='button' class='update_btn' value='수정완료'>";
+							data += "<input type='button' class ='reset_btn' value='수정취소'>";
 
-								conArea.html(data);
+							conArea.html(data);
 						});
 
 		/* 초기화 버튼 */
@@ -100,13 +99,13 @@
 
 		/* 글 수정을 위한 Ajax연동 처리 */
 		$(document).on("click", ".update_btn", function() {
-			var r_num = $(this).parents("li").attr("data-num");
+			var rnum = $(this).parents("li").attr("data-num");
 			var r_content = $("#content").val();
 			if (!chkData("#content", "댓글 내용을")) {
 				return;
 			} else {
 				$.ajax({
-					url : '/replies/' + r_num + ".do",
+					url : '/replies/' + rnum + ".do",
 					type : 'put',
 					headers : {
 						"Content-Type" : "application/json",
@@ -134,27 +133,27 @@
 			$(".reset_btn").click();
 			var currLi = $(this).parents("li");
 			replyNum = currLi.attr("data-num");
-				if (confirm("선택하신 댓글을 삭제하시겠습니까?")) {
-					$.ajax({
-						type : 'delete',
-						url : '/replies/' + replyNum + ".do",
-						headers : {
-							"Content-Type" : "application/json",
-							"X-HTTP-Method_Override" : "DELETE"
-						},
-						dataType : 'text',
-						success : function(result) {
-							console.log("result : " + result);
+			if (confirm("선택하신 댓글을 삭제하시겠습니까?")) {
+				$.ajax({
+					type : 'delete',
+					url : '/replies/' + replyNum + ".do",
+					headers : {
+						"Content-Type" : "application/json",
+						"X-HTTP-Method_Override" : "DELETE"
+					},
+					dataType : 'text',
+					success : function(result) {
+						console.log("result : " + result);
 
-							if (result == 'SUCCESS') {
-								alert("삭제 되었습니다.");
-								listAll(qnum);
-							}
+						if (result == 'SUCCESS') {
+							alert("삭제 되었습니다.");
+							listAll(qnum);
 						}
-					});
-				} else {
-					pwdConfirm = 0;
-				}
+					}
+				});
+			} else {
+				pwdConfirm = 0;
+			}
 		});
 
 		/* 비밀번호 취소 버튼 클릭 시 처리 이벤트 */
@@ -172,9 +171,7 @@
 			span.html(message);
 		});
 
-
 	});
-
 
 	// 리스트 요청 함수
 	function listAll(qnum) {
@@ -184,11 +181,11 @@
 			console.log(data.length);
 
 			$(data).each(function() {
-				var r_num = this.r_num;
+				var rnum = this.rnum;
 				var r_name = this.r_name;
 				var r_content = this.r_content;
 				var r_date = this.r_date;
-				addNewItem(r_num, r_name, r_content, r_date);
+				addNewItem(rnum, r_name, r_content, r_date);
 			});
 		}).fail(function() {
 			alert("덧글 목록을 불러오는데 실패하였습니다. 잠시후에 다시 시도해 주세요.");
@@ -196,10 +193,10 @@
 	}
 
 	/* 새로운 글을 화면에 추가하기 위한 함수 */
-	function addNewItem(r_num, r_name, r_content, r_date) {
+	function addNewItem(rnum, r_name, r_content, r_date) {
 		// 새로운 글이 추가될 li태그 객체
 		var new_li = $("<li>");
-		new_li.attr("data-num", r_num);
+		new_li.attr("data-num", rnum);
 		new_li.addClass("comment_item");
 
 		// 작성자 정보가 지정될 <p>태그
@@ -215,21 +212,7 @@
 		var date_span = $("<span>");
 		date_span.html(" / " + r_date + " ");
 
-		// 수정하기 버튼
-		var up_input = $("<input>");
-		/* up_input.attr({
-			"type" : "button",
-			"value" : "수정하기"
-		}); */
-		/* up_input.addClass("update_form"); */
-
-		// 삭제하기 버튼
-		var del_input = $("<input>");
-		/* del_input.attr({
-			"type" : "button",
-			"value" : "삭제하기"
-		}); */
-		/* del_input.addClass("delete_btn"); */
+		
 
 		// 내용
 		var content_p = $("<p>");
@@ -237,8 +220,7 @@
 		content_p.html(r_content);
 
 		// 조립하기
-		writer_p.append(name_span).append(date_span).append(up_input).append(
-				del_input)
+		writer_p.append(name_span).append(date_span)
 		new_li.append(writer_p).append(content_p);
 		$("#comment_list").append(new_li);
 	}
@@ -254,9 +236,9 @@
 		<div id="comment_write">
 			<form id="comment_form">
 				<div>
-					<label>작성자</label> <label>사용자</label><input type="hidden" name="r_name"
-						id="r_name" value="관리자"> <input
-						type="button" id="replyInsert" value="저장하기">
+					<label>작성자</label> <label>${detail.email }</label><input type="hidden"
+						name="r_name" id="r_name" value="${detail.email }"> <input
+						type="button" id="replyInsert" value="저장하기" >
 				</div>
 				<div>
 					<label for="r_content">덧글내용</label>

@@ -1,4 +1,4 @@
-package com.tumbl.client.notice.service;
+/*package com.tumbl.client.notice.service;
 
 import java.util.List;
 
@@ -15,3 +15,4 @@ public interface NoticeService {
 
 	
 }
+*/

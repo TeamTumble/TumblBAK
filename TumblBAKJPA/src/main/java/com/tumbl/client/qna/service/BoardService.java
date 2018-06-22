@@ -90,10 +90,10 @@ public class BoardService {
 
 	// 글삭제 구현//
 
-	public void boardDelete(long q_num) {
+	public void boardDelete(long qnum) {
 		
 		try {
-			 boardRepository.delete(q_num);
+			 boardRepository.delete(qnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 			

@@ -1,4 +1,4 @@
-package com.tumbl.client.notice.dao;
+/*package com.tumbl.client.notice.dao;
 
 import java.util.List;
 
@@ -13,3 +13,4 @@ public interface NoticeDao {
 	public NoticeVO noticeDetail(NoticeVO nvo);// 글 상세 구현
 
 }
+*/

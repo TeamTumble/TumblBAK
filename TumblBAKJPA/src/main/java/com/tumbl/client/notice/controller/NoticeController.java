@@ -1,4 +1,4 @@
-package com.tumbl.client.notice.controller;
+/*package com.tumbl.client.notice.controller;
 
 import java.util.List;
 
@@ -23,9 +23,9 @@ public class NoticeController {
 	@Autowired
 	private AdminNoticeService adminNoticeService;
 
-	/**************************************************************
+	*//**************************************************************
 	 * 글목록 구현하기
-	 **************************************************************/
+	 **************************************************************//*
 	@RequestMapping(value = "/noticeList.do", method = RequestMethod.GET)
 	public String noticeList(@ModelAttribute NoticeVO nvo, Model model) {
 		logger.info("/notice/noticeList 호출 성공");
@@ -50,9 +50,9 @@ public class NoticeController {
 	}
 
 
-	/**************************************************************
+	*//**************************************************************
 	 * 글 상세보기 구현
-	 **************************************************************/
+	 **************************************************************//*
 	@RequestMapping(value = "/noticeDetail.do", method = RequestMethod.GET)
 	public String noticeDetail(@ModelAttribute NoticeVO nvo, Model model) {
 		logger.info("noticeDetail 호출 성공");
@@ -68,3 +68,4 @@ public class NoticeController {
 
 	
 }
+*/

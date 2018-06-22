@@ -1,4 +1,4 @@
-package com.tumbl.client.notice.dao;
+/*package com.tumbl.client.notice.dao;
 
 import java.util.List;
 
@@ -34,3 +34,4 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 }
+*/
