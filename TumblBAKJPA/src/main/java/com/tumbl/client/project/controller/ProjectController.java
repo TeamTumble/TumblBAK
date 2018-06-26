@@ -52,11 +52,8 @@ public class ProjectController {
 		Paging.setPage(pvo);
 		try {
 
-			if (pvo.getKeyword().equals("")) {
-				System.out.println("초반 ================= " + pvo);
+			if (pvo.getKeyword().equals("")) {				
 				long total = projectService.countProject(pvo);
-				System.out.println(pvo.getPage() + "       " + pvo.getPageSize());
-				System.out.println(pvo.getSearch() + "                " + pvo.getKeyword());
 				long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 				PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 						new Sort(Direction.DESC, "pno"));
@@ -72,13 +69,8 @@ public class ProjectController {
 				long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 				PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 						new Sort(Direction.DESC, "pno"));
-				System.out.println("검색 컨트롤러      ==============  " + pvo.getKeyword());
 				Page<ProjectVO> page = projectService.findByPtitleContaining(pvo.getKeyword(), pageRequest);
 				List<ProjectVO> cQvo = page.getContent();
-				System.out.println("검색  content ============   " + page.getContent());
-				System.out.println("검색  total ============   " + total);
-				System.out.println("검색  qvo ============   " + pvo);
-				System.out.println("검색  page ============   " + page);
 				model.addAttribute("projectList", cQvo);
 				model.addAttribute("count", count);
 				model.addAttribute("total", total);
@@ -102,11 +94,8 @@ public class ProjectController {
 		logger.info("projectList ");
 		Login login = (Login) session.getAttribute("login");
 		Paging.setPage(pvo);
-		if (pvo.getKeyword().equals("")) {
-			System.out.println("초반 ================= " + pvo);
+		if (pvo.getKeyword().equals("")) {			
 			long total = projectService.countProject(pvo);
-			System.out.println(pvo.getPage() + "       " + pvo.getPageSize());
-			System.out.println(pvo.getSearch() + "                " + pvo.getKeyword());
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "pno"));
@@ -123,13 +112,8 @@ public class ProjectController {
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "pno"));
-			System.out.println("검색 컨트롤러      ==============  " + pvo.getKeyword());
 			Page<ProjectVO> page = projectService.findByPtitleContaining(pvo.getKeyword(), pageRequest);
-			List<ProjectVO> cQvo = page.getContent();
-			System.out.println("검색  content ============   " + page.getContent());
-			System.out.println("검색  total ============   " + total);
-			System.out.println("검색  qvo ============   " + pvo);
-			System.out.println("검색  page ============   " + page);
+			List<ProjectVO> cQvo = page.getContent();			
 			model.addAttribute("projectList_New", cQvo);
 			model.addAttribute("count", count);
 			model.addAttribute("total", total);
@@ -151,10 +135,7 @@ public class ProjectController {
 		Login login = (Login) session.getAttribute("login");
 		Paging.setPage(pvo);
 		if (pvo.getKeyword().equals("")) {
-			System.out.println("초반 ================= " + pvo);
 			long total = projectService.countProject(pvo);
-			System.out.println(pvo.getPage() + "       " + pvo.getPageSize());
-			System.out.println(pvo.getSearch() + "                " + pvo.getKeyword());
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "psupporter"));
@@ -171,13 +152,8 @@ public class ProjectController {
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "ptitle"));
-			System.out.println("검색 컨트롤러      ==============  " + pvo.getKeyword());
 			Page<ProjectVO> page = projectService.findByPtitleContaining(pvo.getKeyword(), pageRequest);
 			List<ProjectVO> cQvo = page.getContent();
-			System.out.println("검색  content ============   " + page.getContent());
-			System.out.println("검색  total ============   " + total);
-			System.out.println("검색  qvo ============   " + pvo);
-			System.out.println("검색  page ============   " + page);
 			model.addAttribute("projectList_Hot", cQvo);
 			model.addAttribute("count", count);
 			model.addAttribute("total", total);
@@ -189,108 +165,7 @@ public class ProjectController {
 
 	}
 
-	/**********************
-	 * 공예 카테고리 조회
-	 **********************/
-	/*
-	 * @RequestMapping(value = "/projectList_Crafts.do", method = RequestMethod.GET)
-	 * public String projectList_Craft(@ModelAttribute ProjectVO pvo, Model model) {
-	 * logger.info("projectList_Crafts ");
-	 * 
-	 * List<ProjectVO> projectList_Crafts = projectService.projectList_Crafts();
-	 * 
-	 * model.addAttribute("projectList_Crafts", projectList_Crafts);
-	 * model.addAttribute("data", pvo);
-	 * 
-	 * return "project/projectList_Crafts";
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 * 
-	 *//**********************
-		 * 미술 카테고리 조회
-		 **********************/
-	/*
-	 * @RequestMapping(value = "/projectList_Art.do", method = RequestMethod.GET)
-	 * public String projectList_Art(@ModelAttribute ProjectVO pvo, Model model) {
-	 * logger.info("projectList_Art ");
-	 * 
-	 * List<ProjectVO> projectList_Art = projectService.projectList_Art();
-	 * 
-	 * model.addAttribute("projectList_Art", projectList_Art);
-	 * model.addAttribute("data", pvo);
-	 * 
-	 * return "project/projectList_Art"; }
-	 * 
-	 *//**********************
-		 * 문화 카테고리 조회
-		 **********************/
-	/*
-	 * @RequestMapping(value = "/projectList_Culture.do", method =
-	 * RequestMethod.GET) public String projectList_Culture(@ModelAttribute
-	 * ProjectVO pvo, Model model) { logger.info("projectList_Culture ");
-	 * 
-	 * List<ProjectVO> projectList_Culture = projectService.projectList_Culture();
-	 * 
-	 * model.addAttribute("projectList_Culture", projectList_Culture);
-	 * model.addAttribute("data", pvo);
-	 * 
-	 * return "project/projectList_Culture"; }
-	 * 
-	 *//**********************
-		 * 문화 카테고리 조회
-		 **********************/
-	/*
-	 * @RequestMapping(value = "/projectList_Book.do", method = RequestMethod.GET)
-	 * public String projectList_Book(@ModelAttribute ProjectVO pvo, Model model) {
-	 * logger.info("projectList_Culture ");
-	 * 
-	 * List<ProjectVO> projectList_Book = projectService.projectList_Book();
-	 * 
-	 * model.addAttribute("projectList_Book", projectList_Book);
-	 * model.addAttribute("data", pvo);
-	 * 
-	 * return "project/projectList_Book"; }
-	 * 
-	 * 
-	 * 
-	 *//**********************
-		 * 핫한 카테고리 조회
-		 **********************/
-
-	/*
-	 * @RequestMapping(value = "/projectList_Hot.do", method = RequestMethod.GET)
-	 * public String projectList_Hot(@ModelAttribute ProjectVO pvo, Model model) {
-	 * logger.info("projectList_Hot ");
-	 * 
-	 * List<ProjectVO> projectList_Hot = projectService.projectList_Hot(pvo);
-	 * 
-	 * model.addAttribute("projectList_Hot", projectList_Hot);
-	 * model.addAttribute("data", pvo);
-	 * 
-	 * return "template/client/mainlayout"; }
-	 * 
-	 *//**********************
-		 * 새로 만든 프로젝트 조회
-		 **********************//*
-								 * @RequestMapping(value = "/projectList_New.do", method = RequestMethod.GET)
-								 * public String projectList_New(@ModelAttribute ProjectVO pvo, Model model) {
-								 * logger.info("projectList_New ");
-								 * 
-								 * List<ProjectVO> projectList_New = projectService.projectList_New(pvo);
-								 * 
-								 * model.addAttribute("projectList_New", projectList_New);
-								 * model.addAttribute("data", pvo);
-								 * 
-								 * return "template/client/mainlayout"; }
-								 * 
-								 * 
-								 * 
-								 * 
-								 * /************************************************************** 프로젝트 생성 가이드
-								 **************************************************************/
+	
 	@RequestMapping(value = "/projectGuide.do")
 	public String guide() {
 		logger.info("projectGuide");
@@ -349,8 +224,6 @@ public class ProjectController {
 			HttpSession session) throws IllegalStateException, IOException {
 		logger.info("projectCreate ");
 
-		System.out.println(pvo);
-		int result = 0;
 		String url = "";
 		Date todate = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd", Locale.KOREA);
@@ -389,7 +262,6 @@ public class ProjectController {
 			}
 		}
 
-		System.out.println(pvo);
 		projectService.join(pvo);
 
 		url = "/project/projectList.do";
@@ -405,7 +277,6 @@ public class ProjectController {
 		logger.info("projectDetail ");
 		logger.info("p_no = " + pvo.getPno());
 		ProjectVO detail = new ProjectVO();
-		/* SupportVO svo = new SupportVO(); */
 		Login login = (Login) session.getAttribute("login");
 		detail = projectService.projectDetail(pvo);
 		model.addAttribute("detail", detail);
@@ -422,7 +293,7 @@ public class ProjectController {
 			throws IllegalStateException, IOException {
 		logger.info("projectUpdate ");
 
-		int result = 0;
+	
 		String url = "";
 
 		if (pvo.getP_file() != null) {
@@ -464,9 +335,5 @@ public class ProjectController {
 		return "redirect:" + url;
 	}
 
-	/*
-	 * @RequestMapping(value = "/", method = RequestMethod.GET) public String main()
-	 * { return "index"; }
-	 */
 
 }

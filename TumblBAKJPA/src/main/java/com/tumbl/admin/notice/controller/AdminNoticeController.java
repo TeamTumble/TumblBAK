@@ -46,7 +46,6 @@ public class AdminNoticeController {
 
 		if (nvo.getKeyword().equals("")) {
 			long total = adminNoticeService.countNotice(nvo);
-			System.out.println(nvo.getPage() + "       " + nvo.getPageSize());
 			long count = total - (Util.nvl(nvo.getPage()) - 1) * Util.nvl(nvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(nvo.getPage()) - 1, Util.nvl(nvo.getPageSize()),
 					new Sort(Direction.DESC, "idx"));
@@ -63,8 +62,6 @@ public class AdminNoticeController {
 				long count = total - (Util.nvl(nvo.getPage()) - 1) * Util.nvl(nvo.getPageSize());
 				PageRequest pageRequest = new PageRequest(Util.nvl(nvo.getPage()) - 1, Util.nvl(nvo.getPageSize()),
 						new Sort(Direction.DESC, "ntitle"));
-				System.out.println("검색 컨트롤러      ==============  " + nvo.getKeyword());
-				System.out.println("ntitle 검색 컨트롤러      ==============  탑승 확인");
 				Page<NoticeVO> page = adminNoticeService.findByNtitleContaining(nvo.getKeyword(), pageRequest);
 				List<NoticeVO> nQvo = page.getContent();
 				model.addAttribute("noticeList", nQvo);
@@ -96,7 +93,6 @@ public class AdminNoticeController {
 	public String noticeInsert(@ModelAttribute NoticeVO nvo, Model model, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		logger.info("noticeInsert 호출 성공");
-		System.out.println("글 쓰 기 파 일");
 		NoticeVO result = new NoticeVO();
 		String url = "";
 		Date todate = new Date();

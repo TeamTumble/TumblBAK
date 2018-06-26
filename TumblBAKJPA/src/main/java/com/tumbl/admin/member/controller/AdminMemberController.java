@@ -45,7 +45,6 @@ public class AdminMemberController {
 
 		if (mvo.getKeyword().equals("")) {
 			long total = adminMemberService.countadminMember(mvo);
-			System.out.println(mvo.getPage() + "       " + mvo.getPageSize());
 			long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
 					new Sort(Direction.DESC, "idx"));
@@ -62,8 +61,6 @@ public class AdminMemberController {
 				long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
 				PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
 						new Sort(Direction.DESC, "email"));
-				System.out.println("검색 컨트롤러      ==============  " + mvo.getKeyword());
-				System.out.println("이메일 검색 컨트롤러      ==============  탑승 확인");
 				Page<Member> page = adminMemberService.findByEmailContaining(mvo.getKeyword(), pageRequest);
 				List<Member> mQvo = page.getContent();
 				model.addAttribute("memberList", mQvo);
@@ -76,11 +73,8 @@ public class AdminMemberController {
 				long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
 				PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
 						new Sort(Direction.DESC, "mname"));
-				System.out.println("검색 컨트롤러      ==============  " + mvo.getKeyword());
-				System.out.println("네임 검색 컨트롤러      ==============  탑승 확인");
 				Page<Member> page = adminMemberService.findByMnameContaining(mvo.getKeyword(), pageRequest);
 				List<Member> cQvo = page.getContent();
-				System.out.println("네임 검색 컨트롤러      ============== " + cQvo);
 				model.addAttribute("boardList", cQvo);
 				model.addAttribute("count", count);
 				model.addAttribute("total", total);

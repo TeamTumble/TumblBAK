@@ -46,7 +46,7 @@
 			alert("저장 되었습니다.");
 			$("#f_data").attr({
 				"method" : "post",
-				"action" : "/admin/project/projectDetail.do"
+				"action" : "/admin/project/projectUpdate.do"
 			});
 			$("#f_data").submit();
 		});
