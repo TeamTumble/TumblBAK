@@ -79,7 +79,14 @@
 	src="https://www.google-analytics.com/analytics.js"></script>
 <script type="text/javascript" async=""
 	src="https://cdn.astronomer.io/analytics.js/v1/jMrtLL6v6xXmMGP7h/analytics.min.js"></script>
+<script type="text/javascript"
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="application/javascript">
+	
+	
+	
 	
 	
 	
@@ -95,6 +102,9 @@
 	
         window.MOBX_STATE = {"app":{"ssrLocation":"/"},"currentUser":{"isLoading":false,"isLoaded":true,"id":null,"uuid":null,"fullname":null,"userPermalink":null,"avatarUrl":"https://tumblbug-upi.imgix.net/defaults/avatar_1.png?ixlib=rb-1.1.0&w=200&h=250&auto=format%2Ccompress&fit=facearea&facepad=2.0&ch=Save-Data&mask=ellipse&s=47160c157911f653f6dcd76e296f26b4","email":null,"isCreator":false,"isAdmin":false},"pledgeStore":{"apiEndpoint":"/api/v1/pledges.json?fields=id,createdAt,amount,isSurveyRequested,isSurveyResponded,paymentStatus&project=title,coverImageUrl,creatorName,fundingStatus&reward=description,items&&coverImageUrl[h]=240&coverImageUrl[w]=320&coverImageUrl[fit]=crop","isLoading":false,"isLoaded":false,"pledges":[],"pledgesCount":{},"currentPage":1,"filterType":"all","isPledgeDataLoading":false,"isMetaDataLoaded":false,"isPledgeDetailsDataLoading":true},"surveyStore":{"apiEndpoint":"/api/v1/pledges.json?fields=id,createdAt,amount,isSurveyRequested,isSurveyResponded,paymentStatus&project=title,coverImageUrl,creatorName,fundingStatus&reward=description,items&filter=surveyResponseNeeded&coverImageUrl[h]=240&coverImageUrl[w]=320&coverImageUrl[fit]=crop"},"taxpayerInformationStore":{"isLoaded":false},"collectionStore":{"collections":{},"featuredCollections":[{"id":"ed046e59-0cb5-4b5d-871d-523fd2e7cccd","title":"온라인에서 만나는 네코제: 네코장","permalink":"necojang2018","coverImagePath":"https://tumblbug-assets.imgix.net/banners/bannernecojang2018-3.png?w=2000&h=250","backgroundColorHexCode":"#9b8ce6"},{"id":"8e538868-9166-4792-8552-b3052be12d24","title":"독립 활자 디자이너의 폰트","permalink":"hiut","coverImagePath":"https://tumblbug-assets.imgix.net/banners/banner-hiut.jpg?w=2000&h=250","backgroundColorHexCode":"#252d2a"},{"id":"d8228fb3-65b7-47ab-9d2a-81fd23a5c625","title":"#지구별친구들","permalink":"earthlivingthings","coverImagePath":"","backgroundColorHexCode":"#4263eb"},{"id":"26ae76d5-eced-4eb1-b7bd-a32b216c4758","title":"#오프라인이벤트","permalink":"offlineevents","coverImagePath":"","backgroundColorHexCode":"#f03e3e"},{"id":"597c068a-bf58-4041-859d-9a6d3d862889","title":"#여행","permalink":"travel","coverImagePath":"","backgroundColorHexCode":"#f76707"},{"id":"4008901d-2580-4fa7-8269-61e31702b455","title":"#뱃지","permalink":"badge","coverImagePath":"","backgroundColorHexCode":"#f59f00"},{"id":"ce729447-e2d2-4422-8e5b-2fea4dd7e5b0","title":"#가방","permalink":"bag","coverImagePath":"","backgroundColorHexCode":"#7048e8"}]},"projectStore":{},"messageThreadStore":{"_unreadThreads":{"asCreator":[],"asUser":[]},"projectFilters":[],"_messageThreads":{},"isLoadingMessageThreads":false,"selectedThreadId":null,"selectedThread":null},"messageArchiveThreadStore":{"_messageArchiveThreads":{},"_paging":{"offset":0,"limit":10,"next":""}},"rewardStore":{},"itemStore":{},"heroStore":{"heroes":[{"title":"자두단호박 잼, 　　 드셔본 적 있나요?","description":"못난이 과일과 야채로 만나는 맛있는 <착한과채잼>","url":"https://www.tumblbug.com/jamtong2da","coverImageFilename":"jamtong2da.jpg","coverImageUrl":"https://tumblbug-assets.imgix.net/heroes/jamtong2da.jpg?w=1800&h=600&fit=crop&q=60"},{"title":"언젠가 오늘의 풍경이 　 SF가 될거야","description":"반바지 작가의 SF 단편집 <슈뢰딩거의 고양희>","url":"https://www.tumblbug.com/bahnbazi_1","coverImageFilename":"bahnbazi_1.jpg","coverImageUrl":"https://tumblbug-assets.imgix.net/heroes/bahnbazi_1.jpg?w=1800&h=600&fit=crop&q=60"},{"title":"회사생활의 꽃은 　　 협상이지","description":"웹툰 마지막 시즌에 찾아온 <가우스전자> 보드게임","url":"https://www.tumblbug.com/gaus","coverImageFilename":"gaus.jpg","coverImageUrl":"https://tumblbug-assets.imgix.net/heroes/gaus.jpg?w=1800&h=600&fit=crop&q=60"},{"title":"50년대 유럽 　　 군인들의 활동화","description":"오카야마 캔버스로 만든 고품질 캔버스화 <캐치볼>","url":"https://www.tumblbug.com/catchball","coverImageFilename":"catchball.jpg","coverImageUrl":"https://tumblbug-assets.imgix.net/heroes/catchball.jpg?w=1800&h=600&fit=crop&q=60"}],"isLoaded":true,"randomHeroSeed":2},"postStore":{"_cachedProjectId":null,"_posts":{},"_postsPagination":null,"_comments":{},"_cachedPostId":null,"_commentPagination":null},"depositAccountStore":{}};
       
+
+
+
 
 
 
@@ -158,7 +168,16 @@
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -184,7 +203,16 @@
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -235,7 +263,16 @@ translateY
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -261,7 +298,16 @@ translateY
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -312,7 +358,16 @@ transform
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -338,7 +393,16 @@ transform
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -389,7 +453,16 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -415,7 +488,16 @@ opacity
 
 
 
+
+
+
 .3
+
+
+
+
+
+
 
 
 
@@ -469,7 +551,16 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -495,7 +586,16 @@ opacity
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -546,7 +646,16 @@ translateY
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -572,7 +681,16 @@ translateY
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -623,7 +741,16 @@ transform
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -649,7 +776,16 @@ transform
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -700,6 +836,12 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -713,7 +855,13 @@ opacity
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -764,7 +912,16 @@ keyframes cXdlcp { 0% {
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -790,7 +947,16 @@ keyframes cXdlcp { 0% {
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -841,7 +1007,16 @@ translateY
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -867,7 +1042,16 @@ translateY
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -918,7 +1102,16 @@ transform
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -944,7 +1137,16 @@ transform
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -995,7 +1197,16 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -1021,7 +1232,16 @@ opacity
 
 
 
+
+
+
 .3
+
+
+
+
+
+
 
 
 
@@ -1075,7 +1295,16 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -1101,7 +1330,16 @@ opacity
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -1152,7 +1390,16 @@ translateY
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -1178,7 +1425,16 @@ translateY
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -1229,7 +1485,16 @@ transform
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
 
@@ -1255,7 +1520,16 @@ transform
 
 
 
+
+
+
 translateY
+
+
+
+
+
+
 
 
 
@@ -1306,6 +1580,12 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -1319,7 +1599,13 @@ opacity
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1680,6 +1966,12 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -1693,7 +1985,13 @@ opacity
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1741,6 +2039,12 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -1754,7 +2058,13 @@ opacity
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2329,6 +2639,12 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2342,7 +2658,13 @@ opacity
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2380,8 +2702,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -2430,6 +2764,12 @@ px
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2443,7 +2783,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2481,8 +2827,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -2531,6 +2889,12 @@ transform
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2544,7 +2908,13 @@ transform
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2582,8 +2952,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -2642,6 +3024,12 @@ keyframes fzoeFq { 0%, 100% {
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2655,7 +3043,13 @@ keyframes fzoeFq { 0%, 100% {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2693,8 +3087,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -2743,6 +3149,12 @@ px
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2756,7 +3168,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2794,8 +3212,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -2844,6 +3274,12 @@ transform
 
 
 
+
+
+
+
+
+
 :
 
 
@@ -2857,7 +3293,13 @@ transform
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2895,8 +3337,20 @@ translateX
 
 
 
+
+
+
+
+
+
 (4
 px
+
+
+
+
+
+
 
 
 
@@ -4257,11 +4711,11 @@ px
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 'p_title') {
+			if ($("#search").val() != 'ptitle') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'p_title')
+				if ($("#search").val() == 'ptitle')
 					value = "#list tr td.goDetail";
-				else if ($("#search").val() == 'p_title')
+				else if ($("#search").val() == 'ptitle')
 					value = "#list tr td.name";
 				$(value + ":contains('" + word + "')").each(
 						function() {
@@ -4275,7 +4729,10 @@ px
 			}
 		}
 
-		
+		/* 한페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로  유지하기 위한 설정*/
+		if ("<c:out value='${data.pageSize}' />" != "") {
+			$("#pageSize").val("<c:out value='${data.pageSize}' />");
+		}
 		/* 검색 대상이 변경될 때마다 처리 이벤트 */
 		$("#search").change(function() {
 			if ($("#search").val() == "all") {
@@ -4286,21 +4743,60 @@ px
 			}
 		});
 
-		
+		/* 한 페이지에 보여줄 레코드 수 변경될 때마다 처리 이벤트 */
+		$("#pageSize").change(function() {
+			goPage(1);
+		});
 		/* 검색 버튼 클릭 시 처리 이벤트 */
 		$("#searchData").click(function() {
-			$("#page").val(page);
-			$("#f_search").attr({
-				"method" : "get",
-				"action" : "/project/projectListHot.do"
-			});
-			$("#f_search").submit();
-		
+			if ($("#search").val() != "all") {
+				if (!chkSubmit($('#keyword'), "검색어를"))
+					return;
+			}
+			goPage(1);
 		});
-		/* 글쓰기 버튼 클릭 시 처리 이벤트 */
+		$(".order").click(function() {
+			var order_by = $(this).attr("data-value");
+			console.log("선택값 : " + order_by);
+			$("#order_by").val(order_by);
+			if ($("#order_sc").val() == 'DESC') {
+				$("#order_sc").val('ASC');
+			} else {
+				$("#order_sc").val('DESC');
+			}
+			goPage(1);
+		});
+		$(".goDetail").click(function() {
+
+			var pno = $(this).parents("a").attr("data-num");
+
+			$("#pno").val(pno);
+			console.log("글번호 : " + pno);
+			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
+			$("#detailForm").attr({
+				"method" : "get",
+				"action" : "/project/projectDetail.do"
+			});
+			$("#detailForm").submit();
+		});
+		$("#projectImage").attr({
+			src : "uploadStorage/project/${project.p_image}",
+			width : "120px",
+			height : "110px"
+		});
 	});
 	/* 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을 위한 실질적인 처리 함수 */
-		
+	function goPage(page) {
+		if ($("#search").val() == "all") {
+			$("#keyword").val("");
+		}
+		$("#page").val(page);
+		$("#f_search").attr({
+			"method" : "get",
+			"action" : "/project/projectListHot.do"
+		});
+		$("#f_search").submit();
+	}
 </script>
 <style type="text/css" data-styled-components=""
 	data-styled-components-is-local="true"></style>
@@ -4318,9 +4814,9 @@ px
 </head>
 <body style="overflow: auto;">
 	<form name="detailForm" id="detailForm">
-		<input type="hidden" name="p_no" id="p_no"> <input
-			type="hidden" name="page" value="${data.page}"> <input
-			type="hidden" name="pageSize" value="${data.pageSize}">
+		<input type="hidden" name="pno" id="pno"> <input type="hidden"
+			name="page" value="${data.page}"> <input type="hidden"
+			name="pageSize" value="${data.pageSize}">
 	</form>
 	<div id="react-view">
 
@@ -4341,14 +4837,12 @@ px
 							</div>
 							<div class="PageIntroduction__ProjectsFilterBar-s7qbeqe-2 knAdBT">
 								<div class="Container__Container-s1sxg7g4-0 iTXcwb">
-									<div
-										class="PageIntroduction__ProjectSortDropdownWrapper-s7qbeqe-3 iZgHCU">
-										<form id="f_search" name="f_search">
+									<form id="f_search" name="f_search">
+										<div
+											class="PageIntroduction__ProjectSortDropdownWrapper-s7qbeqe-3 iZgHCU">
+
 											<input type="hidden" id="page" name="page"
-												value="${data.page}"> <input type="hidden"
-												id="order_by" name="order_by" value="${data.order_by}" /> <input
-												type="hidden" id="order_sc" name="order_sc"
-												value="${data.order_sc}" />
+												value="${data.page}">
 											<table summary="검색">
 												<colgroup>
 													<col width="70%"></col>
@@ -4357,16 +4851,27 @@ px
 												<tr>
 													<td id="btd1"><label>검색조건</label> <select id="search"
 														name="search">
-															<option value="p_title">제목</option>
+															<option value="all">전체</option>
+															<option value="ptitle">제목</option>
 													</select> <input type="text" name="keyword" id="keyword" value="" />
 														<input type="button" value="검색" id="searchData" /></td>
 												</tr>
 											</table>
-										</form>
-									</div>
-									<span class="PageIntroduction__ProjectsFilter-s7qbeqe-5 kEslfd"><input
-										type="checkbox" value="true"> <!-- react-text: 643 -->&nbsp;&nbsp;펀딩
-										마감된 프로젝트 보기<!-- /react-text --></span>
+
+										</div>
+										<span
+											class="PageIntroduction__ProjectsFilter-s7qbeqe-5 kEslfd">한페이지에
+											<select id="pageSize" name="pageSize">
+												<option value="1">1줄</option>
+												<option value="2">2줄</option>
+												<option value="3">3줄</option>
+												<option value="5">5줄</option>
+												<option value="7">7줄</option>
+												<option value="10">10줄</option>
+												<option value="30">30줄</option>
+										</select>
+										</span>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -4382,11 +4887,11 @@ px
 												<c:forEach var="project" items="${projectList_Hot}"
 													varStatus="status">
 													<div class="Projects__ProjectCardWrapper-cqskgw-2 ebFTii">
-														<a data-num="${project.p_no}">
+														<a data-num="${project.pno}">
 															<div
 																class="_13KHfN73YmQgsYHxXvuh_J _2nZxogWCtwxgZvigECqiKs yx45-aQ3xTwP4lNZQ2qQs _18TDror949wcy2NyVIqpHo UxeYqEszWK5hhpRXaGHBr goDetail tal">
 																<div class="-Qv21-og1HcmTC9fTAwhk">
-																	<img src="/uploadStorage/project/${project.p_image}"
+																	<img src="/uploadStorage/projectvo/${project.p_image}"
 																		alt="반-바지 SF 단편선 <슈뢰딩거의 고양희>"
 																		class="_145Uy81NIiw-12IK7rJ920">
 																</div>
@@ -4394,7 +4899,7 @@ px
 																	style="padding: 1rem; height: 80px;">
 																	<div class="_1lINMEHeN3VZwG1iZwl3AQ">
 																		<div class="_1_7sU-OOgKb7PXybIFI8rT">
-																			&lt;${project.p_title}&gt;</div>
+																			&lt;${project.ptitle}&gt;</div>
 																		<div class="_3dRu7AS5TihtNa1JArrNTJ">${project.pm_name}</div>
 																	</div>
 																</div>
@@ -4442,16 +4947,16 @@ px
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(function() {
 
 			/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 			$(".goDetail").click(function() {
 
-				var p_no = $(this).parents("a").attr("data-num");
+				var pno = $(this).parents("a").attr("data-num");
 
-				$("#p_no").val(p_no);
-				console.log("글번호 : " + p_no);
+				$("#pno").val(pno);
+				console.log("글번호 : " + pno);
 				//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 				$("#detailForm").attr({
 					"method" : "get",
@@ -4483,7 +4988,7 @@ px
 		function goPage(page) {
 
 		}
-	</script>
+	</script> -->
 
 
 </body>

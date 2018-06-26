@@ -2913,9 +2913,9 @@ px
 
 		/* 후원하기 버튼 클릭 시 처리 이벤트 */
 		$("#supportBtn").click(function() {
-			/* var pno = $(this).parents("tr").attr("data-num");
+			 var pno = $(this).parents("tr").attr("data-num");
 			$("#pno").val(pno);
-			console.log("글번호 : " + pno);  */
+			console.log("글번호 : " + pno);  
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm) 
 			
 			$("#f_data").attr({
@@ -3004,11 +3004,11 @@ px
 											class="ProjectIntroduction__ProjectCategory-c7b94s-4 boFKej"
 											data-reactid="42">${detail.p_type}</span></a>
 										<h1 class="ProjectIntroduction__ProjectTitle-c7b94s-5 cyqGTD"
-											data-reactid="43">${detail.p_title}</h1>
+											data-reactid="43">${detail.ptitle}</h1>
 										<div class="ProjectIntroduction__Creators-c7b94s-6 guVzeB"
 											data-reactid="44">
 											<a class="ProjectIntroduction__CreatorName-c7b94s-7 gDTPbS"
-												data-reactid="46">${detail.pm_name}</a>
+												data-reactid="46">${detail.pmname}</a>
 										</div>
 									</div>
 								</div>
@@ -3108,6 +3108,7 @@ px
 												data-reactid="83">
 												<form action="" id="f_data" name="f_data">
 													<input type="hidden" name="pno" value="${detail.pno}" />
+													<input type="hidden" name="ptitle" value="${detail.ptitle}" />
 													<c:if test="${login.email == detail.email }">
 							
 													<button class="Button__Button-s1ng5xda-0 dvkZSH"
@@ -3196,7 +3197,7 @@ px
 													data-reactid="115">
 													<a href="/u/usertenemekuno/projects" data-reactid="117"><span
 														class="CreatorCard__CreatorName-yeytpy-3 fVfxlF"
-														data-reactid="118">${detail.pm_name}</span></a>
+														data-reactid="118">${detail.pmname}</span></a>
 												</div>
 												<div class="CreatorCard__CreatorBiography-yeytpy-4 dHxdxH"
 													data-reactid="119">${detail.pm_intro}</div>

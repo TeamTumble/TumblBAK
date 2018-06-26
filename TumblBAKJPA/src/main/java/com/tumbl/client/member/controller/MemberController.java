@@ -1,8 +1,14 @@
 package com.tumbl.client.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -31,17 +37,6 @@ public class MemberController {
 
 	@Resource
 	MemberService memberService;
-	/*
-	 * @Autowired private MemberService memberService;
-	 */
-
-	/*
-	 * @Autowired private MailService mailService;
-	 */
-
-	/*
-	 * @Autowired private LoginService loginService;
-	 */
 
 	/**************************************************************
 	 * 회원 가입 폼
@@ -54,20 +49,32 @@ public class MemberController {
 
 	/**************************************************************
 	 * 회원 가입 처리
+	 * 
+	 * @throws IOException
 	 **************************************************************/
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public ModelAndView memberInsert(Member mvo) {
+	public ModelAndView memberInsert(Member mvo, HttpServletResponse response) throws IOException {
 
 		logger.info("join.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
+		Date todate = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd", Locale.KOREA);
+		String dTime = formatter.format(todate);
+		mvo.setM_joindate(dTime);
 		System.out.println("컨트롤러   " + mvo);
+		try {
+			memberService.join(mvo);
+			mav.setViewName("member/join_success");
+			return mav;
+		} catch (Exception e) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('입력하신 아이디가 사용중입니다..');</script>");
+			out.flush();
+			mav.setViewName("member/join");
+			return mav;
+		}
 
-		memberService.join(mvo);
-
-		mav.addObject("errCode", 3);
-		mav.setViewName("member/join_success");
-
-		return mav;
 	}
 
 	@ResponseBody
@@ -76,7 +83,6 @@ public class MemberController {
 		int result = memberService.userIdConfirm(email);
 		return result + "";
 	}
-
 
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 	public ModelAndView memberModify(HttpSession session) {

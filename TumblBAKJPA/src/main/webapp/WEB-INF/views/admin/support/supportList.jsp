@@ -12,9 +12,11 @@
 	href="/resources/include/css/common.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/include/css/support.css" />
+	
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		/* 검색 후 검색 대상과 검색 단어 출력 */
@@ -23,11 +25,12 @@
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 's_giftname') {
+			if ($("#search").val() != 'all') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 's_giftname')
+				if ($("#search").val() == 'sgiftname')
 					value = "#list tr td.goDetail";
-				
+				else if ($("#search").val()=='sname')
+					value = "#list tr td.sname"
 				$(value + ":contains('" + word + "')").each(
 						function() {
 							var regex = new RegExp(word, 'gi');
@@ -78,22 +81,23 @@
 			goPage(1);
 		});
 		/* 글쓰기 버튼 클릭 시 처리 이벤트 */
-		$("#insertFormBtn").click(function() {
+		/* $("#insertFormBtn").click(function() {
 			location.href = "/admin/support/writeForm.do";
-		});
+		}); */
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
-		$(".goDetail").click(function() {
-			var s_no = $(this).parents("tr").attr("data-num");
-			$("#s_no").val(s_no);
-			console.log("글번호 : " + s_no);
+		/* $(".goDetail").click(function() {
+			var sno = $(this).parents("tr").attr("data-num");
+			$("#sno").val(sno);
+			console.log("글번호 : " + sno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#detailForm").attr({
 				"method" : "get",
 				"action" : "/admin/support/supportDetail.do"
 			});
 			$("#detailForm").submit();
-		});
+		}); */
 	});
+
 	/* 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을 위한 실질적인 처리 함수 */
 	function goPage(page) {
 		if ($("#search").val() == "all") {
@@ -114,18 +118,20 @@
 			<h3>후원관리 리스트</h3>
 		</div>
 
-		<%-- ======= 상세 페이지 이동을 위한 FORM ============ --%>
+		<%-- ======== 상세 페이지 이동을 위한 FORM ======= --%>
 		<form name="detailForm" id="detailForm">
-			<input type="hidden" name="s_no" id="s_no"> 
-			<input type="hidden" name="page" value="${data.page}"> 
-			<input type="hidden" name="pageSize" value="${data.pageSize}">
+			<input type="hidden" name="sno" id="sno"> <input
+				type="hidden" name="page" value="${data.page}"> <input
+				type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
-		<%-- ================ 검색기능 시작 =============== --%>
+		<%-- ========= 상세 페이지 이동을 위한 FORM ====== --%>
+		<%-- ================ 검색기능 시작 ============== --%>
 		<div id="supportSearch">
 			<form id="f_search" name="f_search">
 				<input type="hidden" id="page" name="page" value="${data.page}">
-				<input type="hidden" id="order_by" name="order_by" value="${data.order_by}" /> 
-				<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}" />
+				<input type="hidden" id="order_by" name="order_by"
+					value="${data.order_by}" /> <input type="hidden" id="order_sc"
+					name="order_sc" value="${data.order_sc}" />
 				<table summary="검색">
 					<colgroup>
 						<col width="70%"></col>
@@ -135,10 +141,11 @@
 						<td id="btd1"><label>검색조건</label> 
 						<select id="search" name="search">
 								<option value="all">전체</option>
-								<option value="s_giftname">프로젝트명</option>
+								<!-- <option value="s_giftname">리워드 명</option> -->
+								<option value="sname">후원자 명</option>
 						</select> 
 						<input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
-							<input type="button" value="검색" id="searchData" /></td>
+						<input type="button" value="검색" id="searchData" /></td>
 						<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">
 								<option value="1">1줄</option>
 								<option value="2">2줄</option>
@@ -148,31 +155,27 @@
 								<option value="10">10줄</option>
 						</select>
 						</td>
-
-						<%-- ================ 검색기능 종료 =============== --%>
-						<%-- ============== 글쓰기 버튼 출력 시작============ --%>
-
-						<td>
-							<!-- <div class="contentBtn"> --> 
-							<input type="button" value="글쓰기" id="insertFormBtn"> <!-- </div> -->
-						</td>
+						
 					</tr>
 				</table>
 			</form>
 		</div>
-		<%-- ============== 글쓰기 버튼 출력 종료============ --%>
+		<%-- ================ 검색기능 종료 =============== --%>
+		
 		<%-- ================= 리스트 시작 =============== --%>
 		<div id="supportList">
 			<table summary="게시판 리스트">
-				<colgroup>
+				<colgroup align="center">
+					<col width="6%" />
 					<col width="10%" />
-					<col width="62%" />
-					<col width="15%" />
+					<col width="54%" />
+					<col width="17%" />
 					<col width="13%" />
 				</colgroup>
 				<thead>
 					<tr>
-						<th data-value="s_no" class="order">후원자 <%-- <c:choose>
+						<th data-value="sno" class="order" style="text-align: center;" >번호</th>
+						<th data-value="sno" class="order" align="center" style="text-align: center;">후원자 <%-- <c:choose>
 								<c:when
 									test="${data.order_by=='s_no' and data.order_sc=='ASC'}">▲</c:when>
 								<c:when
@@ -180,8 +183,8 @@
 								<c:otherwise>▲</c:otherwise>
 							</c:choose> --%>
 						</th>
-						<th>후원프로젝트</th>
-						<th data-value="s_date" class="order">후원금액 <%-- <c:choose>
+						<th align="center" style="text-align: center;">후원 프로젝트 리워드 명</th>
+						<th data-value="s_date" class="order" align="center" style="text-align: center;">후원금액 <%-- <c:choose>
 								<c:when
 									test="${data.order_by=='s_date' and data.order_sc=='ASC'}">▲</c:when>
 								<c:when
@@ -189,7 +192,7 @@
 								<c:otherwise>▲</c:otherwise>
 							</c:choose> --%>
 						</th>
-						<th class="borcle">후원날짜</th>
+						<th class="borcle" style="text-align: center;">후원날짜</th>
 					</tr>
 				</thead>
 				<tbody id="list">
@@ -197,17 +200,18 @@
 					<c:choose>
 						<c:when test="${not empty supportList}">
 							<c:forEach var="support" items="${supportList}" varStatus="status">
-								<tr class="tac" data-num="${support.s_no}">
-									<td>${support.s_name}</td>
-									<td class="goDetail tal">${support.s_giftname}</td>
-									<td>모음금액 :${support.s_giftprice}원</td>
-									<td class="name">${support.s_date}</td>
+								<tr class="tac" data-num="${support.sno}">
+									<td> ${support.sno}</td>
+									<td class="sname"> ${support.sname}</td>
+									<td class="goDetail">${support.s_giftname}</td>
+									<td> ${support.s_giftprice}원</td>
+									<td >${support.s_date}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="4" class="tac">등록된 게시 물이 존재하지 않습니다.</td>
+								<td colspan="4" class="tac">등록된 후원 내역이 존재하지 않습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>
@@ -217,10 +221,10 @@
 		<%-- ================= 리스트 종료 ================ --%>
 
 		<%-- ============ 페이지 네비게이션 시작 ============ --%>
-		<%-- <div id="supportPage">
+		<div id="supportPage">
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
-		</div> --%>
+		</div>
 		<%-- =========== 페이지 네비게이션 종료 ============= --%>
 	</div>
 </body>

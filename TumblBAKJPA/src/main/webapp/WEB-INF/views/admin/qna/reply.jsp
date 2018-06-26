@@ -22,8 +22,8 @@
 	var replyNum, message = "작성시 입력한 비밀번호를 입력해 주세요", pwdConfirm = 0, btnKind = "";
 	$(function() {
 		/* 기본 덧글 목록 불러오기 */
-		var q_num = "<c:out value='${detail.q_num}' />";
-		listAll(q_num);
+		var qnum = "<c:out value='${detail.qnum}' />";
+		listAll(qnum);
 
 		/* 덧글 내용 저장 이벤트 */
 		$("#replyInsert").click(function() {
@@ -45,7 +45,7 @@
 					},
 					dataType : "text",
 					data : JSON.stringify({
-						q_num : q_num,
+						qnum : qnum,
 						r_name : $("#r_name").val(),
 						r_content : $("#r_content").val()
 					}),
@@ -56,7 +56,7 @@
 						if (resultData == "SUCCESS") {
 							alert("댓글 등록이 완료되었습니다.");
 							dataReset();
-							listAll(q_num);
+							listAll(qnum);
 						}
 					}
 				});
@@ -121,7 +121,7 @@
 
 						if (result == 'SUCCESS') {
 							alert("수정 되었습니다.");
-							listAll(q_num);
+							listAll(qnum);
 						}
 					}
 				});
@@ -148,7 +148,7 @@
 
 							if (result == 'SUCCESS') {
 								alert("삭제 되었습니다.");
-								listAll(q_num);
+								listAll(qnum);
 							}
 						}
 					});
@@ -177,9 +177,9 @@
 
 
 	// 리스트 요청 함수
-	function listAll(q_num) {
+	function listAll(qnum) {
 		$("#comment_list").html("");
-		var url = "/replies/all/" + q_num + ".do";
+		var url = "/replies/all/" + qnum + ".do";
 		$.getJSON(url, function(data) {
 			console.log(data.length);
 
@@ -215,7 +215,7 @@
 		var date_span = $("<span>");
 		date_span.html(" / " + r_date + " ");
 
-		// 수정하기 버튼
+/* 		// 수정하기 버튼
 		var up_input = $("<input>");
 		up_input.attr({
 			"type" : "button",
@@ -229,16 +229,16 @@
 			"type" : "button",
 			"value" : "삭제하기"
 		});
-		del_input.addClass("delete_btn");
-
+		del_input.addClass("delete_btn"); */
+ 
 		// 내용
 		var content_p = $("<p>");
 		content_p.addClass("con");
 		content_p.html(r_content);
 
 		// 조립하기
-		writer_p.append(name_span).append(date_span).append(up_input).append(
-				del_input)
+		writer_p.append(name_span).append(date_span)
+		/*. append(up_input).append(del_input) */
 		new_li.append(writer_p).append(content_p);
 		$("#comment_list").append(new_li);
 	}

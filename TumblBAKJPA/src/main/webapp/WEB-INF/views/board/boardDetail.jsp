@@ -105,7 +105,7 @@
 					</tr>
 					<tr>
 						<td class="ac">제목</td>
-						<td colspan="3">${detail.q_title}</td>
+						<td colspan="3">${detail.qtitle}</td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>

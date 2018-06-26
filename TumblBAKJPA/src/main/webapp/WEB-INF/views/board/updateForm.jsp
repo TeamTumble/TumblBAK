@@ -68,8 +68,8 @@
 						</tr>
 						<tr>
 							<td class="ac">글제목</td>
-							<td colspan="3"><input type="text" name="q_title"
-								id="q_title" value="${updateData.q_title}" /></td>
+							<td colspan="3"><input type="text" name="qtitle"
+								id="qtitle" value="${updateData.qtitle}" /></td>
 						</tr>
 						<tr>
 							<td class="ac vm">내용</td>

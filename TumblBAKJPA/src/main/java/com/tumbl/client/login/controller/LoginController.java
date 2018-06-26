@@ -1,11 +1,16 @@
 package com.tumbl.client.login.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,16 +44,18 @@ public class LoginController {
 
 	/**********************************
 	 * 로그인 처리 메서드 참고 : 로그인 실패시 처리 내용 포함.
+	 * 
+	 * @throws IOException
+	 * 
 	 **********************************/
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public ModelAndView loginProc(@ModelAttribute("Login") com.tumbl.client.login.vo.Login lvo, HttpSession session,
-			HttpServletRequest request)  {
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.info("login.do post 호출성공");
 
 		ModelAndView mav = new ModelAndView();
 		String email = lvo.getEmail();
 		System.out.println(lvo.getEmail() + "       " + lvo.getMpw());
-
 		/*
 		 * Login loginCheckResult =
 		 * loginService.loginSelect(lvo.getEmail(),lvo.getMpw());
@@ -56,23 +63,22 @@ public class LoginController {
 		try {
 			Login loginCheck = loginService.loginSelect(lvo.getEmail(), lvo.getMpw());
 			System.out.println(loginCheck);
-			if (loginCheck == null) {
-				mav.addObject("errCode", 1);
-				mav.setViewName("member/login");
-				return mav;
-			} else {
-				session.setAttribute("login", loginCheck);
-				mav.setViewName("member/login");
-				return mav;
-			}
-		}catch(Exception e) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 성공 .');</script>");
+			out.flush();
+			session.setAttribute("login", loginCheck);
+			mav.setViewName("member/login");
+			return mav;
+		} catch (Exception e) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('입력하신 이메일 또는 비밀번호가 다릅니다.');</script>");
+			out.flush();
 			e.printStackTrace();
-		}finally{
-			
+			mav.setViewName("member/login");
+			return mav;
 		}
-		
-
-		return mav;
 
 	}
 

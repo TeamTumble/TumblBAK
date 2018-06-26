@@ -16,7 +16,7 @@ public class QnaVO extends CommonVO{
 	private long qnum = 0; // 글번호
 	private int idx = 0; //회원번호
 	private String email = ""; // 작성자
-	private String q_title = ""; // 제목
+	private String qtitle = ""; // 제목
 	private String q_content = ""; // 내용
 	private String  q_date; // 작성일
 	
@@ -52,11 +52,11 @@ public class QnaVO extends CommonVO{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getQ_title() {
-		return q_title;
+	public String getQtitle() {
+		return qtitle;
 	}
-	public void setQ_title(String q_title) {
-		this.q_title = q_title;
+	public void setQtitle(String qtitle) {
+		this.qtitle = qtitle;
 	}
 	public String getQ_content() {
 		return q_content;
@@ -90,7 +90,7 @@ public class QnaVO extends CommonVO{
 	}
 	@Override
 	public String toString() {
-		return "QnaVO [qnum=" + qnum + ", idx=" + idx + ", email=" + email + ", q_title=" + q_title + ", q_content="
+		return "QnaVO [qnum=" + qnum + ", idx=" + idx + ", email=" + email + ", qtitle=" + qtitle + ", q_content="
 				+ q_content + ", q_date=" + q_date + ", r_cnt=" + r_cnt + ", file=" + file + ", b_file=" + b_file
 				+ ", getPage()=" + getPage() + ", getPageSize()=" + getPageSize() + ", getStart_row()=" + getStart_row()
 				+ ", getEnd_row()=" + getEnd_row() + ", getSearch()=" + getSearch() + ", getKeyword()=" + getKeyword()

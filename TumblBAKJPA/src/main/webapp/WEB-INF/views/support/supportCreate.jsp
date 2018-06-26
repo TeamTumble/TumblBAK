@@ -147,10 +147,10 @@
 							<td><input type="hidden" name="email" id="email"
 								value="${login.email}" /> <input type="hidden" name="pno"
 								id="pno" value="${detail.pno}" /> <input type="hidden"
-								name="p_title" id="p_title" value="${detail.p_title}"> <input
+								name="ptitle" id="ptitle" value="${detail.ptitle}"> <input
 								type="hidden" class="s_supporter" id="s_supporter"
 								name="s_supporter" value="1"><input type="hidden"
-								name="s_no" id="s_no" value="${detail.s_no}" /></td>
+								name="sno" id="sno" value="${detail.sno}" /></td>
 
 						</tr>
 						<colgroup>
@@ -318,6 +318,7 @@
 			<input type="button" style="size: auto; font-size: large;"
 				value="후원 신청" id="supportBtn">
 		</div>
+		
 
 	</div>
 </body>

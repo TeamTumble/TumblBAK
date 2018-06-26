@@ -140,7 +140,6 @@
 								name="search">
 									<option value="all">전체</option>
 									<option value="ntitle">제목</option>
-									<option value="ncontent">내용</option>
 							</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
 								<input type="button" value="검색" id="searchData" /></td>
 							<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">

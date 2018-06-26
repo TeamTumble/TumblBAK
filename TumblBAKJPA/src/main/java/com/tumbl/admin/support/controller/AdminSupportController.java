@@ -1,21 +1,22 @@
-/*package com.tumbl.admin.support.controller;
+package com.tumbl.admin.support.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tumbl.admin.common.page.Paging;
 import com.tumbl.admin.common.util.Util;
 import com.tumbl.admin.support.service.AdminSupportService;
+import com.tumbl.client.common.page.Paging;
 import com.tumbl.client.support.vo.SupportVO;
 
 @Controller
@@ -26,45 +27,65 @@ public class AdminSupportController {
 	@Autowired
 	private AdminSupportService adminSupportService;
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글목록 구현하기
-	 **************************************************************//*
+	 **************************************************************/
 	@RequestMapping(value = "/support/supportList.do", method = RequestMethod.GET)
 	public String supportList(@ModelAttribute SupportVO svo, Model model) {
 		logger.info("/support/supportList 호출 성공");
 
 		// 페이지 세팅
 		Paging.setPage(svo);
+		
 		// 전체 레코드수 구현
-		int total = adminSupportService.supportListCnt(svo);
-		logger.info("total = " + total);
-
-		// 글번호 재설정
-		int count = total - (Util.nvl(svo.getPage()) - 1) * Util.nvl(svo.getPageSize());
-		logger.info("count = " + count);
-
-		List<SupportVO> supportList = adminSupportService.supportList(svo);
-
-		model.addAttribute("supportList", supportList);
-		model.addAttribute("count", count);
-		model.addAttribute("total", total);
-		model.addAttribute("data", svo);
-		return "admin/support/supportList";
+		if (svo.getKeyword().equals("")) {
+			long total = adminSupportService.countAdminSupport(svo);
+			System.out.println(svo.getPage() + "       " + svo.getPageSize());
+			long count = total - (Util.nvl(svo.getPage()) - 1) * Util.nvl(svo.getPageSize());
+			PageRequest pageRequest = new PageRequest(Util.nvl(svo.getPage()) - 1, Util.nvl(svo.getPageSize()),
+					new Sort(Direction.DESC, "sno"));
+			Page<SupportVO> page = adminSupportService.findAll(pageRequest);
+			List<SupportVO> sQvo = page.getContent();
+			model.addAttribute("supportList", sQvo);
+			model.addAttribute("count", count);
+			model.addAttribute("total", total);
+			model.addAttribute("data", svo);
+			return "admin/support/supportList";
+		} else {
+			if (svo.getSearch().equals("sname")) {
+				long total = adminSupportService.countAdminSupport(svo);
+				long count = total - (Util.nvl(svo.getPage()) - 1) * Util.nvl(svo.getPageSize());
+				PageRequest pageRequest = new PageRequest(Util.nvl(svo.getPage()) - 1, Util.nvl(svo.getPageSize()),
+						new Sort(Direction.DESC, "sname"));
+				System.out.println("검색 컨트롤러      ==============  " + svo.getKeyword());
+				System.out.println("sname 검색 컨트롤러      ==============  탑승 확인");
+				Page<SupportVO> page = adminSupportService.findBySnameContaining(svo.getKeyword(), pageRequest);
+				List<SupportVO> sQvo = page.getContent();
+				model.addAttribute("supportList", sQvo);
+				model.addAttribute("count", count);
+				model.addAttribute("total", total);
+				model.addAttribute("data", svo);
+				return "admin/support/supportList";
+			}
+			return "admin/support/supportList";
+		}
+		
+		
 	}
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글쓰기 폼 출력하기
-	 **************************************************************//*
-	@RequestMapping(value = "/support/writeForm.do")
+	 **************************************************************/
+	/*@RequestMapping(value = "/support/writeForm.do")
 	public String writeForm() {
 		logger.info("writeForm 호출 성공");
 		return "admin/support/writeForm";	
-	}
+	}*/
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글쓰기 구현하기
-	 **************************************************************//*
-	@RequestMapping(value = "/support/supportInsert.do", method = RequestMethod.POST)
+	 **************************************************************/
+/*	@RequestMapping(value = "/support/supportInsert.do", method = RequestMethod.POST)
 	public String supportInsert(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		logger.info("supportInsert 호출 성공");
@@ -80,11 +101,11 @@ public class AdminSupportController {
 		}
 		return "redirect:" + url;
 	}
-
-	*//**************************************************************
+*/
+	/**************************************************************
 	 * 글 상세보기 구현
-	 **************************************************************//*
-	@RequestMapping(value = "/support/supportDetail.do", method = RequestMethod.GET)
+	 **************************************************************/
+/*	@RequestMapping(value = "/support/supportDetail.do", method = RequestMethod.GET)
 	public String supportDetail(@ModelAttribute SupportVO svo, Model model) {
 		logger.info("supportDetail 호출 성공");
 		logger.info("s_no = " + svo.getS_no());
@@ -95,9 +116,9 @@ public class AdminSupportController {
 		}
 		model.addAttribute("detail", detail);
 		return "admin/support/supportDetail";
-	}
+	}*/
 
-	*//**************************************************************
+	/**************************************************************
 	 * 비밀번호 확인
 	 * 
 	 * @param s_no
@@ -106,16 +127,16 @@ public class AdminSupportController {
 	 *         있다.(현재 문자열 리턴) 참고 : @ResponseBody는 전달된 뷰를 통해서 출력하는 것이 아니라 HTTP
 	 *         Response Body에 직접 출력하는 방식. produces 속성은 지정한 미디어 타입과 관련된 응답을 생성하는데 사용한
 	 *         실제 컨텐트 타입을 보장.
-	 **************************************************************//*
+	 **************************************************************/
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글수정 폼 출력하기
 	 * 
 	 * @param :
 	 *            s_no
 	 * @return : SupportVO
-	 **************************************************************//*
-	@RequestMapping(value = "/support/updateForm.do", method = RequestMethod.GET)
+	 **************************************************************/
+/*	@RequestMapping(value = "/support/updateForm.do", method = RequestMethod.GET)
 	public String updateForm(@ModelAttribute SupportVO svo, Model model) {
 		logger.info("updateForm 호출 성공");
 		logger.info("s_no = " + svo.getS_no());
@@ -125,15 +146,15 @@ public class AdminSupportController {
 		model.addAttribute("updateData", updateData);
 		model.addAttribute("data", svo);
 		return "admin/support/updateForm";
-	}
+	}*/
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글수정 구현하기
 	 * 
 	 * @param :
 	 *            SupportVO
-	 **************************************************************//*
-	@RequestMapping(value = "/support/supportUpdate.do", method = RequestMethod.POST)
+	 **************************************************************/
+/*	@RequestMapping(value = "/support/supportUpdate.do", method = RequestMethod.POST)
 	public String supportUpdate(@ModelAttribute SupportVO svo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		logger.info("supportUpdate 호출 성공");
@@ -149,14 +170,14 @@ public class AdminSupportController {
 			url = "/admin/support/updateForm.do??s_no=" + svo.getS_no();
 		}
 		return "redirect:" + url;
-	}
+	}*/
 
-	*//**************************************************************
+	/**************************************************************
 	 * 글삭제 구현하기
 	 * 
 	 * @throws IOException
-	 **************************************************************//*
-	@RequestMapping(value = "/support/supportDelete.do")
+	 **************************************************************/
+/*	@RequestMapping(value = "/support/supportDelete.do")
 	public String supportDelete(@ModelAttribute SupportVO svo, HttpServletRequest request) throws IOException {
 		logger.info("supportDelete 호출 성공");
 		// 아래 변수에는 입력 성공에 대한 상태값 담습니다.(1 or 0)
@@ -165,6 +186,5 @@ public class AdminSupportController {
 		result = adminSupportService.supportDelete(svo.getS_no());
 		
 		return "redirect:" + "/admin/support/supportList.do";
-	}
+	}*/
 }
-*/

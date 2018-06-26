@@ -4,18 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.tumbl.client.common.vo.CommonVO;
+
 @Entity
-public class SupportVO  {
+public class SupportVO extends CommonVO  {
 	@Id
 	@GeneratedValue
-	private int s_no; // 후원번호
+	private int sno; // 후원번호
 	
 	private int pno; // 프로젝트 번호 (외부 키)
 	private String email; // 회원 아이디(외부데이터 로드용)
-	private String p_title; // 프로젝트 제목(외부데이터 로드용)
+	private String ptitle; // 프로젝트 제목(외부데이터 로드용)
 
 	// 배송지 입력
-	private String s_name; // 후원인 이름
+	private String sname; // 후원인 이름
 	private String s_zipcode; // 후원인 우편번호
 	private String s_address; // 후원인 주소
 	private String s_email; // 후원인 이메일
@@ -46,16 +48,16 @@ public class SupportVO  {
 		super();
 	}
 
-	public SupportVO(int s_no, int pno, String email, String p_title, String s_name, String s_zipcode,
+	public SupportVO(int sno, int pno, String email, String ptitle, String sname, String s_zipcode,
 			String s_address, String s_email, String s_phone, String s_giftname, int s_giftquantity, int s_giftprice,
 			int s_addprice, int s_price, String s_paymenttype, String s_bank, String s_account, String s_date,
 			String s_paymentcheck, int s_supporter, int p_giftNo, String p_giftname, int p_giftprice) {
 		super();
-		this.s_no = s_no;
+		this.sno = sno;
 		this.pno = pno;
 		this.email = email;
-		this.p_title = p_title;
-		this.s_name = s_name;
+		this.ptitle = ptitle;
+		this.sname = sname;
 		this.s_zipcode = s_zipcode;
 		this.s_address = s_address;
 		this.s_email = s_email;
@@ -76,12 +78,12 @@ public class SupportVO  {
 		this.p_giftprice = p_giftprice;
 	}
 
-	public int getS_no() {
-		return s_no;
+	public int getSno() {
+		return sno;
 	}
 
-	public void setS_no(int s_no) {
-		this.s_no = s_no;
+	public void setSno(int sno) {
+		this.sno = sno;
 	}
 
 	public int getPno() {
@@ -100,20 +102,20 @@ public class SupportVO  {
 		this.email = email;
 	}
 
-	public String getP_title() {
-		return p_title;
+	public String getPtitle() {
+		return ptitle;
 	}
 
-	public void setP_title(String p_title) {
-		this.p_title = p_title;
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
 	}
 
-	public String getS_name() {
-		return s_name;
+	public String getSname() {
+		return sname;
 	}
 
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setS_name(String sname) {
+		this.sname = sname;
 	}
 
 	public String getS_zipcode() {

@@ -41,7 +41,7 @@
 		</div>
 		<div class="contentTB">
 			<form id="f_writeForm" name="f_writeForm" enctype="multipart/form-data">
-				<input type="hidden" id="n_no" name="n_no" value="${updateData.n_no}" />
+				<input type="hidden" id="nno" name="nno" value="${updateData.nno}" />
 				<%-- <input type="hidden" name="page" id="page" value="${param.page}" />
 				<input type="hidden" name="pageSize" id="pageSize" value="${param.pageSize}" /> --%>
 				<table>
@@ -54,9 +54,9 @@
 					<tbody>
 						<tr>
 							<td class="ac">글번호</td>
-							<td>${updateData.n_no}</td>
+							<td>${updateData.nno}</td>
 							<td class="ac">작성일</td>
-							<td>${updateData.n_date}</td>
+							<td>${updateData.ndate}</td>
 						</tr>
 						<tr>
 							<td class="ac">작성자</td>
@@ -64,12 +64,12 @@
 						</tr>
 						<tr>
 							<td class="ac">글제목</td>
-							<td colspan="3"><input type="text" name="n_title"
-								id="n_title" value="${updateData.n_title}" /></td>
+							<td colspan="3"><input type="text" name="ntitle"
+								id="ntitle" value="${updateData.ntitle}" /></td>
 						</tr>
 						<tr>
 							<td class="ac vm">내용</td>
-							<td colspan="3"><textarea name="n_content" id="n_content">${updateData.n_content} </textarea></td>
+							<td colspan="3"><textarea name="ncontent" id="ncontent">${updateData.ncontent} </textarea></td>
 						</tr>
 				</table>
 			</form>

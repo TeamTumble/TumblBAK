@@ -14,6 +14,11 @@
 	href="/resources/include/css/common.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/include/css/member.css" />
+	<script type="text/javascript"
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
+	
 <script type="text/javascript">
 	$(function() {
 		/* 검색 후 검색 대상과 검색 단어 출력 */
@@ -22,12 +27,12 @@
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 'q_content') {
+			if ($("#search").val() != 'all') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'q_title')
+				if ($("#search").val() == 'email')
 					value = "#list tr td.goDetail";
-				else if ($("#search").val() == 'email')
-					value = "#list tr td.name";
+				else if ($("#search").val() == 'mname')
+					value = "#list tr td.mname";
 				$(value + ":contains('" + word + "')").each(
 						function() {
 							var regex = new RegExp(word, 'gi');
@@ -135,9 +140,8 @@
 					<td id="btd1"><label>검색조건</label> <select id="search"
 						name="search">
 							<option value="all">전체</option>
-							<option value="q_title">제목</option>
-							<option value="q_content">내용</option>
-							<option value="email">작성자</option>
+							<option value="email">이메일</option>
+							<option value="mname">작성자</option>
 					</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
 						<input type="button" value="검색" id="searchData" /></td>
 					<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">
@@ -176,7 +180,7 @@
 						<tr class="tac" data-idx="${member.idx}">
 							<td>${status.count}</td>
 							<td><span class="goDetail">${member.email}</span></td>
-							<td>${member.m_name}</td>
+							<td class="mname">${member.mname}</td>
 							<td>${member.m_phone}</td>
 							<td>${member.m_joindate}</td>
 						</tr>

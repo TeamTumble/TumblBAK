@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -55,24 +56,50 @@ public class BoardController {
 
 		Login login = (Login) session.getAttribute("login");
 
-		qvo.setEmail(login.getEmail());
-	
-		// 글번호 재설정
-		long total = boardService.countBoard(qvo);
-		System.out.println(qvo.getPage() + "       " + qvo.getPageSize());
-		long count = total - (Util.nvl(qvo.getPage()) - 1) * Util.nvl(qvo.getPageSize());
-		PageRequest pageRequest = new PageRequest(Util.nvl(qvo.getPage()) - 1, Util.nvl(qvo.getPageSize()),
-				new Sort(Direction.DESC, "qnum"));
-		Page<QnaVO> page = boardService.findAll(pageRequest);
-		List<QnaVO> cQvo = page.getContent();
-
-		model.addAttribute("boardList", cQvo);
-		model.addAttribute("test", page.getNumberOfElements());
-		model.addAttribute("count", count);
-		model.addAttribute("total", total);
-		model.addAttribute("data", qvo);
-
-		return "board/boardList";
+		/* qvo.setEmail(login.getEmail()); */
+		if (qvo.getKeyword().equals("")) {
+			long total = boardService.countBoard(qvo);
+			System.out.println(qvo.getPage() + "       " + qvo.getPageSize());
+			long count = total - (Util.nvl(qvo.getPage()) - 1) * Util.nvl(qvo.getPageSize());
+			PageRequest pageRequest = new PageRequest(Util.nvl(qvo.getPage()) - 1, Util.nvl(qvo.getPageSize()),
+					new Sort(Direction.DESC, "qnum"));
+			Page<QnaVO> page = boardService.findAll(pageRequest);
+			List<QnaVO> cQvo = page.getContent();
+			model.addAttribute("boardList", cQvo);
+			model.addAttribute("count", count);
+			model.addAttribute("total", total);
+			model.addAttribute("data", qvo);
+			return "board/boardList";
+		} else {
+			if (qvo.getSearch().equals("email")) {
+				long total = boardService.countBoard(qvo);
+				long count = total - (Util.nvl(qvo.getPage()) - 1) * Util.nvl(qvo.getPageSize());
+				PageRequest pageRequest = new PageRequest(Util.nvl(qvo.getPage()) - 1, Util.nvl(qvo.getPageSize()),
+						new Sort(Direction.DESC, "email"));
+				System.out.println("검색 컨트롤러      ==============  " + qvo.getKeyword());
+				Page<QnaVO> page = boardService.findByEmailContaining(qvo.getKeyword(), pageRequest);
+				List<QnaVO> cQvo = page.getContent();
+				model.addAttribute("boardList", cQvo);
+				model.addAttribute("count", count);
+				model.addAttribute("total", total);
+				model.addAttribute("data", qvo);
+				return "board/boardList";
+			} else if (qvo.getSearch().equals("qtitle")) {
+				long total = boardService.countBoard(qvo);
+				long count = total - (Util.nvl(qvo.getPage()) - 1) * Util.nvl(qvo.getPageSize());
+				PageRequest pageRequest = new PageRequest(Util.nvl(qvo.getPage()) - 1, Util.nvl(qvo.getPageSize()),
+						new Sort(Direction.DESC, "email"));
+				System.out.println("검색 컨트롤러      ==============  " + qvo.getKeyword());
+				Page<QnaVO> page = boardService.findByQtitleContaining(qvo.getKeyword(), pageRequest);
+				List<QnaVO> cQvo = page.getContent();
+				model.addAttribute("boardList", cQvo);
+				model.addAttribute("count", count);
+				model.addAttribute("total", total);
+				model.addAttribute("data", qvo);
+				return "board/boardList";
+			}
+			return "board/boardList";
+		}
 
 	}
 
@@ -191,8 +218,7 @@ public class BoardController {
 		System.out.println(bvo.getEmail());
 		boardService.boardUpdate(bvo);
 		System.out.println(bvo.getQnum());
-		url = "/board/boardDetail.do?qnum="+bvo.getQnum();
-		
+		url = "/board/boardDetail.do?qnum=" + bvo.getQnum();
 
 		return "redirect:" + url;
 	}
@@ -206,7 +232,7 @@ public class BoardController {
 	public String boardDelete(@ModelAttribute QnaVO bvo, HttpServletRequest request) throws IOException {
 		logger.info("boardDelete 호출 성공");
 		// 아래 변수에는 입력 성공에 대한 상태값 담습니다.(1 or 0)
-		int result = 0;
+
 		String url = "";
 
 		if (!bvo.getB_file().isEmpty()) {

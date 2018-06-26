@@ -108,7 +108,7 @@ minimum-scale=1.0, user-scalable=no" />
 				</div>
 				<div class="form-group form-group-sm">
 					<label for="userName" class="col-sm-2 control-label">회원이름</label>
-					<div class="col-sm-3">${member.m_name}</div>
+					<div class="col-sm-3">${member.mname}</div>
 				</div>
 
 				<div class="form-group">

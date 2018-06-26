@@ -49,13 +49,14 @@ public class SupportService {
 		detail.setEmail(pvo.getEmail());
 		detail.setP_giftname(pvo.getP_giftname());
 		detail.setP_giftprice(pvo.getP_giftprice());
+		detail.setPtitle(pvo.getPtitle());
 		return detail;
 
 	}
 
 	public SupportVO supportSuccess(SupportVO svo) {
-		SupportVO detail = new SupportVO();
-		detail = supportRepository.findOne(svo.getPno());
+		SupportVO detail = null;
+		detail = supportRepository.findOne(svo.getSno());
 		System.out.println("후원성공   =====  " + detail);
 		return detail;
 	}

@@ -31,8 +31,9 @@ public class AdminLoginController {
 	 * 로그인 화면 보여주기 위한 메서드
 	 **********************************/
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login() {
+	public String login(HttpSession session) {
 		logger.info("login.do get 호출 성공");
+		session.removeAttribute("login");
 		return "admin/login/login";
 	}
 
@@ -42,6 +43,7 @@ public class AdminLoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute AdminLoginVO lvo, HttpSession session, HttpServletRequest request) {
 		logger.info("login.do post 호출 성공");
+		
 		ModelAndView mav = new ModelAndView();
 		AdminLoginVO resultData = adminloginService.AdminloginSelect(lvo.getAdid(), lvo.getAdpw());
 		if (resultData == null) {

@@ -25,7 +25,7 @@
 			/* $("#pwdChk").show();
 			$("#msg").text("작성시 입력한 비밀번호를 입력해 주세요.").css("color", "#000099"); */
 			var nno = $(this).parents("tr").attr("data-num");
-			$("#nno").val(n_no);
+			$("#nno").val(nno);
 			console.log("글번호 : " + nno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#f_data").attr({

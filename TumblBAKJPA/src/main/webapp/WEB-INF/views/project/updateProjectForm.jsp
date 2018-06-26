@@ -161,9 +161,9 @@
 		/* 등록 실행 버튼*/
 		$("#projectUpdateBtn").click(function() {
 			//입력값 체크
-			if (!chkSubmit($('#p_title'), "제목을"))
+			if (!chkSubmit($('#ptitle'), "제목을"))
 				return;
-			else if (!chkSubmit($('#pm_name'), "이름을"))
+			else if (!chkSubmit($('#pmname'), "이름을"))
 				return;
 			else if (!chkSubmit($('#p_story'), "작성할 내용을"))
 				return;
@@ -210,8 +210,8 @@
 					enctype="multipart/form-data">
 					<div>
 						<input type="hidden" name="email" id="email"
-							value="${dtail.email}" /> <input type="hidden" name="p_no"
-							id="p_no" value="${updateData.p_no}" /> <input type="hidden"
+							value="${updateData.email}" /> <input type="hidden" name="pno"
+							id="pno" value="${updateData.pno}" /> <input type="hidden"
 							name="p_image" id="p_image" value="${updateData.p_image}" /> <input
 							type="hidden" name="pm_image" id="pm_image"
 							value="${updateData.pm_image}" /> <input type="hidden"
@@ -237,7 +237,7 @@
 											class="w3-padding-16 w3-panel w3-border w3-hover-border-black">
 											<label class="w3-margin-left"> 프로젝트 제목</label><br> <input
 												type="text" class=" w3-animate-input w3-margin-left"
-												style="width: 40%" name="p_title" id="p_title" value="${updateData.p_title}"><br>
+												style="width: 40%" name="ptitle" id="ptitle" value="${updateData.ptitle}"><br>
 										</div>
 
 										<div
@@ -294,8 +294,8 @@
 										class="w3-padding-16 w3-panel w3-border w3-hover-border-black">
 										<label class="w3-margin-left">진행자 이름</label><br> <input
 											type="text" class="w3-margin-left w3-center"
-											style="width: 15%" name="pm_name" id="pm_name"
-											value="${updateData.pm_name}">
+											style="width: 15%" name="pmname" id="pmname"
+											value="${updateData.pmname}">
 									</div>
 
 									<div
@@ -457,7 +457,7 @@
 										// instance, using default configuration.
 										CKEDITOR.replace('p_story');
 									</script>
-									<input type="file" name="ps_file" id="ps_file">기존이미지 파일명: ${updateData.p_storyimage}</input>
+									<input type="file" name="ps_file" id="ps_file">기존이미지 파일명: ${updateData.p_storyimage}
 								</div>
 							</div>
 						</div>
@@ -539,6 +539,6 @@
 				<!-- 아코디언 그룹 끝 -->
 			</div>
 		<!-- 전체 컨테이너 끝 -->
-		</div>
+		
 </body>
 </html>

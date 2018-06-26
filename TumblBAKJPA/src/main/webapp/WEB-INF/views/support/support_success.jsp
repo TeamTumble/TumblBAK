@@ -42,11 +42,8 @@ minimum-scale=1.0, user-scalable=no" />
 			<div class="tac">
 				<h1>축하합니다.</h1>
 				<br />
-				<p>
-					<input type="hidden" name="email" id="email"
-						value="${detail.email}" />
-				</p>
-				<p>${detail.p_giftname}</p>
+				<p>${detail.email}님</p>
+				<p>${detail.s_giftname}</p>
 				<p style="color: red;">후원금액:${detail.s_giftprice}원</p>
 				<h2>후원 축하합니다</h2>
 

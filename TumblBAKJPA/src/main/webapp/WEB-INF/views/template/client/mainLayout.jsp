@@ -217,7 +217,7 @@ h6 {
 									<img src="/uploadStorage/projectvo/thumbnail/${project.p_image}"
 										style="width: 100%" class="">
 									<div class="w3-container">
-										<h6>${project.p_title}</h6>
+										<h6>${project.ptitle}</h6>
 									</div>
 								</div>
 							</div>
@@ -249,7 +249,7 @@ h6 {
 									<img src="/uploadStorage/projectvo/${project.p_image}"
 										style="width: 100%">
 									<div class="w3-container">
-										<h6>${project.p_title}</h6>
+										<h6>${project.ptitle}</h6>
 									</div>
 								</div>
 							</div>

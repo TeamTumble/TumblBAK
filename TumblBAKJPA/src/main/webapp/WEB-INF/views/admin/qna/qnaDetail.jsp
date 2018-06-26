@@ -7,12 +7,9 @@
 <head>
 <meta charset="UTF-8" />
 <title>글상세 보기</title>
-<link rel="stylesheet" type="text/css"
-	href="/resources/include/css/common.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/include/css/qna.css" />
-<script type="text/javascript"
-	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/include/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/resources/include/css/qna.css" />
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	var butChk = 0;
@@ -24,9 +21,9 @@
 		$("#updateFormBtn").click(function() {
 			/* $("#pwdChk").show();
 			$("#msg").text("작성시 입력한 비밀번호를 입력해 주세요.").css("color", "#000099"); */
-			var q_num = $(this).parents("tr").attr("data-num");
-			$("#q_num").val(q_num);
-			console.log("글번호 : " + q_num);
+			var qnum = $(this).parents("tr").attr("data-num");
+			$("#qnum").val(qnum);
+			console.log("글번호 : " + qnum);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#f_data").attr({
 				"method" : "get",
@@ -59,9 +56,10 @@
 			<h3>1:1문의사항 상세페이지</h3>
 		</div>
 		<form name="f_data" id="f_data" >
-			<input type="hidden" name="q_num" value="${detail.q_num}" /><input type="hidden" name="q_num" id="q_num"> <input
-				type="hidden" name="page" value="${data.page}"> <input
-				type="hidden" name="pageSize" value="${data.pageSize}">
+			<input type="hidden" name="qnum" value="${detail.qnum}" />
+			<input type="hidden" name="qnum" id="qnum">
+			<input type="hidden" name="page" value="${data.page}"> 
+			<input type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
 		<%-- ========= 비밀번호 확인 버튼 및 버튼 추가 시작 ====== --%>
 		<table id="qnaPwdBut">
@@ -90,7 +88,7 @@
 					</tr>
 					<tr>
 						<td class="ac">제목</td>
-						<td colspan="3">${detail.q_title}</td>
+						<td colspan="3">${detail.qtitle}</td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>

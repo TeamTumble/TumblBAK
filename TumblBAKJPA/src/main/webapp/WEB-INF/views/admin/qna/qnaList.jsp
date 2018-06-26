@@ -22,7 +22,7 @@
 			$("#search").val("<c:out value='${data.search}' />");
 			if ($("#search").val() != 'q_content') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'q_title')
+				if ($("#search").val() == 'qtitle')
 					value = "#list tr td.goDetail";
 				else if ($("#search").val() == 'q_content')
 					value = "#list tr td.name";
@@ -81,9 +81,9 @@
 		});
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
-			var q_num = $(this).parents("tr").attr("data-num");
-			$("#q_num").val(q_num);
-			console.log("글번호 : " + q_num);
+			var qnum = $(this).parents("tr").attr("data-num");
+			$("#qnum").val(qnum);
+			console.log("글번호 : " + qnum);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#detailForm").attr({
 				"method" : "get",
@@ -114,7 +114,7 @@
 
 		<%-- ======= 상세 페이지 이동을 위한 FORM ============ --%>
 		<form name="detailForm" id="detailForm">
-			<input type="hidden" name="q_num" id="q_num"> 
+			<input type="hidden" name="qnum" id="qnum"> 
 			<input type="hidden" name="page" value="${data.page}"> 
 			<input type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
@@ -137,7 +137,7 @@
 							name="search">
 
 								<option value="all">전체</option>
-								<option value="q_title">제목</option>
+								<option value="qtitle">제목</option>
 								<option value="q_content">내용</option>
 								<option value="q_content">작성자</option>
 						</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
@@ -169,11 +169,11 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th data-value="q_num" class="order">글번호 <c:choose>
+						<th data-value="qnum" class="order">글번호 <c:choose>
 								<c:when
-									test="${data.order_by=='q_num' and data.order_sc=='ASC'}">▲</c:when>
+									test="${data.order_by=='qnum' and data.order_sc=='ASC'}">▲</c:when>
 								<c:when
-									test="${data.order_by=='q_num' and data.order_sc=='DESC'}">▼</c:when>
+									test="${data.order_by=='qnum' and data.order_sc=='DESC'}">▼</c:when>
 								<c:otherwise>▲</c:otherwise>
 							</c:choose>
 						</th>
@@ -195,11 +195,11 @@
 						<c:when test="${not empty qnaList}">
 							<c:forEach var="qna" items="${qnaList}"
 								varStatus="status">
-								<tr class="tac" data-num="${qna.q_num}">
+								<tr class="tac" data-num="${qna.qnum}">
 									<td>${count - status.index}</td>
-									<td class="goDetail tal">${qna.q_title}</td>
+									<td class="goDetail tal">${qna.qtitle}</td>
 									<td>${qna.q_date}</td>
-									<td class="name">${qna.q_content}</td>
+									<td class="name">${qna.email}</td>
 								</tr>
 							</c:forEach>
 						</c:when>

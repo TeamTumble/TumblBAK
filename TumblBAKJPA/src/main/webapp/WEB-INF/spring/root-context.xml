@@ -95,30 +95,11 @@
 				<prop key="hibernate.format_sql">true</prop>                 <!-- SQL 정렬해서 보기 -->
 				<prop key="hibernate.use_sql_comments">true</prop>           <!-- SQL 코멘트 보기 -->
 				<prop key="hibernate.id.new_generator_mappings">true</prop>  <!-- 새 버전의 ID 생성 옵션 -->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>             <!-- DDL 자동 생성 -->
+				<prop key="hibernate.hbm2ddl.auto">create</prop>             <!-- DDL 자동 생성 -->
 			</props>
 		</property>
 	</bean>
-	<!-- Mybatis Setting -->
-	<!-- - SqlSessionFactory는 데이터베이스와의 연결과 SQL의 실행에 대한 모든 것을 가진 가장 중요한 객체이다. 
-		- SqlSessionFactory를 생성해 주는 객체를 설정해 주어야 하는데 SqlSessionFactoryBean 이라는 클래스이다. -->
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
-		<property name="dataSource" ref="dataSource" /> <property name="configLocation" 
-		value="classpath:config/mybatis-config.xml" /> <property name="mapperLocations" 
-		value="classpath:query/*.xml" /> </bean> <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" 
-		destroy-method="clearCache"> <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" 
-		/> </bean> a PlatformTransactionManager is still required <bean id="transactionManager" 
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
-		<property name="dataSource" ref="dataSource" /> </bean> <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
-		<property name="basePackage"> <value>com.tumbl.**.**.dao</value> </property> 
-		</bean> -->
-
-	<!-- <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
-		<property name="host" value="smtp.gmail.com" /> <property name="port" value="587" 
-		/> <property name="username" value="poiuripjava@gmail.com" /> <property name="password" 
-		value="alsdud12" /> <property name="javaMailProperties"> <props> <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop> 
-		<prop key="mail.smtp.starttls.enable">true</prop> <prop key="mail.smtp.auth">true</prop> 
-		</props> </property> </bean> -->
+	
 
 	<mvc:default-servlet-handler />
 

@@ -42,7 +42,7 @@ $(function() { /* 수정 버튼 클릭 시 처리 이벤트 */
 		<div class="contentTB">
 			<form id="f_writeForm" name="f_writeForm"
 				enctype="multipart/form-data">
-				<input type="hidden" id="q_num" name="q_num" value="${updateData.q_num}" /> 
+				<input type="hidden" id="qnum" name="qnum" value="${updateData.qnum}" /> 
 				<input type="hidden" name="page" id="page" value="${param.page}" /> 
 				<input type="hidden" name="pageSize" id="pageSize" value="${param.pageSize}" />
 				<table>
@@ -55,7 +55,7 @@ $(function() { /* 수정 버튼 클릭 시 처리 이벤트 */
 					<tbody>
 						<tr>
 							<td class="ac">글번호</td>
-							<td>${updateData.q_num}</td>
+							<td>${updateData.qnum}</td>
 							<td class="ac">작성일</td>
 							<td>${updateData.q_date}</td>
 						</tr>
@@ -65,8 +65,8 @@ $(function() { /* 수정 버튼 클릭 시 처리 이벤트 */
 						</tr>
 						<tr>
 							<td class="ac">글제목</td>
-							<td colspan="3"><input type="text" name="q_title"
-								id="q_title" value="${updateData.q_title}" /></td>
+							<td colspan="3"><input type="text" name="qtitle"
+								id="qtitle" value="${updateData.qtitle}" /></td>
 						</tr>
 						<tr>
 							<td class="ac vm">내용</td>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.tumbl.admin.member.service.AdminMemberService;
 import com.tumbl.client.common.page.Paging;
 import com.tumbl.client.member.vo.Member;
+import com.tumbl.client.qna.vo.QnaVO;
 import com.tumbl.common.util.Util;
 
 @Controller
@@ -34,43 +35,59 @@ public class AdminMemberController {
 	 * 회원 리스트 구현하기
 	 **************************************************************/
 	@RequestMapping(value = "/member/memberList.do", method = RequestMethod.GET)
-	public String memberList(@ModelAttribute Member bvo, Model model, HttpSession session) {
+	public String memberList(@ModelAttribute Member mvo, Model model, HttpSession session) {
 		logger.info("memberList 호출 성공");
 
-		
-		
 		// 페이지 세팅
-		Paging.setPage(bvo);
-		
-		// view 단에 몇개씩 보일지 설정해야함. 06/20
-		
-		
-/*		System.out.println("시작점 bvo" + bvo);
-		*/
-		
-	/*	Login login = (Login) session.getAttribute("login");
-		
-		System.out.println("시작점 login"+ login);*/
-		
-	/*	bvo.setEmail(login.getEmail());*/
+		Paging.setPage(mvo);
+
 		// 글번호 재설정
 
-		long total = adminMemberService.countadminMember(bvo);
-		System.out.println(bvo.getPage() + "       " + bvo.getPageSize());
-		long count = total - (Util.nvl(bvo.getPage()) - 1) * Util.nvl(bvo.getPageSize());
-		PageRequest pageRequest = new PageRequest(Util.nvl(bvo.getPage()) - 1, Util.nvl(bvo.getPageSize()),
-				new Sort(Direction.DESC, "idx"));
-		Page<Member> page = adminMemberService.findAll(pageRequest);
-		List<Member> cQvo = page.getContent();
-
-		model.addAttribute("memberList", cQvo);
-		model.addAttribute("test", page.getNumberOfElements());
-		model.addAttribute("count", count);
-		model.addAttribute("total", total);
-		model.addAttribute("data", bvo);
-
-		
-
-		return "admin/member/memberList";
+		if (mvo.getKeyword().equals("")) {
+			long total = adminMemberService.countadminMember(mvo);
+			System.out.println(mvo.getPage() + "       " + mvo.getPageSize());
+			long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
+			PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
+					new Sort(Direction.DESC, "idx"));
+			Page<Member> page = adminMemberService.findAll(pageRequest);
+			List<Member> mQvo = page.getContent();
+			model.addAttribute("memberList", mQvo);
+			model.addAttribute("count", count);
+			model.addAttribute("total", total);
+			model.addAttribute("data", mvo);
+			return "admin/member/memberList";
+		} else {
+			if (mvo.getSearch().equals("email")) {
+				long total = adminMemberService.countadminMember(mvo);
+				long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
+				PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
+						new Sort(Direction.DESC, "email"));
+				System.out.println("검색 컨트롤러      ==============  " + mvo.getKeyword());
+				System.out.println("이메일 검색 컨트롤러      ==============  탑승 확인");
+				Page<Member> page = adminMemberService.findByEmailContaining(mvo.getKeyword(), pageRequest);
+				List<Member> mQvo = page.getContent();
+				model.addAttribute("memberList", mQvo);
+				model.addAttribute("count", count);
+				model.addAttribute("total", total);
+				model.addAttribute("data", mvo);
+				return "admin/member/memberList";
+			} else if (mvo.getSearch().equals("mname")) {
+				long total = adminMemberService.countadminMember(mvo);
+				long count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
+				PageRequest pageRequest = new PageRequest(Util.nvl(mvo.getPage()) - 1, Util.nvl(mvo.getPageSize()),
+						new Sort(Direction.DESC, "mname"));
+				System.out.println("검색 컨트롤러      ==============  " + mvo.getKeyword());
+				System.out.println("네임 검색 컨트롤러      ==============  탑승 확인");
+				Page<Member> page = adminMemberService.findByMnameContaining(mvo.getKeyword(), pageRequest);
+				List<Member> cQvo = page.getContent();
+				System.out.println("네임 검색 컨트롤러      ============== " + cQvo);
+				model.addAttribute("boardList", cQvo);
+				model.addAttribute("count", count);
+				model.addAttribute("total", total);
+				model.addAttribute("data", mvo);
+				return "admin/member/memberList";
+			}
+			return "admin/member/memberList";
+		}
 	}
 }

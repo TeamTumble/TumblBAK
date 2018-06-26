@@ -1,6 +1,15 @@
 package com.tumbl.client.member.vo;
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.sun.jmx.snmp.Timestamp;
 import com.tumbl.client.common.vo.CommonVO;
@@ -19,10 +28,10 @@ public class Member extends CommonVO {
 	@Column(name="email" , unique=true)
 	private String email;
 	private String mpw;
-	private String m_name;
+	private String mname;
 	private String m_phone;
 	private String m_status;
-	private Timestamp m_joindate;
+	private String m_joindate;
 	@Transient
 	private String oldm_pw;
 	
@@ -31,13 +40,13 @@ public class Member extends CommonVO {
 	}
 
 
-	public Member(int idx, String email, String mpw, String m_name, String m_phone, String m_status,
-			Timestamp m_joindate) {
+	public Member(int idx, String email, String mpw, String mname, String m_phone, String m_status,
+			String m_joindate) {
 		super();
 		this.idx = idx;
 		this.email = email;
 		this.mpw = mpw;
-		this.m_name = m_name;
+		this.mname = mname;
 		this.m_phone = m_phone;
 		this.m_status = m_status;
 		this.m_joindate = m_joindate;
@@ -74,13 +83,13 @@ public class Member extends CommonVO {
 	}
 
 
-	public String getM_name() {
-		return m_name;
+	public String getMname() {
+		return mname;
 	}
 
 
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 
 
@@ -104,12 +113,12 @@ public class Member extends CommonVO {
 	}
 
 
-	public Timestamp getM_joindate() {
+	public String getM_joindate() {
 		return m_joindate;
 	}
 
 
-	public void setM_joindate(Timestamp m_joindate) {
+	public void setM_joindate(String m_joindate) {
 		this.m_joindate = m_joindate;
 	}
 
@@ -127,7 +136,7 @@ public class Member extends CommonVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [idx=" + idx + ", email=" + email + ", m_pw=" + mpw + ", m_name=" + m_name + ", m_phone="
+		return "MemberVO [idx=" + idx + ", email=" + email + ", m_pw=" + mpw + ", mname=" + mname + ", m_phone="
 				+ m_phone +  "]";
 	}
 	

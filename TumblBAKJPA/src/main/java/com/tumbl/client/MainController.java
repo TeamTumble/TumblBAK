@@ -30,7 +30,7 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(@ModelAttribute ProjectVO pvo, Model model, HttpSession session) {
 		
-		
+		session.removeAttribute("adminLogin");
 		PageRequest newProject = new PageRequest(0, 3, new Sort(Direction.DESC, "pno"));
 		Page<ProjectVO> projectList_New = projectService.projectList_New(newProject);
 		List<ProjectVO> newpro = projectList_New.getContent();

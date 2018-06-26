@@ -152,7 +152,7 @@
 		var id = $("#email");
 		var pw = $("#mpw");
 		var pwchk = $("#mpwCheck");
-		var name = $("#m_name");
+		var name = $("#mname");
 		var phone = $("#m_phone");
 		if (id.val() == '') {
 			alert("아이디를 입력해주세요.");
@@ -203,43 +203,7 @@
 <title>Join Member!</title>
 </head>
 <body>
-	<!-- <table class="table table-striped" style="width: 600px" align="center">
-		<tr>
-			<th>이메일(아이디)</th>
-			<td><input type='email' name="email" id="email"
-				class="form-control" style="margin-right: 10px; width: 300px"
-				aria-describedby="emailHelp" placeholder="Enter email" /> <input
-				type="button" value="인증" class="btn btn-primary btn-sm" id="mail">
-			</td>
-		</tr>
-		<tr id="joincode">
-			<th>인증번호</th>
-			<td><input type='number' name="inputCode" id="inputCode"
-				class="form-control" style="margin-right: 10px; width: 300px"
-				placeholder="Enter code" /> <input type="button" value="확인"
-				class="btn btn-primary btn-sm" id="inputCodeCheck"></td>
-		</tr>
-
-		<tr>
-			<th>이름</th>
-			<td><input type='text' name="name" id="name"
-				class="form-control" style="margin-right: 10px;"
-				placeholder="Enter NickName" /> <input type="button" value="중복체크"
-				class="btn btn-primary btn-sm"></td>
-		</tr>
-		<tr>
-			<th>비밀 번호</th>
-			<td><input type="password" maxlength="40" name="pw" id="userPw"
-				name="userPw" class="form-control" placeholder="Password"></td>
-
-		</tr>
-		<tr>
-			<th>비밀 번호 확인</th>
-			<td><input type="password" maxlength="40" name="pwCheck"
-				id="userPwCheck" name="userPwCheck" class="form-control"
-				placeholder="Password"></td>
-		</tr>
-	</table> -->
+	
 
 	<div class="contentContainer">
 		<div class="well">
@@ -260,20 +224,6 @@
 						<p class="error"></p>
 					</div>
 				</div>
-				<!-- <div class="form-group form-group-sm">
-					<label for="userId" class="col-sm-2 control-label">인증 번호</label>
-					<div class="col-sm-3">
-						<input type="text" id="inputCode" name="inputCode" maxlength="12"
-							class="form-control" />
-					</div>
-					<div class="col-sm-2">
-						<input type="button" id="inputCodeCheck" value="확인"
-							class="form-control btn-primary" />
-					</div>
-					<div class="col-sm-5">
-						<p class="form-control-static error"></p>
-					</div>
-				</div> -->
 				<div class="form-group form-group-sm">
 					<label for="userPw" class="col-sm-2 control-label">비밀 번호</label>
 					<div class="col-sm-3">
@@ -303,7 +253,7 @@
 				<div class="form-group form-group-sm">
 					<label for="userName" class="col-sm-2 control-label">회원이름</label>
 					<div class="col-sm-3">
-						<input type="text" id="m_name" name="m_name" maxlength="10"
+						<input type="text" id="mname" name="mname" maxlength="10"
 							class="form-control" placeholder="NAME">
 					</div>
 					<div class="col-sm-5">

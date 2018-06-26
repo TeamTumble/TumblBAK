@@ -58,7 +58,7 @@
 					</tr>
 					<tr>
 						<td class="ac">글제목</td>
-						<td><input type="text" name="q_title" id="q_title"></td>
+						<td><input type="text" name="qtitle" id="qtitle"></td>
 					</tr>
 					<tr>
 						<td class="ac vm">내용</td>

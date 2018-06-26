@@ -3,16 +3,22 @@ package com.tumbl.client.qna.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.tumbl.admin.notice.vo.NoticeVO;
 import com.tumbl.client.qna.repository.BoardRepository;
 import com.tumbl.client.qna.vo.QnaVO;
+import com.tumbl.common.util.Util;
 
 @Service
 public class BoardService {
@@ -29,20 +35,10 @@ public class BoardService {
 		return myList;
 	}
 
-	
-	public int boardCnt(int qnum) {
-		return boardRepository.countByQnum(qnum);
-	}
-
-	
+	// 글 레코드 수
 	public long countBoard(QnaVO bvo) {
-		List<QnaVO> myList = null;
-
-		myList = boardRepository.findAll();
 		long gg = boardRepository.count();
-
 		return gg;
-
 	}
 
 	public Page<QnaVO> findAll(Pageable pageable) {
@@ -51,20 +47,15 @@ public class BoardService {
 
 	// 글입력 구현
 	public QnaVO boardInsert(QnaVO bvo) {
-
 		try {
 			boardRepository.save(bvo);
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 		return bvo;
 	}
 
- 
-
 	// 글상세 구현
-
 	public QnaVO boardDetail(QnaVO bvo) {
 		QnaVO detail = null;
 		detail = boardRepository.findOne(bvo.getQnum());
@@ -74,31 +65,26 @@ public class BoardService {
 	}
 
 	// 글수정 구현//
-
 	public QnaVO boardUpdate(QnaVO bvo) {
-		/*QnaVO detail = null;
-		detail = boardRepository.findOne(bvo.getQnum());
-		System.out.println("서비스 업데이트 ======= " +bvo);
-		System.out.println("서비스 업데이트 디테일  ======= " +detail);
-		bvo.setEmail(detail.getEmail());
-		bvo.setQ_date(detail.getQ_date());*/
-		
-			boardRepository.save(bvo);
-		
-			return bvo;
+		boardRepository.save(bvo);
+		return bvo;
 	}
 
 	// 글삭제 구현//
-
 	public void boardDelete(long qnum) {
-		
 		try {
-			 boardRepository.delete(qnum);
+			boardRepository.delete(qnum);
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
-		
 	}
 
+	public Page<QnaVO> findByEmailContaining(String email, Pageable pageable) {
+		System.out.println("서비스 검색 이메일 =============  " + email);
+		return boardRepository.findByEmailContaining(email, pageable);
+	}
+
+	public Page<QnaVO> findByQtitleContaining(String qtitle, Pageable pageable) {
+		return boardRepository.findByQtitleContaining(qtitle, pageable);
+	}
 }

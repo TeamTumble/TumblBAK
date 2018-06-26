@@ -121,9 +121,9 @@
 		/* 등록 실행 버튼*/
 		$("#projectInsertBtn").click(function() {
 			//입력값 체크
-			/* if (!chkSubmit($('#p_title'), "제목을"))
+			/* if (!chkSubmit($('#ptitle'), "제목을"))
 				return;
-			else if (!chkSubmit($('#pm_name'), "이름을"))
+			else if (!chkSubmit($('#pmname'), "이름을"))
 				return;
 			else if (!chkSubmit($('#pm_area'), "활동지역을"))
 				return;
@@ -219,7 +219,7 @@
 										class="w3-padding-16 w3-panel w3-border w3-hover-border-black">
 										<label class="w3-margin-left"> 프로젝트 제목</label><br> <input
 											type="text" class=" w3-animate-input w3-margin-left"
-											style="width: 40%" name="p_title" id="p_title"><br>
+											style="width: 40%" name="ptitle" id="ptitle"><br>
 									</div>
 
 									<div
@@ -275,8 +275,8 @@
 									class="w3-padding-16 w3-panel w3-border w3-hover-border-black">
 									<label class="w3-margin-left">진행자 이름</label><br> <input
 										type="text" class="w3-margin-left w3-center"
-										style="width: 15%" name="pm_name" id="pm_name"
-										value="${member.m_name}">
+										style="width: 15%" name="pmname" id="pmname"
+										value="${member.mname}">
 								</div>
 
 								<div

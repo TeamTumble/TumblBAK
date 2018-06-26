@@ -23,11 +23,11 @@
 		if (word != "") {
 			$("#keyword").val("<c:out value='${data.keyword}' />");
 			$("#search").val("<c:out value='${data.search}' />");
-			if ($("#search").val() != 'p_content') {
+			if ($("#search").val() != 'ptitle') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'p_title')
+				if ($("#search").val() == 'ptitle')
 					value = "#list tr td.goDetail";
-				else if ($("#search").val() == 'pm_name')
+				else if ($("#search").val() == 'pmname')
 					value = "#list tr td.name";
 				$(value + ":contains('" + word + "')").each(
 						function() {
@@ -85,9 +85,9 @@
 		
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
-			var p_no = $(this).parents("tr").attr("data-num");
-			$("#p_no").val(p_no);
-			console.log("글번호 : " + p_no);
+			var pno = $(this).parents("tr").attr("data-num");
+			$("#pno").val(pno);
+			console.log("글번호 : " + pno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#detailForm").attr({
 				"method" : "get",
@@ -119,7 +119,7 @@
 
 		<%-- ======= 상세 페이지 이동을 위한 FORM ============ --%>
 		<form name="detailForm" id="detailForm">
-			<input type="hidden" name="p_no" id="p_no"> 
+			<input type="hidden" name="pno" id="pno"> 
 			<input type="hidden" name="page" value="${data.page}"> 
 			<input type="hidden" name="pageSize" value="${data.pageSize}">
 		</form>
@@ -141,9 +141,9 @@
 							name="search">
 
 								<option value="all">전체</option>
-								<option value="p_title">제목</option>
+								<option value="ptitle">제목</option>
 								<option value="p_content">내용</option>
-								<option value="pm_name">작성자</option>
+								<option value="pmname">작성자</option>
 						</select> <input type="text" name="keyword" id="keyword" value="검색어를입력하세요" />
 							<input type="button" value="검색" id="searchData" /></td>
 						<td id="btd2">한페이지에 <select id="pageSize" name="pageSize">
@@ -176,7 +176,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th data-value="p_no" class="order">No.<%-- <c:choose>
+						<th data-value="pno" class="order">No.<%-- <c:choose>
 								<c:when test="${data.order_by=='p_no' and data.order_sc=='ASC'}">▲</c:when>
 								<c:when
 									test="${data.order_by=='p_no' and data.order_sc=='DESC'}">▼</c:when>
@@ -194,11 +194,11 @@
 						<c:when test="${not empty projectList}">
 							<c:forEach var="project" items="${projectList}"
 								varStatus="status">
-								<tr class="tac" data-num="${project.p_no}">
+								<tr class="tac" data-num="${project.pno}">
 									<td>${count - status.index}</td>
-									<td class="goDetail tal">${project.p_title}</td>
-									<td>${project.pm_name}</td>
-									<td class="name">${project.p_case}</td>
+									<td class="goDetail">${project.ptitle}</td>
+									<td class="name">${project.pmname}</td>
+									<td >${project.pcase}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -214,10 +214,10 @@
 		<%-- ================= 리스트 종료 ================ --%>
 
 		<%-- ============ 페이지 네비게이션 시작 ============ --%>
-		<%-- <div id="projectPage">
+		<div id="projectPage">
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
-		</div> --%>
+		</div>
 		<%-- =========== 페이지 네비게이션 종료 ============= --%>
 	</div>
 </body>

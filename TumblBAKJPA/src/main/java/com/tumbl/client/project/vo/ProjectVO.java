@@ -1,19 +1,23 @@
 package com.tumbl.client.project.vo;
 
-import java.util.Date;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tumbl.admin.common.vo.CommonVO;
+import com.tumbl.client.common.vo.CommonVO;
 
 /**
  * Entity implementation class for Entity: ProjectVO
  *
  */
 @Entity
-
+@org.hibernate.annotations.DynamicUpdate
+@Table(name="ProjectVO")
 public class ProjectVO extends CommonVO{
 
 	
@@ -21,18 +25,18 @@ public class ProjectVO extends CommonVO{
 	@GeneratedValue
 	private int pno;
 	private String email;
-	private String p_title;
+	private String ptitle;
 	private String p_image;
 	private String p_type;
 	private String p_summary;
 
 	private String pm_image;
-	private String pm_name;
+	private String pmname;
 	private String pm_area;
 	private String pm_intro;
 
 	private int p_price;
-	private Date p_startdate;
+	private String p_startdate;
 	private int p_fundingdate;
 	private String p_enddate;
 	private String p_enddate_input;
@@ -61,7 +65,7 @@ public class ProjectVO extends CommonVO{
 	private String pm_birthday;
 
 	private int p_okcheck = 1;
-	private String p_case;// 프로젝트 상태(승인대기,승인,미승인)
+	private String pcase;// 프로젝트 상태(승인대기,승인,미승인)
 	private String p_remarks;// 비고(승인 거절 사유)
 	
 	private int psupporter; // 후원자 집계
@@ -82,22 +86,22 @@ public class ProjectVO extends CommonVO{
 		super();
 	}
 
-	public ProjectVO(int pno, String email, String p_title, String p_image, String p_type, String p_summary,
-			String pm_image, String pm_name, String pm_area, String pm_intro, int p_price, Date p_startdate,
+	public ProjectVO(int pno, String email, String ptitle, String p_image, String p_type, String p_summary,
+			String pm_image, String pmname, String pm_area, String pm_intro, int p_price, String p_startdate,
 			int p_fundingdate, String p_enddate, String p_paydate, int p_giftNo, String p_giftname, int p_giftprice,
 			int p_giftquantity, String p_giftexplanation, String p_giftdate, String p_refund, String p_delivery,
 			String p_story, String p_storyimage, String pm_email, String pm_phone, String pm_bank, String pm_acountname,
-			String pm_acount, String pm_birthday, int p_okcheck, String p_remarks, MultipartFile p_file,
+			String pm_acount, String pm_birthday, int p_okcheck,String pcase, String p_remarks, MultipartFile p_file,
 			MultipartFile pm_file, MultipartFile ps_file, int psupporter, int pcollection, String p_thumbnail) {
 		super();
 		this.pno = pno;
 		this.email = email;
-		this.p_title = p_title;
+		this.ptitle = ptitle;
 		this.p_image = p_image;
 		this.p_type = p_type;
 		this.p_summary = p_summary;
 		this.pm_image = pm_image;
-		this.pm_name = pm_name;
+		this.pmname = pmname;
 		this.pm_area = pm_area;
 		this.pm_intro = pm_intro;
 		this.p_price = p_price;
@@ -122,6 +126,7 @@ public class ProjectVO extends CommonVO{
 		this.pm_acount = pm_acount;
 		this.pm_birthday = pm_birthday;
 		this.p_okcheck = p_okcheck;
+		this.pcase = pcase;
 		this.p_remarks = p_remarks;
 		this.p_file = p_file;
 		this.pm_file = pm_file;
@@ -147,12 +152,12 @@ public class ProjectVO extends CommonVO{
 		this.email = email;
 	}
 
-	public String getP_title() {
-		return p_title;
+	public String getPtitle() {
+		return ptitle;
 	}
 
-	public void setP_title(String p_title) {
-		this.p_title = p_title;
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
 	}
 
 	public String getP_image() {
@@ -187,12 +192,12 @@ public class ProjectVO extends CommonVO{
 		this.pm_image = pm_image;
 	}
 
-	public String getPm_name() {
-		return pm_name;
+	public String getPmname() {
+		return pmname;
 	}
 
-	public void setPm_name(String pm_name) {
-		this.pm_name = pm_name;
+	public void setPmname(String pmname) {
+		this.pmname = pmname;
 	}
 
 	public String getPm_area() {
@@ -219,11 +224,11 @@ public class ProjectVO extends CommonVO{
 		this.p_price = p_price;
 	}
 
-	public Date getP_startdate() {
+	public String getP_startdate() {
 		return p_startdate;
 	}
 
-	public void setP_startdate(Date p_startdate) {
+	public void setP_startdate(String p_startdate) {
 		this.p_startdate = p_startdate;
 	}
 
@@ -417,12 +422,12 @@ public class ProjectVO extends CommonVO{
 	
 	
 
-	public String getP_case() {
-		return p_case;
+	public String getPcase() {
+		return pcase;
 	}
 
-	public void setP_case(String p_case) {
-		this.p_case = p_case;
+	public void setPcase(String pcase) {
+		this.pcase = pcase;
 	}
 
 	public void setP_file(MultipartFile p_file) {
@@ -471,8 +476,8 @@ public class ProjectVO extends CommonVO{
 
 	@Override
 	public String toString() {
-		return "ProjectVO [pno=" + pno + ", p_title=" + p_title + ", p_image=" + p_image + ", p_type=" + p_type
-				+ ", p_summary=" + p_summary + ", pm_image=" + pm_image + ", pm_name=" + pm_name + ", pm_area="
+		return "ProjectVO [pno=" + pno + ", ptitle=" + ptitle + ", p_image=" + p_image + ", p_type=" + p_type
+				+ ", p_summary=" + p_summary + ", pm_image=" + pm_image + ", pmname=" + pmname + ", pm_area="
 				+ pm_area + ", pm_intro=" + pm_intro + ", p_price=" + p_price + ", p_startdate=" + p_startdate
 				+ ", p_fundingdate=" + p_fundingdate + ", p_enddate=" + p_enddate + ", p_paydate=" + p_paydate
 				+ ", p_giftNo=" + p_giftNo + ", p_giftname=" + p_giftname + ", p_giftprice=" + p_giftprice
@@ -480,7 +485,7 @@ public class ProjectVO extends CommonVO{
 				+ p_giftdate + ", p_refund=" + p_refund + ", p_delivery=" + p_delivery + ", p_story=" + p_story
 				+ ", p_storyimage=" + p_storyimage + ", pm_email=" + pm_email + ", pm_phone=" + pm_phone + ", pm_bank="
 				+ pm_bank + ", pm_acountname=" + pm_acountname + ", pm_acount=" + pm_acount + ", pm_birthday="
-				+ pm_birthday + ", p_okcheck=" + p_okcheck + ", p_remark=" + p_remarks + /*", p_file=" + p_file
+				+ pm_birthday + ", p_okcheck=" + p_okcheck + ", p_case="+ pcase + ", p_remark=" + p_remarks + /*", p_file=" + p_file
 				+ ", pm_file=" + pm_file + ", ps_file=" + ps_file +*/ "]";
 	}
 

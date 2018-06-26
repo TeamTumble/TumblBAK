@@ -19,14 +19,14 @@
 	// 수정버튼과 삭제버튼을 구별하기 위한 변수
 	$(function() {
 		var p_remarks = "${detail.p_remarks}";
-		var p_case = "${detail.p_case}";
+		var pcase = "${detail.pcase}";
 
-		if (p_case == '승인대기') {
-			$("#p_case").val("승인대기").prop("selected", true);
-		} else if (p_case == '승인') {
-			$("#p_case").val("승인").prop("selected", true);
-		} else if (p_case == '비승인') {
-			$("#p_case").val("비승인").prop("selected", true);
+		if (pcase == '승인대기') {
+			$("#pcase").val("승인대기").prop("selected", true);
+		} else if (pcase == '승인') {
+			$("#pcase").val("승인").prop("selected", true);
+		} else if (pcase == '비승인') {
+			$("#pcase").val("비승인").prop("selected", true);
 		}
 
 		if (p_remarks == '프로젝트에 대한 설명이 불충분 합니다.') {
@@ -58,9 +58,9 @@
 		});
 		/* 프로젝트 링크 버튼 클릭 시 처리 이벤트 */
 		$("#projectLinkBtn").click(function() {
-			var p_no = $(this).parents("tr").attr("data-no");
-			$("#p_no").val(p_no);
-			console.log("글번호 : " + p_no);
+			var pno = $(this).parents("tr").attr("data-no");
+			$("#pno").val(pno);
+			console.log("글번호 : " + pno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#f_data").attr({
 				"method" : "get",
@@ -69,11 +69,11 @@
 			$("#f_data").submit();
 		});
 		var pm_email = "${detail.pm_email}";
-		var p_no = "${detail.p_no}";
+		var pno = "${detail.pno}";
 		$("#mailSendBtn")
 				.click(
 						function() {
-							if ($("#p_case").val() == '승인대기') {
+							if ($("#pcase").val() == '승인대기') {
 								alert("승인 여부를 선택해주세요");
 							} else {
 								$
@@ -83,9 +83,9 @@
 											data : "pm_email=" + pm_email
 													+ "&p_remarks="
 													+ $("#p_remarks").val()
-													+ "&p_case="
-													+ $("#p_case").val()
-													+ "&p_no=" + p_no,
+													+ "&pcase="
+													+ $("#pcase").val()
+													+ "&pno=" + pno,
 											error : function() {
 												alert('사이트 접속에 문제로 정상 작동하지 못하였습니다.잠시 후 다시 시도해 주세요.');
 											},
@@ -108,9 +108,9 @@
 		<table id="projectPwdBut">
 			<tr>
 				<td id="btd2"><input type="button" value="저장" id="updateBtn">
-					<input type="button" value="프로젝트 링크" id="projectLinkBtn"> <input
-					type="button" value="메일보내기" id="mailSendBtn"> <input
-					type="button" value="목록" id="projectListBtn"></td>
+					 <input type="button" value="프로젝트 링크" id="projectLinkBtn">
+					 <!-- <input type="button" value="메일보내기" id="mailSendBtn">  -->
+					 <input	type="button" value="목록" id="projectListBtn"></td>
 			</tr>
 		</table>
 		<%-- =========== 버튼 추가 종료 ====== --%>
@@ -126,13 +126,13 @@
 					</colgroup>
 					<tbody>
 
-						<tr data-num="${detail.p_no}">
+						<tr data-num="${detail.pno}">
 							<td class="ac">제목</td>
-							<td colspan="3">${detail.p_title}</td>
+							<td colspan="3">${detail.ptitle}</td>
 						</tr>
 						<tr>
 							<td class="ac">진행자명</td>
-							<td>${detail.pm_name}</td>
+							<td>${detail.pmname}</td>
 							<td class="ac">이메일</td>
 							<td>${detail.pm_email}</td>
 						</tr>
@@ -140,7 +140,7 @@
 							<td class="ac">작성자</td>
 							<td>관리자</td>
 							<td class="ac">프로젝트 상태</td>
-							<td><select name="p_case" id="p_case">
+							<td><select name="pcase" id="pcase">
 									<option value="승인대기">승인대기</option>
 									<option value="승인">승인</option>
 									<option value="비승인">비승인</option>
@@ -163,7 +163,7 @@
 					</tbody>
 				</table>
 
-				<input type="hidden" name="p_no"  value="${detail.p_no}" />
+				<input type="hidden" name="pno"  value="${detail.pno}" />
 			</form>
 		</div>
 		<%-- =============== 상세 정보 보여주기 종료 ============ --%>
