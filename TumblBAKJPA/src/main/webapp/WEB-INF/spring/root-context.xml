@@ -28,13 +28,13 @@
 	</mvc:annotation-driven>
 
 	<jpa:repositories
-		base-package="com.tumbl.*.*.repository" />
+		base-package="com.tumbl.*.repository" />
 
 	<context:component-scan
-		base-package="com.tumbl.*.*.service, com.tumbl.*.*.repository" />
+		base-package="com.tumbl.*.service, com.tumbl.*.repository" />
 
 	<context:component-scan
-		base-package="com.tumbl.*.*.controller" />
+		base-package="com.tumbl.*.controller" />
 		
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
@@ -82,7 +82,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.tumbl.*.*.vo" /> <!-- @Entity 탐색 시작 위치 -->
+		<property name="packagesToScan" value="com.tumbl.*.vo" /> <!-- @Entity 탐색 시작 위치 -->
 		<property name="jpaVendorAdapter">
 			<!-- 하이버네이트 구현체 사용 -->
 			<bean

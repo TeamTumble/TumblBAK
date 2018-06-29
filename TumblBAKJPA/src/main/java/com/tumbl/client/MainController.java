@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tumbl.client.project.service.ProjectService;
-import com.tumbl.client.project.vo.ProjectVO;
+import com.tumbl.user.service.ProjectService;
+import com.tumbl.user.vo.ProjectVO;
 
 @Controller
 public class MainController {
@@ -32,12 +31,12 @@ public class MainController {
 		
 		session.removeAttribute("adminLogin");
 		PageRequest newProject = new PageRequest(0, 3, new Sort(Direction.DESC, "pno"));
-		Page<ProjectVO> projectList_New = projectService.projectList_New(newProject);
+		Page<ProjectVO> projectList_New = projectService.projectList_New("½ÂÀÎ",newProject);
 		List<ProjectVO> newpro = projectList_New.getContent();
 		model.addAttribute("projectList_New", newpro);
 		
 		PageRequest hotproject = new PageRequest(0, 3, new Sort(Direction.DESC, "psupporter"));
-		Page<ProjectVO> projectList_Hot = projectService.projectList_Hot(hotproject);
+		Page<ProjectVO> projectList_Hot = projectService.projectList_Hot("½ÂÀÎ",hotproject);
 		List<ProjectVO> hotPro = projectList_Hot.getContent();
 		model.addAttribute("projectList_Hot", hotPro);
 

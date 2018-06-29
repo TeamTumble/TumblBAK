@@ -156,6 +156,7 @@ h6 {
 </script>
 </head>
 <body>
+
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="pno" id="pno"> <input
 			type="hidden" name="page" value="${data.page}"> <input
