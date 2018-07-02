@@ -84,7 +84,7 @@
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
 			var nno = $(this).parents("tr").attr("data-num");
-			$("#nno").val(n_no);
+			$("#nno").val(nno);
 			console.log("글번호 : " + nno);
 			//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
 			$("#detailForm").attr({

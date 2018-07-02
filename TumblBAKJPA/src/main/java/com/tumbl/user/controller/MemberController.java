@@ -112,8 +112,6 @@ public class MemberController {
 		mvo.setEmail(login.getEmail());
 		// 멤버VO안에 들어가 이메일을 통해 멤버를 셀레특해온다
 		Member vo = memberService.findByemail(mvo.getEmail());
-		System.out.println("수정 컨트롤러 MVO =======  " + mvo);
-		System.out.println("수정 컨트롤러 VO =======  " + vo);
 		memberService.findByEmailAndMpw(mvo.getEmail(), mvo.getOldm_pw());
 
 		memberService.memberUpdate(mvo);

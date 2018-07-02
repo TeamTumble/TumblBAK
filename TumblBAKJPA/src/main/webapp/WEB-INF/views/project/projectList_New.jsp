@@ -4902,7 +4902,7 @@ px
 																		<div class="_1lINMEHeN3VZwG1iZwl3AQ">
 																			<div class="_1_7sU-OOgKb7PXybIFI8rT">
 																				&lt;${project.ptitle}&gt;</div>
-																			<div class="_3dRu7AS5TihtNa1JArrNTJ">${project.pm_name}</div>
+																			<div class="_3dRu7AS5TihtNa1JArrNTJ">${project.pmname}</div>
 																		</div>
 																	</div>
 																	<div

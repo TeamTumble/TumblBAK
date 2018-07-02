@@ -2,12 +2,13 @@ package com.tumbl.user.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class ReplyVO {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int rnum = 0; // 댓글번호
 	private int qnum = 0; // 게시판 글번호
 	private String r_name = ""; // 댓글 작성자

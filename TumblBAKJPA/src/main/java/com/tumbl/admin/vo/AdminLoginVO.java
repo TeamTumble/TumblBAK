@@ -1,12 +1,15 @@
 package com.tumbl.admin.vo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 
 public class AdminLoginVO {
 	@Id
+	@GeneratedValue
 	private String adid;// 관리자 아이디
 	private String adpw;// 관리자 비밀번호
 	private String adname;// 관리자 이름

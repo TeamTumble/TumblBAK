@@ -8265,49 +8265,7 @@ px
 
 	</div>
 
-	<!-- <script type="text/javascript">
-		$(function() {
-
-			/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
-			$(".goDetail").click(function() {
-
-				var pno = $(this).parents("a").attr("data-num");
-
-				$("#pno").val(pno);
-				console.log("글번호 : " + pno);
-				//상세 페이지로 이동하기 위해 form추가 (id : detailForm)
-				$("#detailForm").attr({
-					"method" : "get",
-					"action" : "/project/projectDetail.do"
-				});
-				$("#detailForm").submit();
-			});
-
-			$("#p_type").change(function() {
-				if ($("#search").val() == "all") {
-				}
-				$("#page").val(page);
-				$("#f_search").attr({
-					"method" : "get",
-					"action" : "/project/projectList.do"
-				});
-				$("#f_search").submit();
-
-			});
-
-			/* $("#projectImage").attr({
-				src : "uploadStorage/project/${project.p_image}",
-				width : "120px",
-				height : "110px"
-			});
-			 */
-		});
-
-		function goPage(page) {
-
-		}
-	</script> -->
-
+	
 
 </body>
 </html>

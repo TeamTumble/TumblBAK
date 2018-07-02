@@ -10,7 +10,7 @@ import com.tumbl.client.common.vo.CommonVO;
 @Entity
 public class SupportVO extends CommonVO  {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sno; // 후원번호
 	
 	private int pno; // 프로젝트 번호 (외부 키)

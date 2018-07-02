@@ -98,13 +98,12 @@ public class ProjectController {
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "pno"));
-			Page<ProjectVO> page = projectService.findA(pageRequest);
+			Page<ProjectVO> page = projectService.findByPcaseLike("½ÂÀÎ", pageRequest);
 			List<ProjectVO> cQvo = page.getContent();
 			model.addAttribute("projectList_New", cQvo);
 			model.addAttribute("count", count);
 			model.addAttribute("total", total);
 			model.addAttribute("data", pvo);
-			model.addAttribute("login", login);
 			return "project/projectList_New";
 		} else if (pvo.getSearch().equals("ptitle")) {
 			long total = projectService.countProject(pvo);
@@ -138,13 +137,13 @@ public class ProjectController {
 			long count = total - (Util.nvl(pvo.getPage()) - 1) * Util.nvl(pvo.getPageSize());
 			PageRequest pageRequest = new PageRequest(Util.nvl(pvo.getPage()) - 1, Util.nvl(pvo.getPageSize()),
 					new Sort(Direction.DESC, "psupporter"));
-			Page<ProjectVO> page = projectService.findA(pageRequest);
+			Page<ProjectVO> page = projectService.findByPcaseLike("½ÂÀÎ", pageRequest);
 			List<ProjectVO> cQvo = page.getContent();
 			model.addAttribute("projectList_Hot", cQvo);
 			model.addAttribute("count", count);
 			model.addAttribute("total", total);
 			model.addAttribute("data", pvo);
-			model.addAttribute("login", login);
+			
 			return "project/projectList_Hot";
 		} else if (pvo.getSearch().equals("ptitle")) {
 			long total = projectService.countProject(pvo);

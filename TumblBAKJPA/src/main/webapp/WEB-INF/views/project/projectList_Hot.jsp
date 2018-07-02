@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -4900,7 +4900,7 @@ px
 																	<div class="_1lINMEHeN3VZwG1iZwl3AQ">
 																		<div class="_1_7sU-OOgKb7PXybIFI8rT">
 																			&lt;${project.ptitle}&gt;</div>
-																		<div class="_3dRu7AS5TihtNa1JArrNTJ">${project.pm_name}</div>
+																		<div class="_3dRu7AS5TihtNa1JArrNTJ">${project.pmname}</div>
 																	</div>
 																</div>
 																<div
@@ -4938,6 +4938,10 @@ px
 										</c:choose>
 									</div>
 
+								</div>
+								<div id="boardPage">
+									<tag:paging page="${param.page}" total="${total}"
+										list_size="${data.pageSize}" />
 								</div>
 							</div>
 						</div>

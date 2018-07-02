@@ -18,13 +18,8 @@ margin-top: 15px;
 </head>
 <body>
 	<div class="navbar-header">
-		<!-- <button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-			aria-controls="navbar">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button> -->
-		<a class="navbar-brand" href="/"> TumbleBak[관리자 페이지]</a>
+		
+		<a class="navbar-brand" href="/admin/.do"> TumbleBak[관리자 페이지]</a>
 		
 	</div>
 	<div class="header-right">
@@ -34,22 +29,10 @@ margin-top: 15px;
 	<c:if test="${adminLogin.adid != null and adminLogin.adid != ''}">
 		<a class="navbar-brand" href="/admin/logout.do">☺로그아웃</a>
 	</c:if>
-	<a class="navbar-brand" href="/client/.do">☺메인페이지로</a>
+	<a class="navbar-brand" href="/">☺메인페이지</a>
 	</div>
 
-	<!-- 추후 필요시 주석 헤제
-<div id="navbar" class="navbar-collapse collapse">
-<ul class="nav navbar-nav navbar-right">
- <li><a href="#">Dashboard</a></li>
- <li><a href="#">Settings</a></li>
- <li><a href="#">Profile</a></li>
- <li><a href="#">Help</a></li>
- </ul>
- <form class="navbar-form navbar-right">
- <input type="text" class="form-control" placeholder="Search...">
- </form>
-</div>
- -->
+
 </body>
 
 </html>

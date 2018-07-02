@@ -122,9 +122,9 @@ public class AdminProjectController {
 
 		System.out.println("프로젝트 승인쪽  detail ====================  " + detail);
 		// 업데이트해준
-
+		String url = "projectList.do";
 		model.addAttribute("detail", detail);// jsp로 보내준다
-		return "admin/project/projectList";
+		return "redirect:" + url;
 	}
 	/**************************************************************
 	 * 메일보내기

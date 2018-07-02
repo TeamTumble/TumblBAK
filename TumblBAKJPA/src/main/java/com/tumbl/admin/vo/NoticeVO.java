@@ -2,6 +2,7 @@ package com.tumbl.admin.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.tumbl.admin.common.vo.CommonVO;
@@ -10,7 +11,7 @@ import com.tumbl.admin.common.vo.CommonVO;
 public class NoticeVO extends CommonVO {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int nno = 0; // 글번호
 	private int idx = 0;
 	private String email = ""; // 작성자

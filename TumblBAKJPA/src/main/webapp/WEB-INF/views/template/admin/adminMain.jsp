@@ -40,7 +40,7 @@
 	href="/resources/include/css/admin.css" />
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function errCodeCheck() {
 		var errCode = '<c:out value="${errCode}" />';
 		if (errCode != "") {
@@ -62,7 +62,42 @@
 			$("#loginForm").submit();
 		});
 	});
+</script> -->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	// 차트를 사용하기 위한 준비입니다.
+	google.charts.load('current', {
+		packages : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		// 차트 데이터 설정
+		var data = google.visualization.arrayToDataTable([ [ '항목', '후원금액' ], // 항목 정의
+		[ '개', 4 ], // 항목, 값 (값은 숫자로 입력하면 그래프로 생성됨)
+		[ '메뚜기', 6 ], [ '문어', 8 ], [ '오징어', 10 ], [ '운영자', 2 ] ]);
+
+		// 그래프 옵션
+		var options = {
+			title : '총 후원 금액', // 제목
+			width : 600, // 가로 px
+			height : 400, // 세로 px
+			bar : {
+				groupWidth : '80%' // 그래프 너비 설정 %
+			},
+			legend : {
+				position : 'none' // 항목 표시 여부 (현재 설정은 안함)
+			}
+		};
+
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
 </script>
+
 <style type="text/css">
 .login-div {
 	margin-left: 30%;
@@ -85,73 +120,89 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 				<tiles:insertAttribute name="main" />
+				<!-- <div id="chart_div"></div> -->
 				<ul class="projectList">
 					<li>
 						<div class="table-responsive">
-							<label>오늘 승인요청 프로젝트</label>
-							<table class="table table-bordered">
-								<tr id="tableHead1">
-									<td><b>분류</b></td>
-									<td><b>프로젝트명</b></td>
-									<td><b>창작자명</b></td>
-								</tr>
-								<tr>
-									<td>공예</td>
-									<td>모찌냥의 습격</td>
-									<td>응끼</td>
-								</tr>
-								<tr>
-									<td>출판</td>
-									<td>직관적으로 펼쳐보는'컬러인쇄 가이드'</td>
-									<td>컬러에이드</td>
-								</tr>
-								<tr>
-									<td>문화</td>
-									<td>연극'상어의 춤'</td>
-									<td>상어가족</td>
-								</tr>
-								<tr>
-									<td>미술</td>
-									<td>1인 맞춤 봄꽃 초상화 '겨울지나 봄'</td>
-									<td>지후</td>
-								</tr>
+							<label>최근 승인된 프로젝트</label>
+							<table summary="게시판 리스트" class="table table-bordered">
+								<colgroup>
+									<col width="10%" />
+									<col width="62%" />
+									<col width="15%" />
+									<col width="13%" />
+								</colgroup>
+								<thead>
+									<tr id="tableHead3">
+										<th data-value="pno" class="order" style="text-align: center;">분류</th>
+										<th style="text-align: center;">프로젝트 명</th>
+										<th style="text-align: center;">창작자명</th>
+										<th class="borcle" style="text-align: center;">프로젝트 상태</th>
+									</tr>
+								</thead>
+								<tbody id="list">
+									<!-- 데이터 출력 -->
+									<c:choose>
+										<c:when test="${not empty projectList}">
+											<c:forEach var="project" items="${projectList}"
+												varStatus="status">
+												<tr class="tac" data-num="${project.pno}">
+													<td>${project.p_type}</td>
+													<td class="goDetail">${project.ptitle}</td>
+													<td class="name">${project.pmname}</td>
+													<td>${project.pcase}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="4" class="tac">등록된 게시 물이 존재하지 않습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
 							</table>
 						</div>
 					</li>
 					<li>
 						<div class="table-responsive">
-							<label>마감예정 프로젝트</label>
-							<table class="table table-bordered">
-								<tr id="tableHead3">
-									<td><b>분류</b></td>
-									<td><b>프로젝트명</b></td>
-									<td><b>창작자명</b></td>
-									<td><b>등록일자</b></td>
-								</tr>
-								<tr>
-									<td>공예</td>
-									<td>[아동학대예방프로젝트]'꽃으로도 때리지 말라'뱃지</td>
-									<td>민들레꽃</td>
-									<td>2018-02-08</td>
-								</tr>
-								<tr>
-									<td>출판</td>
-									<td>세상을 바꾸는 가장 작은 잼,잼통한 사람들의'착한과채잼'</td>
-									<td>위쿡x잼통한사람들</td>
-									<td>2018-02-04</td>
-								</tr>
-								<!-- <tr>
-										<td>문화</td>
-										<td>테일즈위버 젤리삐 인형</td>
-										<td>보네비</td>
-										<td>2018-02-03</td>
+							<label>승인대기중인 프로젝트</label>
+							<table summary="게시판 리스트" class="table table-bordered">
+								<colgroup>
+									<col width="10%" />
+									<col width="62%" />
+									<col width="15%" />
+									<col width="13%" />
+								</colgroup>
+								<thead>
+									<tr id="tableHead3">
+										<th data-value="pno" class="order" style="text-align: center;">분류</th>
+										<th style="text-align: center;">프로젝트 명</th>
+										<th style="text-align: center;">창작자명</th>
+										<th class="borcle" style="text-align: center;">프로젝트 상태</th>
 									</tr>
-									<tr>
-										<td>미술</td>
-										<td>듀랑고로 떠나는 열차에서 만난"콤피 인형"</td>
-										<td>고양고양</td>
-										<td>2018-02-01</td>
-									</tr> -->
+								</thead>
+								<tbody id="list">
+									<!-- 데이터 출력 -->
+									<c:choose>
+										<c:when test="${not empty projectList}">
+											<c:forEach var="project" items="${projectList_wait}"
+												varStatus="status">
+												<tr class="tac" data-num="${project.pno}">
+													<td>${project.p_type}</td>
+													<td class="goDetail">${project.ptitle}</td>
+													<td class="name">${project.pmname}</td>
+													<td>${project.pcase}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="4" class="tac">등록된 게시 물이 존재하지 않습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
 							</table>
 						</div>
 					</li>
@@ -160,69 +211,89 @@
 				<ul class="projectList">
 					<li>
 						<div class="table-responsive">
-							<label>금일 후원현황</label>
-							<table class="table table-bordered">
-								<tr id="tableHead2">
-									<td><b>분류</b></td>
-									<td><b>프로젝트명</b></td>
-									<td><b>후원자명</b></td>
-									<td><b>후원일자</b></td>
-								</tr>
-								<tr>
-									<td>공예</td>
-									<td>열심히 일한 당신 떠나라!</td>
-									<td>알로하</td>
-									<td>2018-02-11</td>
-								</tr>
-								<tr>
-									<td>출판</td>
-									<td>세상을 바꾸는 가장 작은 잼,잼통한 사람들의'착한 과채잼'</td>
-									<td>위쿡x잼통한 사람들</td>
-									<td>2018-02-11</td>
-								</tr>
-								<tr>
-									<td>문화</td>
-									<td>심쿵하면서 실용적인 디자인의 토트백</td>
-									<td>보네비</td>
-									<td>2018-02-10</td>
-								</tr>
-								<tr>
-									<td>미술</td>
-									<td>듀랑고로 떠나는 열차에서 만난"콤피 인형"</td>
-									<td>고양고양</td>
-									<td>2018-02-09</td>
-								</tr>
+							<label>최근 후원현황</label>
+							<table summary="게시판 리스트" class="table table-bordered">
+								<colgroup align="center">
+									<col width="6%" />
+									<col width="10%" />
+									<col width="54%" />
+									<col width="17%" />
+									<col width="13%" />
+								</colgroup>
+								<thead>
+									<tr id="tableHead3">
+										<th data-value="sno" class="order" style="text-align: center;">번호</th>
+										<th data-value="sno" class="order" align="center"
+											style="text-align: center;">후원자</th>
+										<th align="center" style="text-align: center;">후원 프로젝트
+											리워드 명</th>
+										<th data-value="s_date" class="order" align="center"
+											style="text-align: center;">후원금액</th>
+										<th class="borcle" style="text-align: center;">후원날짜</th>
+									</tr>
+								</thead>
+								<tbody id="list">
+									<!-- 데이터 출력 -->
+									<c:choose>
+										<c:when test="${not empty supportList}">
+											<c:forEach var="support" items="${supportList}"
+												varStatus="status">
+												<tr class="tac" data-num="${support.sno}">
+													<td>${support.sno}</td>
+													<td class="sname">${support.sname}</td>
+													<td class="goDetail">${support.s_giftname}</td>
+													<td>${support.s_giftprice}원</td>
+													<td>${support.s_date}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="4" class="tac">등록된 후원 내역이 존재하지 않습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
 							</table>
 						</div>
 					</li>
 					<li>
 						<div class="table-responsive">
-							<label>금일 회원가입 현황</label>
+							<label>회원가입 현황</label>
 							<table class="table table-bordered">
-								<tr id="tableHead4">
-									<td><b>회원 아이디</b></td>
-									<td><b>가입자명</b></td>
-								</tr>
-								<tr>
-									<td>dmsrl268@naver.com</td>
-									<td>응끼</td>
-								</tr>
-								<tr>
-									<td>alwls111@gmail.com</td>
-									<td>미지닝</td>
-								</tr>
-								<tr>
-									<td>rndkqk12@gmail.com</td>
-									<td>구아바</td>
-								</tr>
-								<tr>
-									<td>skan9411@gmail.com</td>
-									<td>수저공방</td>
-								</tr>
-								<tr>
-									<td>elel5567@gmail.com</td>
-									<td>디디스튜디오</td>
-								</tr>
+								<%--table-striped--%>
+
+
+								<thead>
+									<tr id="tableHead3">
+										<th class="tac">회원번호</th>
+										<th class="tac">회원아이디</th>
+										<th class="tac">회원명</th>
+										<th class="tac">등록일</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<c:choose>
+										<c:when test="${not empty memberList}">
+											<c:forEach var="member" items="${memberList}"
+												varStatus="status">
+												<tr class="tac" data-idx="${member.idx}">
+													<td>${member.idx}</td>
+													<td><span class="goDetail">${member.email}</span></td>
+													<td class="mname">${member.mname}</td>
+													<td>${member.m_joindate}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+
+										<c:otherwise>
+											<tr>
+												<td colspan="6" align="center">현재 회원이 존재하지 않습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
 							</table>
 						</div>
 					</li>

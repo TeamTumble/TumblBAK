@@ -45,7 +45,7 @@ minimum-scale=1.0, user-scalable=no" />
 				<p>${detail.email}님</p>
 				<p>${detail.s_giftname}</p>
 				<p style="color: red;">후원금액:${detail.s_giftprice}원</p>
-				<h2>후원 축하합니다</h2>
+				<h2>후원에 성공 하였습니다</h2>
 
 			</div>
 

@@ -47,7 +47,8 @@ public class AdminLoginController {
 			return mav;
 		} else {
 			session.setAttribute("adminLogin", resultData);
-			mav.setViewName("admin/member/memberList");
+			String url = ".do";
+			mav.setViewName("redirect:" + url);
 			return mav;
 		}
 	}

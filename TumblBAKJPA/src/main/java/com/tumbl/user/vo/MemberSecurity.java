@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class MemberSecurity  {
 
 	@Id
+	@GeneratedValue
 	private String email;
 	private String salt;
 

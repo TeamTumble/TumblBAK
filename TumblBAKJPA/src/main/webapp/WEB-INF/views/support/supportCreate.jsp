@@ -25,8 +25,15 @@
 
 <script type="text/javascript">
 	function lookupAddress() {
+		if (navigator.onLine == true){
+		
+
+
 		new daum.Postcode(
 				{
+					
+						
+					
 					oncomplete : function(data) {
 						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
@@ -66,7 +73,11 @@
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById('s_address').focus();
 					}
+					
 				}).open();
+		}else{
+			alert("현재 네트워크에 연결되어 있지 않습니다.");
+		}
 	}
 
 	//매소드 포함이기 때문에 
@@ -318,7 +329,7 @@
 			<input type="button" style="size: auto; font-size: large;"
 				value="후원 신청" id="supportBtn">
 		</div>
-		
+
 
 	</div>
 </body>

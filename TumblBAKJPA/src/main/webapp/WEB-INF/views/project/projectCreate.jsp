@@ -110,18 +110,16 @@
 		$("#projectGuideBtn").click(function() {
 			location.href = "/project/projectGuide.do";
 		});
-		
+
 		/*가이드 실행 버튼*/
 		$("#MainListBtn").click(function() {
 			location.href = "/project/projectList.do";
 		});
-		
-		
 
 		/* 등록 실행 버튼*/
 		$("#projectInsertBtn").click(function() {
 			//입력값 체크
-			/* if (!chkSubmit($('#ptitle'), "제목을"))
+			if (!chkSubmit($('#ptitle'), "제목을"))
 				return;
 			else if (!chkSubmit($('#pmname'), "이름을"))
 				return;
@@ -142,9 +140,9 @@
 			else if (!chkSubmit($('#p_refund'), "교환 및 환불 정책을"))
 				return;
 
-			else { */
+			else {
 
-				/* if ($('#p_file').val() != "") {
+				if ($('#p_file').val() != "") {
 					if (!chkFile($('#p_file')))
 						return;
 				}
@@ -155,14 +153,14 @@
 				if ($('#ps_file').val() != "") {
 					if (!chkFile($('#ps_file')))
 						return;
-				} */
+				}
 
 				$("#p_createForm").attr({
 					"method" : "POST",
 					"action" : "/project/projectInsert.do"
 				});
 				$("#p_createForm").submit();
-			/* } */
+			}
 		})
 	});
 </script>
@@ -190,7 +188,8 @@
 		</div>
 
 		<div class="form-group" style="height: 80%">
-			<form id="p_createForm" name="p_createForm" enctype="multipart/form-data">
+			<form id="p_createForm" name="p_createForm"
+				enctype="multipart/form-data">
 				<div>
 					<input type="hidden" name="email" id="email"
 						value="${member.email}" /> <input type="hidden"
@@ -509,6 +508,7 @@
 									<label class="w3-margin-left">생년월일</label><br> <input
 										type="text" class="w3-margin-left" style="width: 23%"
 										name="pm_birthday" id="pm_birthday">
+										<input type="hidden" name="pcase" id="pcase" value="승인대기">
 								</div>
 							</div>
 						</div>

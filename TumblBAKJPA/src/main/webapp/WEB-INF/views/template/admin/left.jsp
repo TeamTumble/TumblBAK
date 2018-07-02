@@ -22,7 +22,7 @@ function loginChk(path) {
 		<ul class="nav nav-sidebar">
 			<li class="active"><a href="#">[관리자 페이지 목록] 
 			<span class="sr-only">(current)</span></a></li>
-			<li><a href="/">Home</a></li>
+			<li><a href="/admin/.do">Home</a></li>
 			<li><a href="#" onclick="loginChk('/admin/member/memberList.do'); return false;">회원 관리</a></li>
 			<li><a href="#" onclick="loginChk('/admin/project/projectList.do'); return false;">프로젝트 관리</a></li>
 			<li><a href="#" onclick="loginChk('/admin/support/supportList.do'); return false;">후원 관리</a></li>
