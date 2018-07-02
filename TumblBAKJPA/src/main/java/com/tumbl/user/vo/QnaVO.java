@@ -2,6 +2,7 @@ package com.tumbl.user.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -12,8 +13,8 @@ import com.tumbl.client.common.vo.CommonVO;
 @Entity
 public class QnaVO extends CommonVO{
 	@Id
-	@GeneratedValue
-	private long qnum = 0; // 글번호
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long qnum ; // 글번호
 	private int idx = 0; //회원번호
 	private String email = ""; // 작성자
 	private String qtitle = ""; // 제목

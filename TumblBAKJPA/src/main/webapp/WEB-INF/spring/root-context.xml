@@ -56,16 +56,6 @@
 			</bean>
 		</constructor-arg>
 	</bean>
-	<!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"> 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
-		name="url" value="jdbc:mysql://localhost:3306/jpaexam" /> <property name="username" 
-		value="root" /> <property name="password" value="root" /> </bean> -->
-
-	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"> <property 
-		name="dataSourceClassName" value="com.mysql.jdbc.Driver" /> <property name="dataSourceProperties"> 
-		<props> <prop key="url" >jdbc:mysql//localhost:3306/jpaexam</prop> <prop 
-		key="user">root</prop> <prop key="password">root</prop> </props> </property> 
-		</bean> -->
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">

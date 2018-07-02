@@ -53,13 +53,7 @@
 						<!-- <li><a href="#">인기 프로젝트</a></li>
 						<li><a href="#">최신 프로젝트</a></li> -->
 
-						<li class="divider"></li>
-						<li class="dropdown-header">분야별 프로젝트</li>
 						
-						<li><a href="/project/projectList_Crafts.do">공예 프로젝트</a></li>
-						<li><a href="/project/projectList_Art.do">미술 프로젝트</a></li>
-						<li><a href="/project/projectList_Culture.do">문화 프로젝트</a></li>
-						<li><a href="/project/projectList_Book.do">출판 프로젝트</a></li>
 					</ul></li>
 				<li><a href="/project/liner.do">프로젝트 올리기</a></li>
 				<c:if test="${sessionScope.login == null }">

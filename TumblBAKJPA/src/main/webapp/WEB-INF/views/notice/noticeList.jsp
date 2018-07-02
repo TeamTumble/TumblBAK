@@ -164,23 +164,9 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th data-value="nno" class="order">글번호 <c:choose>
-								<c:when
-									test="${data.order_by=='nno' and data.order_sc=='ASC'}">▲</c:when>
-								<c:when
-									test="${data.order_by=='nno' and data.order_sc=='DESC'}">▼</c:when>
-								<c:otherwise>▲</c:otherwise>
-							</c:choose>
-						</th>
+						<th data-value="nno" class="order">글번호</th>
 						<th>글제목</th>
-						<th data-value="ndate" class="order">작성일 <c:choose>
-								<c:when
-									test="${data.order_by=='ndate' and data.order_sc=='ASC'}">▲</c:when>
-								<c:when
-									test="${data.order_by=='ndate' and data.order_sc=='DESC'}">▼</c:when>
-								<c:otherwise>▲</c:otherwise>
-							</c:choose>
-						</th>
+						<th data-value="ndate" class="order">작성일 </th>
 						<th class="borcle">작성자</th>
 					</tr>
 				</thead>
@@ -190,12 +176,11 @@
 						<c:when test="${not empty noticeList}">
 							<c:forEach var="notice" items="${noticeList}" varStatus="status">
 								<tr class="tac" data-num="${notice.nno}">
-									
 									<td>${count - status.index}</td>
 									<td class="goDetail tal">${notice.ntitle}</td>
 									<td>${notice.ndate}</td>
 									<td class="name">관리자</td>
-									
+
 								</tr>
 							</c:forEach>
 						</c:when>
